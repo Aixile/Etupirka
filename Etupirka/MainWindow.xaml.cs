@@ -784,9 +784,20 @@ namespace Etupirka
 			}
 		}
 
-		private void Delete_Click(object sender, RoutedEventArgs e)
+
+		private async void Delete_Click(object sender, RoutedEventArgs e)
 		{
 			ArrayList a = new ArrayList(GameListView.SelectedItems);
+			if (a.Count != 0)
+			{
+				MessageDialogResult re = await this.ShowMessageAsync("本当に削除しますか？", "",MessageDialogStyle.AffirmativeAndNegative);
+				if (re != MessageDialogResult.Affirmative)
+				{
+					return;
+				}
+			//	showMessage("バージョン情報", "Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion +
+	//" By Aixile.\nSpecial thnaks to SakuraiSatoru.");
+			}
 			foreach (GameExecutionInfo i in a)
 			{
 				db.DeleteGame(i.UID);

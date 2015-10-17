@@ -45,7 +45,7 @@
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu BorderThickness="0" FontSize="11">
                     <MenuItem Header="プロセス監視" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="エロゲヘルパーモード" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="バックグラウンドモード" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
                     <MenuItem Header="設定メーニュ" Name="SettingM" Click="SettingButton_Click" />
                     <MenuItem Header="終了"  Click="QuitApp_Click"/>
