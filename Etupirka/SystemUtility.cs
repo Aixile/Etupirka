@@ -24,12 +24,12 @@ namespace Etupirka
 
 		public static string strSourcePath= System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\";
 
-		public static EsInfo esInfo=new EsInfo(strSourcePath+"\\esdata.dat");
-
 		public static Random randomGen=new Random(Guid.NewGuid().GetHashCode());
 
 		public static string userDBPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\"+"user.db";
 		public static string infoDBPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location) + "\\"+"data.db";
+
+		public static InformationManager im;
 
 		public static byte[] Decompress(byte[] data)
 		{
@@ -42,37 +42,5 @@ namespace Etupirka
 				return resultStream.ToArray();
 			}
 		}
-
-
-
-	}
-
-	public class EsInfo
-	{
-		public List<int> id;
-		public List<string> name;
-		public List<string> saleday;
-		public List<string> brand;
-		public EsInfo(string path)
-		{
-			var reader = new StreamReader(File.OpenRead(path));
-			id = new List<int>();
-			name = new List<string>();
-			saleday = new List<string>();
-			brand = new List<string>();
-			while (!reader.EndOfStream)
-			{
-				var line = reader.ReadLine();
-				var values = line.Split('\t');
-				id.Add(Int32.Parse(values[0]));
-				name.Add(values[1]);
-				saleday.Add(values[2]);
-				brand.Add(values[3]);
-			}
-		}
-		public int getTermID(int i){
-			return id.BinarySearch(i);
-		}
-
 	}
 }

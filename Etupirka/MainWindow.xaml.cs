@@ -188,7 +188,7 @@ namespace Etupirka
 		private System.Windows.Threading.DispatcherTimer watchProcTimer;
 
 		private DBManager db;
-		public InformationManager im;
+		
 
 
 
@@ -210,14 +210,13 @@ namespace Etupirka
 			if (Settings.Default.Do_minimize)
 			{
 				this.Hide();
-				//1this.WindowState = WindowState.Minimized;
 				Settings.Default.Do_minimize = false;
 				Settings.Default.Save();
 			}
 
 
 			db = new DBManager(Utility.userDBPath);
-			im = new InformationManager(Utility.infoDBPath);
+			Utility.im = new InformationManager(Utility.infoDBPath);
 
 			items = new ObservableCollection<GameExecutionInfo>();
 			db.LoadGame(items);
@@ -479,11 +478,9 @@ namespace Etupirka
 				}
 				catch(Exception exc)
 				{
-				//	writer.WriteLine(exc);
 				}
 
 			}
-		//writer.Close();
 
 			base.OnClosing(e);
 		}
@@ -720,6 +717,64 @@ namespace Etupirka
 
 		}
 
+	/*	private Task<byte[]> getDataAsync(string url)
+		{
+			return NetworkUtility.GetData(url);  
+		}
+		*/
+		private async void UpdateOfflineDatabase_Click(object sender, RoutedEventArgs e)
+		{
+
+			try
+			{
+				var controller = await this.ShowProgressAsync("更新しています", "Initializing...");
+				controller.SetCancelable(true);
+				await TaskEx.Delay(1000);
+
+				controller.SetMessage("Downloading...");
+				string url = Properties.Settings.Default.databaseSyncServer;
+				url = url.TrimEnd('/') + "/" + "esdata.gz";
+				if (controller.IsCanceled)
+				{
+					await controller.CloseAsync();
+					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					return;
+				}
+				var data = await TaskEx.Run(() => { return NetworkUtility.GetData(url); });
+				if (controller.IsCanceled)
+				{
+					await controller.CloseAsync();
+					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					return;
+				}
+
+				controller.SetMessage("Decompressing...");
+				var s = await TaskEx.Run(() => { return Encoding.UTF8.GetString(Utility.Decompress(data)); }); 
+				if (controller.IsCanceled)
+				{
+					await controller.CloseAsync();
+					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					return;
+				}
+
+				controller.SetMessage("Updating database...");
+				bool re = await TaskEx.Run(() => { return Utility.im.update(s.Split('\n'));  }); 
+				await controller.CloseAsync();
+				if (re)
+				{
+					await this.ShowMessageAsync("データベースを更新する", "成功しました");
+				}
+				else
+				{
+					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+				}
+			}
+			catch
+			{
+				return;
+			}
+		}
+
 		private void QuitApp_Click(object sender, RoutedEventArgs e)
 		{
 			Application.Current.Shutdown();
@@ -843,6 +898,8 @@ namespace Etupirka
 			}
 		}
 		#endregion
+
+
 
 
 

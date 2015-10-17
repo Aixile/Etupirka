@@ -76,6 +76,7 @@
             <MenuItem   Header="ツール" >
                 <MenuItem Header="プロセス監視" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="プレイタイム統計" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
+                <MenuItem Header="オフラインデータベースを更新する" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
                 <MenuItem Header="設定" Name="SettingMenu" Click="SettingButton_Click"/>
             </MenuItem>
             <MenuItem   Header="ヘルプ" >

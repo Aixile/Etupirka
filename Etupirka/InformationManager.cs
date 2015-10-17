@@ -43,16 +43,28 @@ namespace Etupirka
 				conn.Close();
 			}
 		}
-		void update()
+
+		public void getEsInfo(GameInfo g)
+		{
+			using (SQLiteCommand command = conn.CreateCommand())
+			{
+				conn.Open();
+				command.CommandText = "SELECT * FROM erogamescape WHERE id='" + g.ErogameScapeID + "' ";
+				SQLiteDataReader reader = command.ExecuteReader();
+				while (reader.Read())
+				{
+					g.Title = reader["title"].ToString();
+					g.Brand = reader["brand"].ToString();
+					g.SaleDay = DateTime.ParseExact(reader["saleday"].ToString(), "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+				}
+				conn.Close();
+			}
+		}
+
+		public bool update(string[] line)
 		{
 			try
 			{
-
-				string url = Properties.Settings.Default.databaseSyncServer;
-				url=url.TrimEnd('\\')+"\\"+"esdata.gz";
-				var decompressed = Utility.Decompress(NetworkUtility.GetData(url));
-				string s = Encoding.UTF8.GetString(decompressed);
-				string[] line = s.Split('\n');
 				using (SQLiteCommand insertRngCmd = (SQLiteCommand)conn.CreateCommand())
 				{
 					insertRngCmd.CommandText = @"INSERT or REPLACE INTO erogamescape VALUES(@ID,@TITLE,@SALEDAY,@BRAND)";
@@ -74,10 +86,11 @@ namespace Etupirka
 					}
 					conn.Close();
 				}
+				return true; 
 			}
 			catch
 			{
-
+				return false;
 			}
 		}
 	}

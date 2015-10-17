@@ -152,6 +152,9 @@
       <DependentUpon>GameTimeStatisticDialog.xaml</DependentUpon>
     </Compile>
     <Compile Include="InformationManager.cs" />
+    <Compile Include="Views\DatabaseConfigView.xaml.cs">
+      <DependentUpon>DatabaseConfigView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PlayTime30Days.xaml.cs">
       <DependentUpon>PlayTime30Days.xaml</DependentUpon>
     </Compile>
@@ -253,6 +256,10 @@
     <Page Include="Dialog\GlobalSettingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DatabaseConfigView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\GeneralConfigView.xaml">
       <SubType>Designer</SubType>

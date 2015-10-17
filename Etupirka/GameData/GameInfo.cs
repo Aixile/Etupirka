@@ -109,13 +109,14 @@ namespace Etupirka
 		{
 			if (erogameScapeID > 0)
 			{
-				int pos = Utility.esInfo.getTermID(ErogameScapeID);
+				Utility.im.getEsInfo(this);
+			/*	int pos = Utility.esInfo.getTermID(ErogameScapeID);
 				if (pos >= 0)
 				{
 					Title = System.Net.WebUtility.HtmlDecode(Utility.esInfo.name[pos]);
 					Brand = System.Net.WebUtility.HtmlDecode(Utility.esInfo.brand[pos]);
 					SaleDay = DateTime.ParseExact(Utility.esInfo.saleday[pos], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-				}
+				}*/
 			}
 		} 
 

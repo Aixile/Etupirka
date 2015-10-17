@@ -19,11 +19,12 @@
         <TabControl TabStripPlacement="Left" Margin="15" Grid.Row="0">
             <Controls:MetroTabItem Header="一般" Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:GeneralConfigView x:Name="GeneralView" />
-
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="データベース" Controls:ControlsHelper.HeaderFontSize="20">
+                <Views:DatabaseConfigView x:Name="DatabaseView" />
             </Controls:MetroTabItem>
             <Controls:MetroTabItem Header="ネットワーク"  Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:NetworkConfigView  x:Name="NetworkView" />
-
             </Controls:MetroTabItem>
         </TabControl>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10">
