@@ -40,7 +40,7 @@ namespace Etupirka.Dialog
 		}
 		private void SyncESID_Click(object sender, RoutedEventArgs e)
 		{
-			bgame.updateInfoFromESOffline();
+			bgame.updateInfoFromES();
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)

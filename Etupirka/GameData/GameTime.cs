@@ -18,7 +18,7 @@ namespace Etupirka
 			GenerateUID();
 			try
 			{
-				updateInfoFromESOffline();
+				updateInfoFromES();
 			}
 			catch
 			{

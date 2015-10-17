@@ -795,8 +795,6 @@ namespace Etupirka
 				{
 					return;
 				}
-			//	showMessage("バージョン情報", "Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion +
-	//" By Aixile.\nSpecial thnaks to SakuraiSatoru.");
 			}
 			foreach (GameExecutionInfo i in a)
 			{

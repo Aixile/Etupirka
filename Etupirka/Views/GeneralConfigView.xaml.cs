@@ -26,6 +26,7 @@ namespace Etupirka.Views
 		public int MontiorInterval { get; set; }
 		public bool PlayVoice { get; set; }
 		public bool AskBeforeExit { get; set; }
+		public bool UseOfflineDatabase { get; set; }
 	
 		public GeneralConfigView()
 		{
@@ -38,6 +39,7 @@ namespace Etupirka.Views
 			MontiorInterval = Properties.Settings.Default.monitorInterval;
 			PlayVoice = Properties.Settings.Default.playVoice;
 			MinimizeAtStartup = Properties.Settings.Default.minimizeAtStartup;
+			UseOfflineDatabase = Properties.Settings.Default.useOfflineESDatabase;
 		}
 	}
 }

@@ -31,7 +31,7 @@ namespace Etupirka
 		public GameExecutionInfo(int ESID)
 		{
 			erogameScapeID = ESID;
-			updateInfoFromESOffline();
+			updateInfoFromES();
 
 			totalPlayTime = 0;
 			firstPlayTime = new DateTime(0);

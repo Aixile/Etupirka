@@ -44,7 +44,7 @@ namespace Etupirka
 		{
 			erogameScapeID = _erogameScapeID;
 			GenerateUID();
-			updateInfoFromESOffline();
+			updateInfoFromES();
 	
 		}
 
@@ -92,6 +92,19 @@ namespace Etupirka
 				else return "";
 			}
 		}
+		public void updateInfoFromES()
+		{
+			if (Properties.Settings.Default.useOfflineESDatabase)
+			{
+				updateInfoFromESOffline();
+			}
+			else
+			{
+				updateInfoFromESOnline();
+			}
+
+		}
+
 		public void updateInfoFromESOffline()
 		{
 			if (erogameScapeID > 0)
@@ -104,7 +117,7 @@ namespace Etupirka
 					SaleDay = DateTime.ParseExact(Utility.esInfo.saleday[pos], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 				}
 			}
-		}
+		} 
 
 		public void updateInfoFromESOnline()
 		{

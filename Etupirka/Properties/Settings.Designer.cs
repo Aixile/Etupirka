@@ -190,5 +190,17 @@ namespace Etupirka.Properties {
                 this["askBeforeExit"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool useOfflineESDatabase {
+            get {
+                return ((bool)(this["useOfflineESDatabase"]));
+            }
+            set {
+                this["useOfflineESDatabase"] = value;
+            }
+        }
     }
 }

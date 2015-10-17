@@ -45,6 +45,7 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.playVoice = GeneralView.PlayVoice;
 			Properties.Settings.Default.minimizeAtStartup = GeneralView.MinimizeAtStartup;
 			Properties.Settings.Default.askBeforeExit = GeneralView.AskBeforeExit;
+			Properties.Settings.Default.useOfflineESDatabase = GeneralView.UseOfflineDatabase;
 			Properties.Settings.Default.Save();
 			this.DialogResult = true;
 		}
