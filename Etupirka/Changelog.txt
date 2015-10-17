@@ -37,3 +37,8 @@ Fix: fix timer setting
 0.3.8 2015-09-18 12:09
 Add: open setting menu in tray context menu
 Add: turn off backgroud voice in setting menu
+
+0.4.14 2015-10-18 1:53
+Add: show dialog before deleting entries
+Change: use sqlite database instead of esinfo.dat
+Add: information database synchronization

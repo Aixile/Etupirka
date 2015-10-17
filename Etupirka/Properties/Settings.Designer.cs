@@ -205,7 +205,7 @@ namespace Etupirka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://share.girls.moe")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://etupirka.halcyons.org")]
         public string databaseSyncServer {
             get {
                 return ((string)(this["databaseSyncServer"]));

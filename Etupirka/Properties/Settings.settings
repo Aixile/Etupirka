@@ -48,7 +48,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="databaseSyncServer" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://share.girls.moe</Value>
+      <Value Profile="(Default)">http://etupirka.halcyons.org</Value>
     </Setting>
   </Settings>
 </SettingsFile>
