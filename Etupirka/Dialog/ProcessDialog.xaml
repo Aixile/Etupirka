@@ -1,0 +1,34 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.ProcessDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        WindowStartupLocation="CenterOwner"
+        Title="プロセスリスト" Height="400" Width="600"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Deactivated="MetroWindow_Deactivated"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button  Name="RefreshButton" Click="RefreshButton_Click">
+                <Image Height="18" Width="18" Source="../Resources/refresh.png">
+                </Image>
+            </Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid Margin="2">
+        <ListView Name="ProcListView" BorderThickness="0"  IsSynchronizedWithCurrentItem="True"  Util:GridViewSort.AutoSort="True" MouseDoubleClick="ProcListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="PID" Width="70" DisplayMemberBinding="{Binding ProcPid}" Util:GridViewSort.PropertyName="ProcPid"></GridViewColumn>
+                    <GridViewColumn Header="イメージ名" Width="140" DisplayMemberBinding="{Binding ProcName}" Util:GridViewSort.PropertyName="ProcName"></GridViewColumn>
+                    <GridViewColumn Header="タイトル" Width="140" DisplayMemberBinding="{Binding ProcTitle}" Util:GridViewSort.PropertyName="ProcTitle"></GridViewColumn>
+                    <GridViewColumn Header="パス" Width="230" DisplayMemberBinding="{Binding ProcPath}" Util:GridViewSort.PropertyName="ProcPath"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+    </Grid>
+</Controls:MetroWindow>

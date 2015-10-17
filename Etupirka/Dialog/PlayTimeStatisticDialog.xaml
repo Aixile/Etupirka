@@ -1,0 +1,35 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.PlayTimeStatisticDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        xmlns:Views="clr-namespace:Etupirka.Views"
+        WindowStartupLocation="CenterOwner"
+        Name="PlaytimeDialog"
+        Title="プレイタイム統計" Height="390" Width="355"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="2">
+        <TabControl TabStripPlacement="Top" Margin="10" Grid.Row="0">
+            <Controls:MetroTabItem Header="過去30日" Controls:ControlsHelper.HeaderFontSize="18">
+                <Views:PlayTime30Days x:Name="PlayTimeLast30Days" />
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="週間" Controls:ControlsHelper.HeaderFontSize="18">
+                <Views:PlayTimeWeek x:Name="PlayTimeWeek" />
+
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="月別" Controls:ControlsHelper.HeaderFontSize="18">
+                <Views:PlayTimeMonth x:Name="PlayTimeMonth" />
+
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="すべて" Controls:ControlsHelper.HeaderFontSize="18">
+                <Views:PlayTimeAll x:Name="PlayTimeAll" />
+
+            </Controls:MetroTabItem>
+
+        </TabControl>
+
+    </Grid>
+</Controls:MetroWindow>

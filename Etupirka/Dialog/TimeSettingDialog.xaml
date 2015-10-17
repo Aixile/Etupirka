@@ -1,0 +1,42 @@
+﻿<Controls:MetroWindow
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Views="clr-namespace:Etupirka.Views"
+        xmlns:Ctrl="clr-namespace:Etupirka.Control"
+        xmlns:Dameer="clr-namespace:Loya.Dameer;assembly=Loya.Dameer" x:Class="Etupirka.Dialog.TimeSettingDialog"
+        WindowStartupLocation="CenterOwner"
+        Title="プレイタイム設定" Height="210" Width="300"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="10"  >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" >最初プレイ</Label>
+        <Dameer:Dameer BorderThickness="0" Grid.Row="0" Grid.Column="1" ShowCheckBox="False" ShowDropDown="False" Format="Custom" CustomFormat="yyyy/MM/dd HH:mm:ss" Value="{Binding FirstPlayTime}"/>
+        <Label Grid.Row="1" Grid.Column="0" >最終プレイ</Label>
+        <Dameer:Dameer BorderThickness="0" Grid.Row="1" Grid.Column="1" ShowCheckBox="False" ShowDropDown="False" Format="Custom" CustomFormat="yyyy/MM/dd HH:mm:ss" Value="{Binding LastPlayTime}"/>
+        <Label Grid.Row="2" Grid.Column="0" >プレイタイム</Label>
+        <Ctrl:TimeControl x:Name="TimeControl" Margin="0,0,4,0"  HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1"  />
+
+        </Grid>
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Right" >
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
+            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+        </WrapPanel>
+    </Grid>
+</Controls:MetroWindow>

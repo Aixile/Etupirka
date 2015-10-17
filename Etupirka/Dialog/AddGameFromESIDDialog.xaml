@@ -1,0 +1,24 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialogs.AddGameFromESIDDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Title="ErogameScapeから追加" Height="135" Width="280"
+        WindowTitleBrush="#FF252525"
+        TitleCaps="False">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <WrapPanel Grid.Row="0">
+            <Label Content="ErogameScapeゲームID"  />
+            <Controls:NumericUpDown Minimum="0" Maximum="50000" Margin="20,0,0,0" Name="ESID"  HideUpDownButtons="True"/>
+        </WrapPanel>
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
+            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+        </WrapPanel>
+
+    </Grid>
+</Controls:MetroWindow>

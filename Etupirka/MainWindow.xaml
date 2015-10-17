@@ -1,0 +1,172 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        xmlns:tb="http://www.hardcodet.net/taskbar" 
+        Title="Etupirka" Height="415" Width="757"
+        xmlns:local="clr-namespace:Etupirka"
+        WindowTitleBrush="#FF252525"
+        Deactivated="MetroWindow_Deactivated"
+        TitleCaps="False"
+        x:Name="MWindow"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Icon="Resources/Etupirka.ico"
+        BorderThickness="1.5">
+    <Controls:MetroWindow.IconTemplate>
+        <DataTemplate>
+            <Image Source="Resources/Etupirka_w.ico">
+            </Image>
+        </DataTemplate>
+    </Controls:MetroWindow.IconTemplate>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <WrapPanel>
+                <Button  Name="SettingButton" Click="SettingButton_Click">
+                    <Image Height="18" Width="18" Source="Resources/setting.png">
+                    </Image>  
+                </Button>
+            </WrapPanel>
+     </Controls:WindowCommands>
+    </Controls:MetroWindow.RightWindowCommands>
+    <Grid>
+        <Grid.Resources>
+            <local:PathStyleConverter x:Key="pathStyleConverter"/>
+            <local:StatusStyleConverter x:Key="statusStyleConverter"/>
+            <local:StatusBarStyleConverter x:Key="statusBarStyleConverter" />
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"> </RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"> </RowDefinition>
+        </Grid.RowDefinitions>
+        <tb:TaskbarIcon x:Name="tbico" IconSource="/Resources/Etupirka.ico" >
+            <tb:TaskbarIcon.ContextMenu>
+                <ContextMenu BorderThickness="0" FontSize="11">
+                    <MenuItem Header="プロセス監視" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="エロゲヘルパーモード" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
+                    <MenuItem Header="設定メーニュ" Name="SettingM" Click="SettingButton_Click" />
+                    <MenuItem Header="終了"  Click="QuitApp_Click"/>
+                </ContextMenu>
+            </tb:TaskbarIcon.ContextMenu>
+
+        </tb:TaskbarIcon>
+        <Menu Name="MenuBar" FontSize="11"  Grid.Row="0" IsMainMenu="True">
+            <MenuItem   Header="ファイル" >
+                <MenuItem Header="プロセスから追加"  Name="AddGameFromProcess" Click="AddGameFromProcess_Click"/>
+                <MenuItem Header="ErogameScapeIDから追加" Click="AddGameFromESID_Click"/>
+                <Separator />
+                <MenuItem Header="インポート">
+                    <MenuItem Header="ゲーム情報" Name="ImportList" Click="ImportList_Click"/>
+                    <MenuItem Header="ゲーム情報(上書き)" Name="ImportList_Overwrite" Click="ImportList_Overwrite_Click"/>
+                    <MenuItem Header="プレイタイム情報" Name="ImportPlayTimeList"  Click="ImportPlayTimeList_Click"/>
+                    <MenuItem Header="プレイタイム情報(上書き)" Name="ImportPlayTimeList_Overwrite"  Click="ImportPlayTimeList_Overwrite_Click"/>
+                </MenuItem>
+                <!--<MenuItem Header="ErogeTimerからインポート" Name="ImportFromErogeTimer" Click="ImportFromErogeTimer_Click"/>-->
+                <MenuItem Header="エクスポート">
+                    <MenuItem Header="すべてのゲームをエクスポート" Name="ExportList" Click="ExportList_Click"/>
+                    <MenuItem Header="選択したゲームをエクスポート" Name="ExportSelect" Click="ExportSelect_Click"/>
+                </MenuItem>
+                <Separator />
+                <MenuItem Header="終了" Name="QuitApp" Click="QuitApp_Click"/>
+       
+            </MenuItem>
+            <MenuItem   Header="ツール" >
+                <MenuItem Header="プロセス監視" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="プレイタイム統計" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
+                <MenuItem Header="設定" Name="SettingMenu" Click="SettingButton_Click"/>
+            </MenuItem>
+            <MenuItem   Header="ヘルプ" >
+                <MenuItem Header="バージョン情報" Name="VersionInfo" Click="VersionInfo_Click"/>
+            </MenuItem>
+        </Menu>
+        <ListView Grid.Row="1" BorderThickness="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="30" Util:GridViewSort.PropertyName="Status" >
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=Status,Converter={StaticResource statusStyleConverter}}"  FontFamily="Webdings" Text="=" FontSize="20"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="ゲーム" Width="225" Util:GridViewSort.PropertyName="Title">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Title}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="ブランド" Width="95" Util:GridViewSort.PropertyName="Brand">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Brand}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="発売日" Width="80"  Util:GridViewSort.PropertyName="SaleDay">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding SaleDayString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="プレイタイム" Width="80"  Util:GridViewSort.PropertyName="TotalPlayTime">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding TotalPlayTimeString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="最初プレイ" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding FirstPlayTimeString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="最終プレイ" Width="115" Util:GridViewSort.PropertyName="LastPlayTime">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding LastPlayTimeString}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu FontSize="10">
+                    <MenuItem Header="ゲーム起動"  Name="OpenGame" Click="OpenGame_Click"/>
+                    <MenuItem Header="開く">
+                        <MenuItem Header="フォルダーを開く"  Name="OpenFolder" Click="OpenFolder_Click"/>
+                        <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
+                        <MenuItem Header="プレイ統計を開く" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
+                    </MenuItem>
+                    <MenuItem Header="削除" Name="Delete" Click="Delete_Click" />
+                    <MenuItem Header="設定">
+                        <MenuItem Header="プレイタイム設定" Name="TimeSetting" Click="TimeSetting_Click"/>
+                        <MenuItem Header="ゲーム設定" Name="GameProperty" Click="GameProperty_Click"/>
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+
+        <StatusBar Grid.Row="2" FontSize="11" Background="{Binding Path=StatusBarStat,ElementName=MWindow,Converter={StaticResource statusBarStyleConverter}}">
+            <StatusBarItem HorizontalAlignment="Left">
+                <Label FontWeight="Bold" Content="" Name="PlayMessage" />
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <WrapPanel>
+                <Label FontWeight="Bold" Content="トータルプレイタイム: " />
+                <Label  FontWeight="Bold"  Content="{Binding TotalTime,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                <Label FontWeight="Bold" Content="プレイ数: " />
+                <Label  FontWeight="Bold" Content="{Binding ItemCount,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                </WrapPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+    
+</Controls:MetroWindow>

@@ -1,0 +1,35 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialogs.GlobalSettingDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Views="clr-namespace:Etupirka.Views"
+        WindowStartupLocation="CenterOwner"
+        Name="SettingDialog"
+        Title="Etupirka設定" Height="400" Width="500"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <TabControl TabStripPlacement="Left" Margin="15" Grid.Row="0">
+            <Controls:MetroTabItem Header="一般" Controls:ControlsHelper.HeaderFontSize="20">
+                <Views:GeneralConfigView x:Name="GeneralView" />
+
+            </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="ネットワーク"  Controls:ControlsHelper.HeaderFontSize="20">
+                <Views:NetworkConfigView  x:Name="NetworkView" />
+
+            </Controls:MetroTabItem>
+        </TabControl>
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10">
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
+            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+        </WrapPanel>
+
+    </Grid>
+</Controls:MetroWindow>

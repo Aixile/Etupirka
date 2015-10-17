@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Etupirka.Control.TimeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    Height="Auto" Width="Auto" x:Name="UserControl">
+    <Grid x:Name="LayoutRoot" Width="Auto" Height="Auto">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="hour" Focusable="True">
+            <Controls:NumericUpDown  Minimum="0" Maximum="10000" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="mmTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Hours, ElementName=UserControl,UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid  Grid.Column="1">
+            <TextBlock  x:Name="sep1" TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}" 
+                   Text=":" TextAlignment="Center"/>
+        </Grid>
+
+        <Grid  Grid.Column="2" x:Name="min" Focusable="True" >
+            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="ddTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Minutes, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+
+        <Grid  Grid.Column="3">
+            <TextBlock x:Name="sep2"  TextWrapping="Wrap" VerticalAlignment="Center" Background="{x:Null}"
+                  Text=":" TextAlignment="Center"/>
+        </Grid>
+
+        <Grid  Grid.Column="4" Name="sec" Focusable="True">
+            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="yyTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Seconds, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
+        </Grid>
+    </Grid>
+</UserControl>

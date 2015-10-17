@@ -1,0 +1,24 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.GameTimeStatisticDialog"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        xmlns:Views="clr-namespace:Etupirka.Views"
+        WindowStartupLocation="CenterOwner"
+        Name="GameStatisticDialog"
+        Title="プレイタイム統計" Height="300" Width="300"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="2">
+        <ListView Name="PlayTimeListView" BorderThickness="0"  IsSynchronizedWithCurrentItem="True"  Util:GridViewSort.AutoSort="True">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="日付" Width="100" DisplayMemberBinding="{Binding DayString}" Util:GridViewSort.PropertyName="d"></GridViewColumn>
+                    <GridViewColumn Header="プレイタイム" Width="120" DisplayMemberBinding="{Binding TimeString}" Util:GridViewSort.PropertyName="time"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+    </Controls:MetroWindow>

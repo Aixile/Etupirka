@@ -1,0 +1,46 @@
+﻿<UserControl x:Class="Etupirka.Views.NetworkConfigView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+             xmlns:local="clr-namespace:Etupirka.Views"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Margin="10">
+        <Grid.Resources>
+            <local:EnumToBooleanConverter x:Key="enumBooleanConverter"/>
+            <local:InverseBooleanConverter x:Key="inverseBooleanConverter"/> 
+        </Grid.Resources>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <Label FontWeight="Bold" >汎用プロクシ</Label>
+            <RadioButton  Margin="2" Focusable="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.None}}" Name="NoneBox" Tag="0">なし</RadioButton>
+            <RadioButton  Margin="2" Focusable="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Http}}"  Name="HTTPBox" Tag="1">HTTP</RadioButton>
+            <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks4}}" Name="SOCKS4Box" Tag="2">SOCKS 4</RadioButton>
+            <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks5}}"  Name="SOCKS5Box" Tag="3">SOCKS 5</RadioButton>
+        </StackPanel>
+        <StackPanel Grid.Row="1">
+            <WrapPanel Margin="2">
+                <Label>プロクシホスト:　　</Label>
+                <TextBox Width="150" Text="{Binding ProxyAddress,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"/>
+            </WrapPanel>
+            <WrapPanel Margin="2">
+                <Label>プロクシポート:　　</Label>
+                <Controls:NumericUpDown  Value="{Binding ProxyPort,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="65535" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"  HideUpDownButtons="True"/>
+            </WrapPanel>
+            <WrapPanel Margin="2">
+                <Label>プロクシユーザー:　</Label>
+                <TextBox Width="150" Text="{Binding ProxyUser,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"></TextBox>
+            </WrapPanel>
+            <WrapPanel Margin="2">
+                <Label>プロクシパスワード:</Label>
+                <PasswordBox Width="150" x:Name="passwordBox" IsEnabled="False"></PasswordBox>
+            </WrapPanel>
+        </StackPanel>
+            
+    </Grid>
+</UserControl>
