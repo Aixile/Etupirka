@@ -123,7 +123,7 @@ namespace Etupirka
 		{
 			if (erogameScapeID > 0)
 			{
-				string result = NetworkUtility.Get("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
+				string result = NetworkUtility.GetString("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
 				//Console.Write(result);
 				string matchTitle = "<div id=\"soft-title\"><span class=\"bold\">(?<title>.*?)</span>";
 				string matchBrand = "<td><a href=\"brand.php\\?brand=(?<brandid>.*?)\">(?<brand>.*?)</a></td>";

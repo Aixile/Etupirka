@@ -33,7 +33,7 @@ namespace Etupirka
 			return wc;
 		}
 
-		public static string Get(string uri)
+		public static string GetString(string uri)
 		{
 			WebClient wc = new WebClient();
 			wc = setProxy(wc);
@@ -48,6 +48,24 @@ namespace Etupirka
 			catch
 			{
 				return "";
+			}
+		}
+
+		public static byte[] GetData(string uri)
+		{
+			WebClient wc = new WebClient();
+			wc = setProxy(wc);
+
+			wc.Encoding = System.Text.Encoding.UTF8;
+			try
+			{
+				byte[] result = wc.DownloadData(uri);
+				return result;
+
+			}
+			catch
+			{
+				return null;
 			}
 		}
 	}

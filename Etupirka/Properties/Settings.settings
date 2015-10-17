@@ -47,5 +47,8 @@
     <Setting Name="useOfflineESDatabase" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
+    <Setting Name="databaseSyncServer" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://share.girls.moe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

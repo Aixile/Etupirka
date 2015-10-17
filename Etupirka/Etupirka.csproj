@@ -151,6 +151,7 @@
     <Compile Include="Dialog\GameTimeStatisticDialog.xaml.cs">
       <DependentUpon>GameTimeStatisticDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="InformationManager.cs" />
     <Compile Include="Views\PlayTime30Days.xaml.cs">
       <DependentUpon>PlayTime30Days.xaml</DependentUpon>
     </Compile>

@@ -188,6 +188,7 @@ namespace Etupirka
 		private System.Windows.Threading.DispatcherTimer watchProcTimer;
 
 		private DBManager db;
+		public InformationManager im;
 
 
 
@@ -216,6 +217,7 @@ namespace Etupirka
 
 
 			db = new DBManager(Utility.userDBPath);
+			im = new InformationManager(Utility.infoDBPath);
 
 			items = new ObservableCollection<GameExecutionInfo>();
 			db.LoadGame(items);
