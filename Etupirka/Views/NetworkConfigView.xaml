@@ -34,11 +34,11 @@
             </WrapPanel>
             <WrapPanel Margin="2">
                 <Label>プロクシユーザー:　</Label>
-                <TextBox Width="150" Text="{Binding ProxyUser,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"></TextBox>
+                <TextBox Width="150" Text="{Binding ProxyUser,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"></TextBox>
             </WrapPanel>
             <WrapPanel Margin="2">
                 <Label>プロクシパスワード:</Label>
-                <PasswordBox Width="150" x:Name="passwordBox" IsEnabled="False"></PasswordBox>
+                <PasswordBox Width="150" x:Name="passwordBox"  IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"></PasswordBox>
             </WrapPanel>
         </StackPanel>
             

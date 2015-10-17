@@ -19,15 +19,20 @@ namespace Etupirka
 
 		private static WebClient setProxy(WebClient wc)
 		{
-			int pt = (int)Properties.Settings.Default["proxyType"];
+			int pt = Properties.Settings.Default.proxyType;
 			if (pt == 0) return wc;
 			if (pt == 1)
 			{
-				WebProxy proxy = new WebProxy((string)Properties.Settings.Default["proxyAddress"],(int)Properties.Settings.Default["proxyPort"]);
+				WebProxy proxy = new WebProxy(Properties.Settings.Default.proxyAddress,Properties.Settings.Default.proxyPort);
+				if (!String.IsNullOrEmpty(Properties.Settings.Default.proxyUser))
+				{
+					proxy.Credentials = new NetworkCredential(Properties.Settings.Default.proxyUser, Properties.Settings.Default.proxyPassword);
+				}
 				wc.Proxy = proxy;
 			}
 			return wc;
 		}
+
 		public static string Get(string uri)
 		{
 			WebClient wc = new WebClient();
