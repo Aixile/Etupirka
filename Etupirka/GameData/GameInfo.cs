@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace Etupirka
 {
@@ -120,11 +121,12 @@ namespace Etupirka
 			}
 		} 
 
-		public void updateInfoFromESOnline()
+		public async void updateInfoFromESOnline()
 		{
 			if (erogameScapeID > 0)
 			{
-				string result = NetworkUtility.GetString("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
+				string result =	await TaskEx.Run(() => { return NetworkUtility.GetString("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID); });
+					
 				//Console.Write(result);
 				string matchTitle = "<div id=\"soft-title\"><span class=\"bold\">(?<title>.*?)</span>";
 				string matchBrand = "<td><a href=\"brand.php\\?brand=(?<brandid>.*?)\">(?<brand>.*?)</a></td>";
@@ -134,20 +136,20 @@ namespace Etupirka
 				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
 				{
 					Title = System.Net.WebUtility.HtmlDecode(m.Groups["title"].Value);
-					Console.Write(title);
+			//		Console.Write(title);
 				}
 				re = new Regex(matchBrand, RegexOptions.IgnoreCase);
 				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
 				{
 					Brand = System.Net.WebUtility.HtmlDecode(m.Groups["brand"].Value);
-					Console.Write(brand);
+		//			Console.Write(brand);
 				}
 				re = new Regex(matchSaleDay, RegexOptions.IgnoreCase);
 				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
 				{
 					string saleday = m.Groups["saleday"].Value;
 					SaleDay = DateTime.ParseExact(saleday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-					Console.Write(saleday);
+			//		Console.Write(saleday);
 				}
 			}
 		}
