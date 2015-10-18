@@ -42,3 +42,7 @@ Add: turn off backgroud voice in setting menu
 Add: show dialog before deleting entries
 Change: use sqlite database instead of esinfo.dat
 Add: information database synchronization
+
+0.4.15 2015-10-18 10:25
+Fix: focus on tab control after selection changed
+Change: asynchronous updating
