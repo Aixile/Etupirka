@@ -50,5 +50,13 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.Save();
 			this.DialogResult = true;
 		}
+
+		private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			this.Dispatcher.BeginInvoke(new Action(() =>
+			{
+				this.ConfigTab.Focus();
+			}));
+		}
 	}
 }

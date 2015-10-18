@@ -16,7 +16,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         
-        <TabControl TabStripPlacement="Left" Margin="15" Grid.Row="0">
+        <TabControl Name="ConfigTab" SelectionChanged="TabControl_SelectionChanged" TabStripPlacement="Left" Margin="15" Grid.Row="0">
             <Controls:MetroTabItem Header="一般" Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:GeneralConfigView x:Name="GeneralView" />
             </Controls:MetroTabItem>
