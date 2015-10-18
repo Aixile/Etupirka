@@ -26,21 +26,21 @@ namespace Etupirka.Dialog
 		{
 			game = _game;
 			bgame =(GameExecutionInfo) _game.Clone();
-			
+			updating = false;
 			InitializeComponent();
 			this.DataContext = bgame;
-			bgame.PropertyChanged += TitleChanged;
 		}
-		private static void TitleChanged(object sender, PropertyChangedEventArgs e)
-		{
-			if(e.PropertyName!="Title") return;
-			var p=(GameExecutionInfo) sender;
-			// 文字列でプロパティ名を判別
-			Console.WriteLine("名前が変更されました: " + p.Title);
-		}
+
+		private bool updating;
 		private void SyncESID_Click(object sender, RoutedEventArgs e)
 		{
+			if (updating)
+			{
+				return;
+			}
+			updating = true;
 			bgame.updateInfoFromES();
+			updating = false;
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)

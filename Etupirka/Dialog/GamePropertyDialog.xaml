@@ -38,7 +38,7 @@
             <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding SaleDay,UpdateSourceTrigger=PropertyChanged}" Margin="2"></DatePicker>
             <Label Grid.Row="3" Grid.Column="0" FontWeight="Bold" Margin="2">ErogameScape ID</Label>
             <Controls:NumericUpDown  Grid.Row="3" Grid.Column="1" Margin="2" Minimum="0" Maximum="50000" Name="ESID"  HideUpDownButtons="True" Value="{Binding ErogameScapeID,UpdateSourceTrigger=PropertyChanged}"/>
-            <Button Grid.Row="3" Margin="2"  Grid.Column="2" BorderThickness="0" Name="SyncESID" Click="SyncESID_Click">
+            <Button Grid.Row="3" Margin="2"  Grid.Column="2" BorderThickness="0" Name="SyncESID" Click="SyncESID_Click" >
                 <TextBlock  FontFamily="Webdings" FontSize="14">q</TextBlock>
             </Button>
             <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" Margin="2">プロセス監視パス</Label>
