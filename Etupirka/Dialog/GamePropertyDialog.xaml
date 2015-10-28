@@ -43,9 +43,15 @@
             </Button>
             <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" Margin="2">プロセス監視パス</Label>
             <TextBox Grid.Row="4" Grid.Column="1"  Margin="2" TextAlignment="Right" Text="{Binding ProcPath,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <Button  Grid.Row="4" Grid.Column="2"  Margin="2" BorderThickness="0" Name="GetProcPath"  Click="GetProcPath_Click">
-                <TextBlock >...</TextBlock>
-            </Button>
+            <WrapPanel   Grid.Row="4" Grid.Column="2" Margin="2">
+                <Button  BorderThickness="0" Name="GetProcPath"  Margin="1" Click="GetProcPath_Click">
+                    <TextBlock>.</TextBlock>
+                </Button>
+                <Button BorderThickness="0" Margin="1" Name="GetProcPath_List" Click="GetProcPath_List_Click">
+                    <TextBlock>P</TextBlock>
+                </Button>
+            </WrapPanel>
+         
             <Label Grid.Row="5" Grid.Column="0" FontWeight="Bold" Margin="2">異なる実行パス</Label>
             <CheckBox Grid.Row="5" Grid.Column="2" Margin="6,2,-2,2" IsChecked="{Binding IsProcNEqExec,UpdateSourceTrigger=PropertyChanged}"></CheckBox>
             <Label Grid.Row="6" Grid.Column="0" FontWeight="Bold" Margin="2">実行パス</Label>

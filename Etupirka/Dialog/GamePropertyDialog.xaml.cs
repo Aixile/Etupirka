@@ -71,5 +71,15 @@ namespace Etupirka.Dialog
 				bgame.ExecPath = openFileDialog1.FileName;
 			}
 		}
+
+		private void GetProcPath_List_Click(object sender, RoutedEventArgs e)
+		{	
+			Dialog.ProcessDialog pd = new Dialog.ProcessDialog();
+			pd.Owner = this;
+			if (pd.ShowDialog() == true)
+			{
+				bgame.ProcPath=pd.SelectedProc.ProcPath;
+			}
+		}
 	}
 }
