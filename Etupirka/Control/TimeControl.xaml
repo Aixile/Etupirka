@@ -13,8 +13,8 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="hour" Focusable="True">
-            <Controls:NumericUpDown  Minimum="0" Maximum="10000" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="mmTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Hours, ElementName=UserControl,UpdateSourceTrigger=PropertyChanged}" />
+        <Grid x:Name="hour"  >
+            <Controls:NumericUpDown  Minimum="0" Maximum="9999" MinWidth="10" PreviewTextInput="hh_PreviewTextInput"  HideUpDownButtons="True" BorderThickness="0" x:Name="hh"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Hours, ElementName=UserControl,UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid  Grid.Column="1">
@@ -22,8 +22,8 @@
                    Text=":" TextAlignment="Center"/>
         </Grid>
 
-        <Grid  Grid.Column="2" x:Name="min" Focusable="True" >
-            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="ddTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Minutes, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
+        <Grid  Grid.Column="2" x:Name="min"   >
+            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10" PreviewTextInput="mm_PreviewTextInput"  HideUpDownButtons="True" BorderThickness="0" x:Name="mm"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Minutes, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
 
         <Grid  Grid.Column="3">
@@ -31,8 +31,11 @@
                   Text=":" TextAlignment="Center"/>
         </Grid>
 
-        <Grid  Grid.Column="4" Name="sec" Focusable="True">
-            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10"  HideUpDownButtons="True" BorderThickness="0" x:Name="yyTxt"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Seconds, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
+           
+        <Grid  Grid.Column="4" Name="sec" >
+            <Controls:NumericUpDown  Minimum="0" Maximum="59" MinWidth="10" PreviewTextInput="ss_PreviewTextInput"  HideUpDownButtons="True" BorderThickness="0" x:Name="ss"  TextAlignment="Center" VerticalAlignment="Center" Value="{Binding Path=Seconds, ElementName=UserControl, UpdateSourceTrigger=PropertyChanged}" />
         </Grid>
+       
+   
     </Grid>
 </UserControl>

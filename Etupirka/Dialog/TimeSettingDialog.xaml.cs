@@ -26,12 +26,11 @@ namespace Etupirka.Dialog
 			bgame =(GameExecutionInfo) g.Clone();
 			this.DataContext = bgame;
 			InitializeComponent();
-			TimeControl.Value = bgame.TotalPlayTime;
+			tc.DataContext = bgame;
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
-			bgame.TotalPlayTime = TimeControl.Value;
 			game.Set(bgame);
 			this.DialogResult = true;
 		}

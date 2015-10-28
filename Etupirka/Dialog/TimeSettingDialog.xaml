@@ -4,8 +4,10 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
         xmlns:Ctrl="clr-namespace:Etupirka.Control"
+        xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         xmlns:Dameer="clr-namespace:Loya.Dameer;assembly=Loya.Dameer" x:Class="Etupirka.Dialog.TimeSettingDialog"
-        WindowStartupLocation="CenterOwner"
+
+    WindowStartupLocation="CenterOwner"
         Title="プレイタイム設定" Height="210" Width="300"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
@@ -27,11 +29,16 @@
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" >最初プレイ</Label>
-        <Dameer:Dameer BorderThickness="0" Grid.Row="0" Grid.Column="1" ShowCheckBox="False" ShowDropDown="False" Format="Custom" CustomFormat="yyyy/MM/dd HH:mm:ss" Value="{Binding FirstPlayTime}"/>
-        <Label Grid.Row="1" Grid.Column="0" >最終プレイ</Label>
+           <!-- <WindowsFormsHost Grid.Row="0" Grid.Column="1">
+                <wf:DateTimePicker></wf:DateTimePicker>
+            </WindowsFormsHost>-->
+
+            <!-- <Da-->
+            <Dameer:Dameer BorderThickness="0" Grid.Row="0" Grid.Column="1" ShowCheckBox="False" ShowDropDown="False" Format="Custom" CustomFormat="yyyy/MM/dd HH:mm:ss" Value="{Binding FirstPlayTime}"/>
+            <Label Grid.Row="1" Grid.Column="0" >最終プレイ</Label>
         <Dameer:Dameer BorderThickness="0" Grid.Row="1" Grid.Column="1" ShowCheckBox="False" ShowDropDown="False" Format="Custom" CustomFormat="yyyy/MM/dd HH:mm:ss" Value="{Binding LastPlayTime}"/>
         <Label Grid.Row="2" Grid.Column="0" >プレイタイム</Label>
-        <Ctrl:TimeControl x:Name="TimeControl" Margin="0,0,4,0"  HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1"  />
+        <Ctrl:TimeControl x:Name="tc" Margin="0,0,4,0"  HorizontalAlignment="Right" Grid.Row="2" Grid.Column="1"  Value="{Binding TotalPlayTime,Mode=TwoWay}" />
 
         </Grid>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" >
