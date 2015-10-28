@@ -149,12 +149,12 @@ namespace Etupirka
 			{
 				if (WatchProc)
 				{
-					SoundPlayer sp = new SoundPlayer(Properties.Resources.stop);
+					SoundPlayer sp = new SoundPlayer(Properties.Resources.stop2);
 					sp.Play();
 				}
 				else
 				{
-					SoundPlayer sp = new SoundPlayer(Properties.Resources.start);
+					SoundPlayer sp = new SoundPlayer(Properties.Resources.start2);
 					sp.Play();
 
 				}
@@ -476,7 +476,7 @@ namespace Etupirka
 						}
 					}
 				}
-				catch(Exception exc)
+				catch
 				{
 				}
 
@@ -485,6 +485,19 @@ namespace Etupirka
 			base.OnClosing(e);
 		}
 
+		private void GameListView_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				DoOpenGame();
+			}
+			else if (e.Key == Key.Delete)
+			{
+
+				DoDelete();
+			}
+
+		}
 
 		protected override void OnStateChanged(EventArgs e)
 		{
@@ -908,19 +921,7 @@ namespace Etupirka
 		}
 		#endregion
 
-		private void GameListView_KeyDown(object sender, KeyEventArgs e)
-		{
-			if (e.Key == Key.Enter)
-			{
-				DoOpenGame();
-			}
-			else if (e.Key == Key.Delete)
-			{
 
-				DoDelete();
-			}
-
-		}
 
 
 

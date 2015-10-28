@@ -33,7 +33,7 @@
         <CheckBox Margin="2" Focusable="False" Grid.Row="4"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding WatchProcess}"></CheckBox>
         <Label Margin="2" Grid.Row="5" Grid.Column="0">監視間隔 (秒)</Label>
         <Controls:NumericUpDown Margin="2" Grid.Row="5" Grid.Column="1"  Value="{Binding MontiorInterval,UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="300"  HideUpDownButtons="True"/>
-        <Label Margin="2" Grid.Row="6" Grid.Column="0">バックグラウンドボイス</Label>
+        <Label Margin="2" Grid.Row="6" Grid.Column="0">バックグラウンドサウンド</Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="6"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding PlayVoice}"></CheckBox>
 
     </Grid>
