@@ -52,7 +52,7 @@ namespace Etupirka.Views
 						{
 							if (reader.IsDBNull(0))
 							{
-								sd.Add(new TimeSummary(d.ToString("yyyy-MM-dd"), 0));
+							//	sd.Add(new TimeSummary(d.ToString("yyyy-MM-dd"), 0));
 
 							}else{
 								sd.Add(new TimeSummary(d.ToString("yyyy-MM-dd"),
