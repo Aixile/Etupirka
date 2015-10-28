@@ -841,13 +841,12 @@ namespace Etupirka
 			}
 		}
 
-
-		private async void Delete_Click(object sender, RoutedEventArgs e)
+		private async void DoDelete()
 		{
 			ArrayList a = new ArrayList(GameListView.SelectedItems);
 			if (a.Count != 0)
 			{
-				MessageDialogResult re = await this.ShowMessageAsync("本当に削除しますか？", "",MessageDialogStyle.AffirmativeAndNegative);
+				MessageDialogResult re = await this.ShowMessageAsync("本当に削除しますか？", "", MessageDialogStyle.AffirmativeAndNegative);
 				if (re != MessageDialogResult.Affirmative)
 				{
 					return;
@@ -862,11 +861,21 @@ namespace Etupirka
 			OnPropertyChanged("ItemCount");
 		}
 
-		private void OpenGame_Click(object sender, RoutedEventArgs e)
+		private  void Delete_Click(object sender, RoutedEventArgs e)
+		{
+			DoDelete();
+		}
+
+		private void DoOpenGame()
 		{
 			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
 			if (g != null) g.run();
 			UpdateStatus();
+		}
+
+		private void OpenGame_Click(object sender, RoutedEventArgs e)
+		{
+			DoOpenGame();
 		}
 
 		private void OpenFolder_Click(object sender, RoutedEventArgs e)
@@ -898,6 +907,20 @@ namespace Etupirka
 			}
 		}
 		#endregion
+
+		private void GameListView_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key == Key.Enter)
+			{
+				DoOpenGame();
+			}
+			else if (e.Key == Key.Delete)
+			{
+
+				DoDelete();
+			}
+
+		}
 
 
 

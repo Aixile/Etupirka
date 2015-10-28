@@ -83,13 +83,16 @@
                 <MenuItem Header="バージョン情報" Name="VersionInfo" Click="VersionInfo_Click"/>
             </MenuItem>
         </Menu>
-        <ListView Grid.Row="1" BorderThickness="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick">
+        <ListView Grid.Row="1"  BorderThickness="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick" KeyDown="GameListView_KeyDown" >
+            <ListView.InputBindings>
+                <KeyBinding Key="Enter" />
+            </ListView.InputBindings>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Width="30" Util:GridViewSort.PropertyName="Status" >
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Foreground="{Binding Path=Status,Converter={StaticResource statusStyleConverter}}"  FontFamily="Webdings" Text="=" FontSize="20"></TextBlock>
+                                <TextBlock  Foreground="{Binding Path=Status,Converter={StaticResource statusStyleConverter}}"  FontFamily="Webdings" Text="=" FontSize="20"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
