@@ -21,14 +21,24 @@
 4. エントリーを選択して->設定->ゲーム設定
 ![](http://i.imgur.com/lWmqFa0.png)
 5. エロスケゲームIDを入力してゲーム情報を自動更新　（例えば [http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529](http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529 "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529")　の場合ゲームIDは4529
+
+
 ![](http://i.imgur.com/EgwoVnz.png) ![](http://i.imgur.com/uz8PaPR.png)
 6. これで自動的にゲーム状態を監視することになる、**ウインドウがアクティブではない時はカウントしない**
+
+
 ![](http://i.imgur.com/8UQCxx9.png)
 
 ###プレイタイム統計を見る
 週間や月別などのプレイ時間とゲームプレイ時間を測ることもできる。
+
+
 ![](http://i.imgur.com/XqKcN4n.png) ![](http://i.imgur.com/1A5EK0D.png)
+
+
 ダブルクリックすれば詳しい情報が見える。
+
+
 ![](http://i.imgur.com/GQlg57S.png)
 
 
