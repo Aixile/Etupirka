@@ -6,6 +6,9 @@
 
 ![](http://i.imgur.com/upkcS2e.png)
 
+##ダウンロード
+[Etupirka-0.5.0.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.0.zip "Etupirka-0.5.0.zip")
+
 ##使い方
 
 ###エントリーを追加する
@@ -34,8 +37,6 @@
 
 
 
-##ダウンロード
-[Etupirka-0.5.0.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.0.zip "Etupirka-0.5.0.zip")
 
 ##動作環境
 **Windows Vista/7/8/10**
