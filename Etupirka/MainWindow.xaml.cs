@@ -236,9 +236,29 @@ namespace Etupirka
 			watchProcTimer.Interval = new TimeSpan(0, 0, Properties.Settings.Default.monitorInterval);
 			watchProcTimer.Start();
 
+			if (Settings.Default.checkUpdate)
+			{
+				Thread t = new Thread(doCheckUpdate);
+				t.Start();
+			}
+
 		}
 
 		#region Function
+		private  void doCheckUpdate()
+		{
+			string str= NetworkUtility.GetString("http://etupirka.halcyons.org/checkversion.php");
+			Version lastestVersion = new Version(str);
+			Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
+			if (lastestVersion > myVersion)
+			{
+				if (MessageBox.Show("Version "+str+" が見つかりました、更新しますか？","Etupirkaを更新する",MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+				{
+					Process.Start("https://github.com/Aixile/Etupirka");
+				}
+			}
+		}
+
 		private void UpdateStatus(int time=0)
 		{
 			IntPtr actWin = Utility.GetForegroundWindow();
@@ -802,9 +822,17 @@ namespace Etupirka
 		{
 
 			showMessage("バージョン情報","Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion +
-				" By Aixile.\nSpecial thnaks to SakuraiSatoru.");
+				" By Aixile (@namaniku0).");
 
 		}
+
+		private void CheckUpdate_Click(object sender, RoutedEventArgs e)
+		{
+			Thread t = new Thread(doCheckUpdate);
+			t.Start();
+		}
+
+
 		#endregion
 
 		#region ContextMenuRegion

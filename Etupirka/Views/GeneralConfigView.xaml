@@ -16,6 +16,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -35,6 +36,8 @@
         <Controls:NumericUpDown Margin="2" Grid.Row="5" Grid.Column="1"  Value="{Binding MontiorInterval,UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="300"  HideUpDownButtons="True"/>
         <Label Margin="2" Grid.Row="6" Grid.Column="0">バックグラウンドサウンド</Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="6"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding PlayVoice}"></CheckBox>
+        <Label Margin="2" Grid.Row="7" Grid.Column="0">アップデートを自動的にチェック</Label>
+        <CheckBox Margin="2" Focusable="False" Grid.Row="7"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding CheckUpdate}"></CheckBox>
 
     </Grid>
 </UserControl>

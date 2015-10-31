@@ -50,5 +50,8 @@
     <Setting Name="databaseSyncServer" Type="System.String" Scope="User">
       <Value Profile="(Default)">http://etupirka.halcyons.org</Value>
     </Setting>
+    <Setting Name="checkUpdate" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

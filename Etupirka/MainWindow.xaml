@@ -44,8 +44,8 @@
         <tb:TaskbarIcon x:Name="tbico" IconSource="/Resources/Etupirka.ico" >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu BorderThickness="0" FontSize="11">
-                    <MenuItem Header="プロセス監視" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="バックグラウンドモード" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="プロセス監視" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="リストを隠す" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
                     <MenuItem Header="設定メーニュ" Name="SettingM" Click="SettingButton_Click" />
                     <MenuItem Header="終了"  Click="QuitApp_Click"/>
@@ -66,20 +66,21 @@
                 </MenuItem>
                 <!--<MenuItem Header="ErogeTimerからインポート" Name="ImportFromErogeTimer" Click="ImportFromErogeTimer_Click"/>-->
                 <MenuItem Header="エクスポート">
-                    <MenuItem Header="すべてのゲームをエクスポート" Name="ExportList" Click="ExportList_Click"/>
-                    <MenuItem Header="選択したゲームをエクスポート" Name="ExportSelect" Click="ExportSelect_Click"/>
+                    <MenuItem Header="すべてのゲーム" Name="ExportList" Click="ExportList_Click"/>
+                    <MenuItem Header="選択したゲーム" Name="ExportSelect" Click="ExportSelect_Click"/>
                 </MenuItem>
                 <Separator />
                 <MenuItem Header="終了" Name="QuitApp" Click="QuitApp_Click"/>
        
             </MenuItem>
             <MenuItem   Header="ツール" >
-                <MenuItem Header="プロセス監視" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="プロセス監視"  InputGestureText="Alt+F9" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
                 <MenuItem Header="プレイタイム統計" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
-                <MenuItem Header="オフラインデータベースを更新する" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
+                <MenuItem Header="オフラインデータベースを更新" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
                 <MenuItem Header="設定" Name="SettingMenu" Click="SettingButton_Click"/>
             </MenuItem>
             <MenuItem   Header="ヘルプ" >
+                <MenuItem Header="更新をチェック" Name="CheckUpdate" Click="CheckUpdate_Click"/>
                 <MenuItem Header="バージョン情報" Name="VersionInfo" Click="VersionInfo_Click"/>
             </MenuItem>
         </Menu>

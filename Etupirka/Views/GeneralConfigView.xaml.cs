@@ -26,6 +26,7 @@ namespace Etupirka.Views
 		public int MontiorInterval { get; set; }
 		public bool PlayVoice { get; set; }
 		public bool AskBeforeExit { get; set; }
+		public bool CheckUpdate { get; set; }
 	
 		public GeneralConfigView()
 		{
@@ -38,6 +39,7 @@ namespace Etupirka.Views
 			MontiorInterval = Properties.Settings.Default.monitorInterval;
 			PlayVoice = Properties.Settings.Default.playVoice;
 			MinimizeAtStartup = Properties.Settings.Default.minimizeAtStartup;
+			CheckUpdate = Properties.Settings.Default.checkUpdate;
 		}
 	}
 }
