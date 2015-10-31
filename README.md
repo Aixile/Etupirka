@@ -2,6 +2,8 @@
 
 ##概観
 エロゲプレイ時間統計ツール
+
+
 多分、こんな感じ
 
 ![](http://i.imgur.com/upkcS2e.png)
@@ -20,7 +22,7 @@
 ![](http://i.imgur.com/LCg9JbT.png)
 4. エントリーを選択して->設定->ゲーム設定
 ![](http://i.imgur.com/lWmqFa0.png)
-5. エロスケゲームIDを入力してゲーム情報を自動更新　（例えば [http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529](http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529 "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529")　の場合ゲームIDは4529
+5. エロスケゲームIDを入力してゲーム情報を自動更新　（例えば [http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529](http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529 "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529")の場合ゲームIDは4529)
 
 
 ![](http://i.imgur.com/EgwoVnz.png) ![](http://i.imgur.com/uz8PaPR.png)
