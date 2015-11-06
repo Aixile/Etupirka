@@ -14,25 +14,25 @@
 ##使い方
 
 ###エントリーを追加する
-1. まずゲームを起動して
-2. ファイル->プロセスから追加
+- まずゲームを起動して
+- ファイル->プロセスから追加
 
 ![](http://i.imgur.com/sSZoDEm.png)
 
-3. ゲームプロセスを選択する
+- ゲームプロセスを選択する
 
 ![](http://i.imgur.com/LCg9JbT.png)
 
-4. エントリーを選択して->設定->ゲーム設定
+- エントリーを選択して->設定->ゲーム設定
 
 ![](http://i.imgur.com/lWmqFa0.png)
 
-5. エロスケゲームIDを入力してゲーム情報を自動更新　（例えば [http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529](http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529 "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529")の場合ゲームIDは4529)
+- エロスケゲームIDを入力してゲーム情報を自動更新　（例えば [http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529](http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529 "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=4529")の場合ゲームIDは4529)
 
 
 ![](http://i.imgur.com/EgwoVnz.png) ![](http://i.imgur.com/uz8PaPR.png)
 
-6. これで自動的にゲーム状態を監視することになる、**ウインドウがアクティブではない時はカウントしない**
+- これで自動的にゲーム状態を監視することになる、**ウインドウがアクティブではない時はカウントしない**
 
 
 ![](http://i.imgur.com/8UQCxx9.png)
