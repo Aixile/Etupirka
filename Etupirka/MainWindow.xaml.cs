@@ -254,7 +254,7 @@ namespace Etupirka
 			{
 				if (MessageBox.Show("Version "+str+" が見つかりました、更新しますか？","Etupirkaを更新する",MessageBoxButton.YesNo)==MessageBoxResult.Yes)
 				{
-					Process.Start("https://github.com/Aixile/Etupirka");
+					Process.Start("https://github.com/Aixile/Etupirka/releases");
 				}
 			}
 		}
