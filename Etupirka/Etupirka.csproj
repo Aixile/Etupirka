@@ -346,9 +346,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Changelog.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\start.wav" />
   </ItemGroup>
   <ItemGroup>
