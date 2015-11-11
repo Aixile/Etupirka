@@ -7,7 +7,13 @@
 ![](http://i.imgur.com/upkcS2e.png)
 
 ##ダウンロード
-[Etupirka-0.5.0.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.0.zip "Etupirka-0.5.0.zip")
+
+[Etupirka-0.5.1.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.1zip "Etupirka-0.5.1.zip")
+
+[Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
+
+
+0.5.1: Fix crashing on startup
 
 ##使い方
 
