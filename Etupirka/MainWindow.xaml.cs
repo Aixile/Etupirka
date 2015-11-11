@@ -247,16 +247,23 @@ namespace Etupirka
 		#region Function
 		private  void doCheckUpdate()
 		{
-			string str= NetworkUtility.GetString("http://etupirka.halcyons.org/checkversion.php");
-			Version lastestVersion = new Version(str);
-			Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
-			if (lastestVersion > myVersion)
+			try
 			{
-				if (MessageBox.Show("Version "+str+" が見つかりました、更新しますか？","Etupirkaを更新する",MessageBoxButton.YesNo)==MessageBoxResult.Yes)
+				string str = NetworkUtility.GetString("http://etupirka.halcyons.org/checkversion.php");
+				Version lastestVersion = new Version(str);
+				Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
+				if (lastestVersion > myVersion)
 				{
-					Process.Start("https://github.com/Aixile/Etupirka/releases");
+					if (MessageBox.Show("Version " + str + " が見つかりました、更新しますか？", "Etupirkaを更新する", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+					{
+						Process.Start("https://github.com/Aixile/Etupirka/releases");
+					}
 				}
+			}catch
+			{
+
 			}
+
 		}
 
 		private void UpdateStatus(int time=0)
