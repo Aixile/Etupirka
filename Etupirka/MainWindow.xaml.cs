@@ -277,9 +277,13 @@ namespace Etupirka
 			 new Action(() =>
 			 {
 				 Process[] proc = Process.GetProcesses();
+				 string statusBarText = "";
+				 string trayTipText="Etupirka Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
+
 				 foreach (GameExecutionInfo i in items)
 				 {
-					 if (i.UpdateStatus(proc, calcID, time))
+					 bool running = false;
+					 if (i.UpdateStatus(proc, calcID,ref running, time))
 					 {
 						 if (time != 0)
 						 {
@@ -294,14 +298,18 @@ namespace Etupirka
 							 PlayMessage.Content = i.Title + " : " + i.TotalPlayTimeString;
 
 						 }
-						 break;
+					 }
+					 if (running)
+					 {
+						 trayTipText+="\n"+i.Title + " : " + i.TotalPlayTimeString;
 					 }
 				 }
 
 				 if (!play_flag)
 				 {
-					 PlayMessage.Content = "";
+					 PlayMessage.Content = statusBarText;
 				 }
+				tbico.ToolTipText = trayTipText;
 
 				 OnPropertyChanged("TotalTime");
 			 }));

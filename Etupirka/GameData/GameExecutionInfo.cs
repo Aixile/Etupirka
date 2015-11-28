@@ -100,7 +100,7 @@ namespace Etupirka
 			}
 		}
 
-		public bool UpdateStatus(Process[] proc,int calcID,int time=0){
+		public bool UpdateStatus(Process[] proc,int calcID,ref bool running, int time=0){
 			ProcStat LastStatus = Status;
 			IsPathExist=CheckPath();
 			if (!IsPathExist)
@@ -118,6 +118,7 @@ namespace Etupirka
 						string pid = Convert.ToString(p.Id);
 						if (String.Equals(path,ProcPath,StringComparison.OrdinalIgnoreCase))
 						{
+							running = true;
 							if (FirstPlayTime.Ticks == 0)
 							{
 								FirstPlayTime = DateTime.Now;
