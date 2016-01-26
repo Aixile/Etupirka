@@ -100,7 +100,52 @@ namespace Etupirka
 			}
 		}
 
-		public bool UpdateStatus(Process[] proc,int calcID,ref bool running, int time=0){
+		public bool UpdateStatus2(Dictionary<String, bool> dic,ref bool running,int time=0)
+		{
+			ProcStat LastStatus = Status;
+			IsPathExist=CheckPath();
+			if (!IsPathExist)
+			{
+				Status = ProcStat.NotExist;
+			}
+			else
+			{
+				Status = ProcStat.Rest;
+				if (dic.ContainsKey(ProcPath.ToLower()))
+				{
+					running = true;
+					if (FirstPlayTime.Ticks == 0)
+					{
+						FirstPlayTime = DateTime.Now;
+					}
+					if (dic[ProcPath.ToLower()])
+					{
+						Status = ProcStat.Focused;
+						if (time != 0)
+						{
+							addTime(time);
+						}
+						return true;
+					}
+					else
+					{
+						Status = ProcStat.Unfocused;
+					}
+
+				}
+			}
+			if (LastStatus == ProcStat.Focused || LastStatus == ProcStat.Unfocused)
+			{
+				if (Status == ProcStat.Rest || Status == ProcStat.NotExist)
+				{
+					LastPlayTime = DateTime.Now;
+					return true;
+				}
+			}
+			return false;
+		}
+		
+/*		public bool UpdateStatus(Process[] proc,int calcID,ref bool running, int time=0){
 			ProcStat LastStatus = Status;
 			IsPathExist=CheckPath();
 			if (!IsPathExist)
@@ -153,8 +198,7 @@ namespace Etupirka
 				}
 			}
 			return false;
-
-		}
+		}*/
 
 		protected bool isProcNEqExec;
 		public bool IsProcNEqExec

@@ -277,13 +277,27 @@ namespace Etupirka
 			 new Action(() =>
 			 {
 				 Process[] proc = Process.GetProcesses();
+
+				 Dictionary<String, bool> dic = new Dictionary<string, bool>();
+				 foreach (Process p in proc)
+				 {
+					 try
+					 {
+						 dic.Add(p.MainModule.FileName.ToLower(),p.Id == calcID);
+					 }
+					 catch
+					 {
+					 }
+				 }
+
 				 string statusBarText = "";
 				 string trayTipText="Etupirka Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
 
 				 foreach (GameExecutionInfo i in items)
 				 {
 					 bool running = false;
-					 if (i.UpdateStatus(proc, calcID,ref running, time))
+					 if (i.UpdateStatus2(dic,ref running, time))
+					// if (i.UpdateStatus(proc, calcID,ref running, time))
 					 {
 						 if (time != 0)
 						 {
@@ -305,6 +319,7 @@ namespace Etupirka
 					 }
 				 }
 
+				 dic.Clear();
 				 if (!play_flag)
 				 {
 					 PlayMessage.Content = statusBarText;
