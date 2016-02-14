@@ -15,11 +15,11 @@
 
 ####0.5.3:
 
- Add: Auto change game windows size (Only support Windows 10)
+機能追加：　ゲームのウインドウサイズを変更して起動できる（Windows10のみ対応）
 
- Add: Copy game title and brand name
+機能追加： エントリーのタイトルをコビーできる
 
- Fix: Font size issue in context menu
+不具合修正: コンテキストメニューのフォントサイズを変更した
  
 
 ##使い方
