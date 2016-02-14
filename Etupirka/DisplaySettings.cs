@@ -92,8 +92,10 @@ namespace Etupirka
                 if (device.Enabled && current.devices.Any(_device => device.DeviceID == _device.DeviceID) && device.Scaling != getDeviceScaling(device.DeviceID))
                 {
                     lastDisplayInfo.devices.Add(new DisplayDeviceInfo() { DeviceID = device.DeviceID, Scaling = getDeviceScaling(device.DeviceID), Enabled = true });
-                    setDeviceScaling(device.DeviceID, device.Scaling);
-                    restartRequired = true;
+                    if (setDeviceScaling(device.DeviceID, device.Scaling))
+                    {
+                        restartRequired = true;
+                    }
                 }
             }
 
@@ -115,6 +117,7 @@ namespace Etupirka
         private static int getDeviceScaling(string deviceID)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\PerMonitorSettings");
+            if (key == null) return 0;
             foreach (var keyName in key.GetSubKeyNames())
             {
                 if (keyName.StartsWith(deviceID))
@@ -125,17 +128,19 @@ namespace Etupirka
             return 0;
         }
 
-        private static void setDeviceScaling(string deviceID, int scaling)
+        private static bool setDeviceScaling(string deviceID, int scaling)
         {
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\PerMonitorSettings", true);
+            if (key == null) return false;
             foreach (var keyName in key.GetSubKeyNames())
             {
                 if (keyName.StartsWith(deviceID))
                 {
                     key.OpenSubKey(keyName, true).SetValue("DpiValue", scaling, RegistryValueKind.DWord);
-                    break;
+                    return true;
                 }
             }
+            return false;
         }
 
         private static void restartDisplayDrivers()
