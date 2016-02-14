@@ -18,6 +18,7 @@ namespace Etupirka
 		public GameExecutionInfo()
 		{
 			isProcNEqExec = false;
+            displayInfo = new DisplayInfo();
 		}
 		public GameExecutionInfo(string _title, string _path)
 		{
@@ -26,8 +27,8 @@ namespace Etupirka
 			ExecPath = _path;
 			ProcPath = _path;
 			GenerateUID();
-
-		}
+            displayInfo = new DisplayInfo();
+        }
 		public GameExecutionInfo(int ESID)
 		{
 			erogameScapeID = ESID;
@@ -40,11 +41,13 @@ namespace Etupirka
 			isProcNEqExec = false;
 
 			GenerateUID();
-		}
+
+            displayInfo = new DisplayInfo();
+        }
 
 		public GameExecutionInfo(string _uid,string _title,string _brand,int _esid,DateTime _saleday,
 			int _playtime,DateTime _firstplay,DateTime _lastplay,
-			bool _pne,string _procpath,string _execpath)
+			bool _pne,string _procpath,string _execpath, DisplayInfo _displayInfo)
 		{
 			uid = _uid;
 			title = _title;
@@ -59,6 +62,8 @@ namespace Etupirka
 			isProcNEqExec = _pne;
 			procPath = _procpath;
 			execPath = _execpath;
+
+            displayInfo = _displayInfo;
 		}
 
 		bool isPathExist;
@@ -139,6 +144,7 @@ namespace Etupirka
 				if (Status == ProcStat.Rest || Status == ProcStat.NotExist)
 				{
 					LastPlayTime = DateTime.Now;
+                    DisplaySettings.RestoreDisplay();
 					return true;
 				}
 			}
@@ -236,7 +242,21 @@ namespace Etupirka
 			}
 		}
 
-		public Object Clone()
+        protected DisplayInfo displayInfo;
+        public DisplayInfo DisplayInfo
+        {
+            get
+            {
+                return displayInfo;
+            }
+
+            set
+            {
+                displayInfo = value;
+            }
+        }
+
+        public Object Clone()
 		{
 			return MemberwiseClone();
 		}
@@ -257,6 +277,7 @@ namespace Etupirka
 			ExecPath = t.ExecPath;
 			ProcPath = t.ProcPath;
 			Status = t.Status;
+            DisplayInfo = t.DisplayInfo;
 
 			uid = t.uid;
 		}
@@ -264,6 +285,7 @@ namespace Etupirka
 		public bool run()
 		{
 			if (!IsPathExist) return false;
+            DisplaySettings.AdjustDisplay(DisplayInfo);
 			ProcessStartInfo start = new ProcessStartInfo(ExecPath);
 			start.CreateNoWindow = false;
 			start.RedirectStandardOutput = true;

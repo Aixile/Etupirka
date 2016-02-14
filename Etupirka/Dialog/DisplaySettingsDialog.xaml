@@ -1,0 +1,47 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.DisplaySettingsDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        WindowStartupLocation="CenterOwner"
+        Title="Display Settings" Height="400" Width="600"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" Name="DeviceListView" BorderThickness="0">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Device Name" Width="200" DisplayMemberBinding="{Binding DeviceString}" Util:GridViewSort.PropertyName="DeviceString"></GridViewColumn>
+                    <GridViewColumn Header="Scaling" Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Slider Value="{Binding Scaling}" Minimum="-3" Maximum="3" 
+                                  SmallChange="1" LargeChange="1"
+                                  TickPlacement="TopLeft" TickFrequency="1"
+                                  AutoToolTipPlacement="BottomRight" AutoToolTipPrecision="1"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Scaling Enabled" Width="140">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox IsChecked="{Binding Enabled}" />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <TextBlock Grid.Row="0" x:Name="label" Foreground="#fff" Margin="7 0 7 7">
+            Doesn't work?
+            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">Click here</Hyperlink>
+        </TextBlock>
+
+    </Grid>
+</Controls:MetroWindow>

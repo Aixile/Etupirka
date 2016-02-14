@@ -81,5 +81,14 @@ namespace Etupirka.Dialog
 				bgame.ProcPath=pd.SelectedProc.ProcPath;
 			}
 		}
-	}
+
+        private void DisplaySettings_Click(object sender, RoutedEventArgs e)
+        {
+            DisplaySettingsDialog dialog = new DisplaySettingsDialog(bgame.DisplayInfo);
+            dialog.Owner = this;
+            dialog.ShowDialog();
+            bgame.DisplayInfo = dialog.Result;
+        }
+
+    }
 }

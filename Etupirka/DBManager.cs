@@ -51,7 +51,14 @@ namespace Etupirka
 										`execpath`	TEXT,
 										PRIMARY KEY(uid))";
 					command.ExecuteNonQuery();
-				}
+                    command.CommandText = @"CREATE TABLE `gamedisplayinfo` (
+										`uid`	TEXT,
+										`device_id`	TEXT,
+										`scaling`	INTEGER NOT NULL DEFAULT 0,
+										`enabled`	INTEGER NOT NULL DEFAULT 0,
+										PRIMARY KEY(uid, device_id))";
+                    command.ExecuteNonQuery();
+                }
 				conn.Close();
 			}
 		}
@@ -455,6 +462,19 @@ namespace Etupirka
 					insertExecRngCmd.Parameters.AddWithValue("@PROCPATH", i.ProcPath);
 					insertExecRngCmd.Parameters.AddWithValue("@EXECPATH", i.ExecPath);
 					insertExecRngCmd.ExecuteNonQuery();
+
+                    foreach (var device in i.DisplayInfo.devices)
+                    {
+                        using (SQLiteCommand insertDisplayCmd = new SQLiteCommand(@"INSERT OR REPLACE INTO gamedisplayinfo VALUES (@uid, @device_id, @scaling, @enabled)", conn))
+                        {
+                            insertDisplayCmd.Parameters.AddWithValue("@uid", i.UID);
+                            insertDisplayCmd.Parameters.AddWithValue("@device_id", device.DeviceID);
+                            insertDisplayCmd.Parameters.AddWithValue("@scaling", device.Scaling);
+                            insertDisplayCmd.Parameters.AddWithValue("@enabled", device.Enabled ? 1 : 0);
+                            insertDisplayCmd.ExecuteNonQuery();
+                        }
+                    }
+
 					conn.Close();
 				}
 			}
@@ -480,8 +500,9 @@ namespace Etupirka
 						 DateTime.ParseExact(reader["lastplay"].ToString(), "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
 						 (Convert.ToInt32(reader["proc_neq_exec"].ToString()) == 1 ? true : false),
 						 reader["procpath"].ToString(),
-						 reader["execpath"].ToString()
-						 );
+						 reader["execpath"].ToString(),
+                         LoadGameDisplayInfo(reader["uid"].ToString())
+                         );
 					items.Add(i);
 
 				}
@@ -490,6 +511,28 @@ namespace Etupirka
 			}
 		}
 
+        public DisplayInfo LoadGameDisplayInfo(string UID)
+        {
+            DisplayInfo displayInfo = new DisplayInfo();
+
+            using (SQLiteCommand command = conn.CreateCommand())
+            {
+                command.CommandText = "SELECT * FROM gamedisplayinfo WHERE uid = @uid";
+                command.Parameters.AddWithValue("@uid", UID);
+                SQLiteDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    displayInfo.devices.Add(new DisplayDeviceInfo() {
+                        DeviceID = reader["device_id"].ToString(),
+                        Scaling = int.Parse(reader["scaling"].ToString()),
+                        Enabled = reader["enabled"].ToString() == "1" ? true : false
+                    });
+                }
+            }
+
+            return displayInfo;
+        }
+
 		public void DeleteGame(string uid)
 		{
 			using (SQLiteCommand command = conn.CreateCommand())
@@ -497,8 +540,9 @@ namespace Etupirka
 				conn.Open();
 				command.CommandText = @"DELETE FROM games WHERE uid= '" + uid + @"';" +
 									@"DELETE FROM gametimeinfo WHERE uid= '" + uid + @"';" +
-									@"DELETE FROM gameexecinfo WHERE uid= '" + uid + @"';";
-				command.ExecuteNonQuery();
+									@"DELETE FROM gameexecinfo WHERE uid= '" + uid + @"';" +
+                                    @"DELETE FROM gamedisplayinfo WHERE uid= '" + uid + @"';";
+                command.ExecuteNonQuery();
 				conn.Close();
 			}
 		}

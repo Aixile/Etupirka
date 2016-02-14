@@ -1,0 +1,24 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.DisplaySettingsHelpDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Views="clr-namespace:Etupirka.Views"
+        WindowStartupLocation="CenterOwner"
+        Title="Help" Height="250" Width="480"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False"
+        >
+    <Grid>
+        <TextBlock Foreground="#fff" Margin="20" TextWrapping="WrapWithOverflow">
+            This feature may <TextBlock FontWeight="Bold">not</TextBlock> available on Windows 8 or earlier. <LineBreak/>
+            <LineBreak/>
+            To enable scaling for a screen, try the following steps: <LineBreak/>
+            1. Right click on the Desktop. <LineBreak/>
+            2. Click "Display Settings". <LineBreak/>
+            3. Under "Change the size of text, apps, and other items", move the slider to any value and then move it back.
+        </TextBlock>
+
+    </Grid>
+</Controls:MetroWindow>
