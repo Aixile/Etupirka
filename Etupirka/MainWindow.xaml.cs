@@ -201,7 +201,6 @@ namespace Etupirka
 				Settings.Default.UpgradeRequired = false;
 				Settings.Default.Save();
 			}
-		
 
 			InitializeComponent();
 			tbico.DoubleClickCommand = new ShowAppCommand(this);
@@ -969,22 +968,35 @@ namespace Etupirka
 			this.Show();
 			this.WindowState = WindowState.Normal;
 		}
+
 		private void OpenES_Click(object sender, RoutedEventArgs e)
 		{
 			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
-			if(g!=null&&g.ErogameScapeID!=0){
+			if (g != null && g.ErogameScapeID != 0)
+			{
 				System.Diagnostics.Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game="+g.ErogameScapeID);
 			}
 		}
+
+		private void CopyTitle_Click(object sender, RoutedEventArgs e)
+		{
+			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
+			if (g != null)
+			{
+				Clipboard.SetText(g.Title);
+			}
+
+		}
+
+		private void CopyBrand_Click(object sender, RoutedEventArgs e)
+		{
+			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
+			if (g != null)
+			{
+				Clipboard.SetText(g.Brand);
+			}
+		}
 		#endregion
-
-
-
-
-
-
-
-
 	}
 
 	#region Command
