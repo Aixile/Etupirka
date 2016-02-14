@@ -25,6 +25,10 @@ namespace Etupirka.Dialog
         public DisplaySettingsDialog(DisplayInfo displayInfo)
         {
             InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
             Result = getCurrentDisplayInfo(displayInfo);
             DeviceListView.ItemsSource = Result.devices;
         }
@@ -46,7 +50,9 @@ namespace Etupirka.Dialog
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            new DisplaySettingsHelpDialog().ShowDialog();
+            var dsh=new DisplaySettingsHelpDialog();
+			dsh.Owner = this;
+			dsh.ShowDialog();
         }
     }
 }

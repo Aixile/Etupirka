@@ -25,11 +25,12 @@ namespace Etupirka.Dialogs
 		public GlobalSettingDialog()
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 		//	pcv = new Views.ProxyConfigView();
-
-
 		}
-
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
 		{
@@ -46,6 +47,7 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.minimizeAtStartup = GeneralView.MinimizeAtStartup;
 			Properties.Settings.Default.askBeforeExit = GeneralView.AskBeforeExit;
 			Properties.Settings.Default.checkUpdate = GeneralView.CheckUpdate;
+			Properties.Settings.Default.disableGlowBrush = GeneralView.DisableGlowBrush;
 			Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
 			Properties.Settings.Default.databaseSyncServer = DatabaseView.DatabaseSyncServer;
 			Properties.Settings.Default.Save();

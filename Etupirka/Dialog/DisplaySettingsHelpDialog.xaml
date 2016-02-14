@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
         WindowStartupLocation="CenterOwner"
-        Title="Help" Height="250" Width="480"
+        Title="Help" Height="150" Width="430"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -12,12 +12,9 @@
         >
     <Grid>
         <TextBlock Foreground="#fff" Margin="20" TextWrapping="WrapWithOverflow">
-            This feature may <TextBlock FontWeight="Bold">not</TextBlock> available on Windows 8 or earlier. <LineBreak/>
+            <TextBlock FontWeight="Bold">この機能はWindows 10以降のみサポートしています</TextBlock>、Windows 8およびそれ以前のシステムでは利用できません。
             <LineBreak/>
-            To enable scaling for a screen, try the following steps: <LineBreak/>
-            1. Right click on the Desktop. <LineBreak/>
-            2. Click "Display Settings". <LineBreak/>
-            3. Under "Change the size of text, apps, and other items", move the slider to any value and then move it back.
+            <Hyperlink NavigateUri="http://windows.microsoft.com/ja-JP/windows7/Make-the-text-on-your-screen-larger-or-smaller?8a40cd50" RequestNavigate="Hyperlink_RequestNavigate">こちらを参考にしてください</Hyperlink>
         </TextBlock>
 
     </Grid>

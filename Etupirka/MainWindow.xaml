@@ -30,6 +30,7 @@
             </WrapPanel>
      </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+
     <Grid>
         <Grid.Resources>
             <local:PathStyleConverter x:Key="pathStyleConverter"/>
@@ -149,6 +150,10 @@
                         <MenuItem Header="フォルダーを開く"  Name="OpenFolder" Click="OpenFolder_Click"/>
                         <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
                         <MenuItem Header="プレイ統計を開く" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
+                    </MenuItem>
+                    <MenuItem Header="コビー">
+                        <MenuItem Header="タイトル"  Name="CopyTitle" Click="CopyTitle_Click" />
+                        <MenuItem Header="ブランド"  Name="CopyBrand" Click="CopyBrand_Click" />
                     </MenuItem>
                     <MenuItem Header="削除" Name="Delete" Click="Delete_Click" />
                     <MenuItem Header="設定">

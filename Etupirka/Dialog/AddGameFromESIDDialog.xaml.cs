@@ -22,6 +22,10 @@ namespace Etupirka.Dialogs
 		public AddGameFromESIDDialog()
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)

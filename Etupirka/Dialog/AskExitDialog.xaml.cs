@@ -22,6 +22,10 @@ namespace Etupirka.Dialog
 		public AskExitDialog()
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 			this.DataContext = this;
 		}
 		public bool DoNotDisplay { get; set; }

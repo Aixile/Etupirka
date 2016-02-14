@@ -61,6 +61,27 @@ namespace Etupirka
                 }
 				conn.Close();
 			}
+			else
+			{
+				conn.Open();
+				using (SQLiteCommand command = conn.CreateCommand())
+				{
+					command.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='gamedisplayinfo'";
+					SQLiteDataReader reader = command.ExecuteReader();
+					if (!reader.Read())
+					{
+						reader.Close();
+						command.CommandText = @"CREATE TABLE `gamedisplayinfo` (
+										`uid`	TEXT,
+										`device_id`	TEXT,
+										`scaling`	INTEGER NOT NULL DEFAULT 0,
+										`enabled`	INTEGER NOT NULL DEFAULT 0,
+										PRIMARY KEY(uid, device_id))";
+						command.ExecuteNonQuery();
+					}
+				}
+				conn.Close();
+			}
 		}
 		public void UpdateTimeNow(string game, int value)
 		{

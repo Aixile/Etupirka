@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using System.Diagnostics;
+using System.Windows.Navigation;
 
 namespace Etupirka.Dialog
 {
@@ -22,6 +24,15 @@ namespace Etupirka.Dialog
         public DisplaySettingsHelpDialog()
         {
             InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
         }
+		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+		{
+			Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
+			e.Handled = true;
+		}
     }
 }

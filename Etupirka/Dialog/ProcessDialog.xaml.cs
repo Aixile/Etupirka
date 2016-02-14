@@ -51,6 +51,11 @@ namespace Etupirka.Dialog
 		public ProcessDialog()
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
+
 			items = new ObservableCollection<ProcDate>();
 			ProcListView.ItemsSource = items;
 			getProcList();

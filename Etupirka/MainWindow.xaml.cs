@@ -201,7 +201,6 @@ namespace Etupirka
 				Settings.Default.UpgradeRequired = false;
 				Settings.Default.Save();
 			}
-		
 
 			InitializeComponent();
 			tbico.DoubleClickCommand = new ShowAppCommand(this);
@@ -213,7 +212,6 @@ namespace Etupirka
 				Settings.Default.Do_minimize = false;
 				Settings.Default.Save();
 			}
-
 
 			db = new DBManager(Utility.userDBPath);
 			Utility.im = new InformationManager(Utility.infoDBPath);
@@ -230,6 +228,10 @@ namespace Etupirka
 			_hotkey = new HotKey(Key.F8, KeyModifier.Alt, OnHotKeyHandler_ErogeHelper);
 
 			RegisterInStartup(Properties.Settings.Default.setStartUp);
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 
 			watchProcTimer = new System.Windows.Threading.DispatcherTimer();
 			watchProcTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -331,17 +333,6 @@ namespace Etupirka
 
 		private void RegisterInStartup(bool isChecked)
 		{
-			try
-			{
-				RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
-						("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-					registryKey.DeleteValue("ApplicationName");
-			}
-			catch
-			{
-
-			}
-
 			try
 			{
 				RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
@@ -969,22 +960,35 @@ namespace Etupirka
 			this.Show();
 			this.WindowState = WindowState.Normal;
 		}
+
 		private void OpenES_Click(object sender, RoutedEventArgs e)
 		{
 			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
-			if(g!=null&&g.ErogameScapeID!=0){
+			if (g != null && g.ErogameScapeID != 0)
+			{
 				System.Diagnostics.Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game="+g.ErogameScapeID);
 			}
 		}
+
+		private void CopyTitle_Click(object sender, RoutedEventArgs e)
+		{
+			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
+			if (g != null)
+			{
+				Clipboard.SetText(g.Title);
+			}
+
+		}
+
+		private void CopyBrand_Click(object sender, RoutedEventArgs e)
+		{
+			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
+			if (g != null)
+			{
+				Clipboard.SetText(g.Brand);
+			}
+		}
 		#endregion
-
-
-
-
-
-
-
-
 	}
 
 	#region Command

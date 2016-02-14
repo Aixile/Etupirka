@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Util="clr-namespace:Wpf.Util"
         WindowStartupLocation="CenterOwner"
-        Title="Display Settings" Height="400" Width="600"
+        Title="ディスプレイ設定" Height="250" Width="527"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,8 +17,8 @@
         <ListView Grid.Row="1" Name="DeviceListView" BorderThickness="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Device Name" Width="200" DisplayMemberBinding="{Binding DeviceString}" Util:GridViewSort.PropertyName="DeviceString"></GridViewColumn>
-                    <GridViewColumn Header="Scaling" Width="140">
+                    <GridViewColumn Header="デバイス名" Width="200" DisplayMemberBinding="{Binding DeviceString}" Util:GridViewSort.PropertyName="DeviceString"></GridViewColumn>
+                    <GridViewColumn Header="スケーリング" Width="140">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Slider Value="{Binding Scaling}" Minimum="-3" Maximum="3" 
@@ -28,7 +28,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Scaling Enabled" Width="140">
+                    <GridViewColumn Header="スケーリングを有効にする" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Enabled}" />
@@ -38,9 +38,8 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Grid.Row="0" x:Name="label" Foreground="#fff" Margin="7 0 7 7">
-            Doesn't work?
-            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">Click here</Hyperlink>
+        <TextBlock HorizontalAlignment="Right" Grid.Row="0" x:Name="label" Foreground="#fff" Margin="7 0 7 7">
+            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">動作していない場合</Hyperlink>
         </TextBlock>
 
     </Grid>
