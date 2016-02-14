@@ -25,6 +25,10 @@ namespace Etupirka.Dialog
 		{
 			glist = g;
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 			crt.ItemsSource = glist;
 			chart.SelectedBrush = null;
 			chart.ChartSubTitle = subtitle;

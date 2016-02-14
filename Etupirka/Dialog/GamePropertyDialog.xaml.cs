@@ -28,6 +28,10 @@ namespace Etupirka.Dialog
 			bgame =(GameExecutionInfo) _game.Clone();
 			updating = false;
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 			this.DataContext = bgame;
 		}
 

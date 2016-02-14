@@ -6,9 +6,10 @@
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:local="clr-namespace:Etupirka.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="320" d:DesignWidth="300">
     <Grid Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -38,6 +39,8 @@
         <CheckBox Margin="2" Focusable="False" Grid.Row="6"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding PlayVoice}"></CheckBox>
         <Label Margin="2" Grid.Row="7" Grid.Column="0">アップデートを自動的にチェック</Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="7"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding CheckUpdate}"></CheckBox>
+        <Label Margin="2" Grid.Row="8" Grid.Column="0">GlowBrushを表示しない</Label>
+        <CheckBox Margin="2" Focusable="False" Grid.Row="8"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding DisableGlowBrush}"></CheckBox>
 
     </Grid>
 </UserControl>

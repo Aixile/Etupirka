@@ -5,6 +5,8 @@
         WindowStartupLocation="CenterOwner"
         Title="ErogameScapeから追加" Height="135" Width="280"
         WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
         TitleCaps="False">
     <Grid Margin="15">
         <Grid.RowDefinitions>

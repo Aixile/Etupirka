@@ -27,6 +27,7 @@ namespace Etupirka.Views
 		public bool PlayVoice { get; set; }
 		public bool AskBeforeExit { get; set; }
 		public bool CheckUpdate { get; set; }
+		public bool DisableGlowBrush { get; set; }
 	
 		public GeneralConfigView()
 		{
@@ -40,6 +41,7 @@ namespace Etupirka.Views
 			PlayVoice = Properties.Settings.Default.playVoice;
 			MinimizeAtStartup = Properties.Settings.Default.minimizeAtStartup;
 			CheckUpdate = Properties.Settings.Default.checkUpdate;
+			DisableGlowBrush = Properties.Settings.Default.disableGlowBrush;
 		}
 	}
 }

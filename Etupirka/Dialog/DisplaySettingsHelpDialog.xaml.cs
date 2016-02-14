@@ -24,6 +24,10 @@ namespace Etupirka.Dialog
         public DisplaySettingsHelpDialog()
         {
             InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
         }
 		private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
 		{

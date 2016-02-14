@@ -213,7 +213,6 @@ namespace Etupirka
 				Settings.Default.Save();
 			}
 
-
 			db = new DBManager(Utility.userDBPath);
 			Utility.im = new InformationManager(Utility.infoDBPath);
 
@@ -229,6 +228,10 @@ namespace Etupirka
 			_hotkey = new HotKey(Key.F8, KeyModifier.Alt, OnHotKeyHandler_ErogeHelper);
 
 			RegisterInStartup(Properties.Settings.Default.setStartUp);
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 
 			watchProcTimer = new System.Windows.Threading.DispatcherTimer();
 			watchProcTimer.Tick += new EventHandler(dispatcherTimer_Tick);
@@ -330,17 +333,6 @@ namespace Etupirka
 
 		private void RegisterInStartup(bool isChecked)
 		{
-			try
-			{
-				RegistryKey registryKey = Registry.CurrentUser.OpenSubKey
-						("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-					registryKey.DeleteValue("ApplicationName");
-			}
-			catch
-			{
-
-			}
-
 			try
 			{
 				RegistryKey registryKey = Registry.CurrentUser.OpenSubKey

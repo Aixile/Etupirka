@@ -24,6 +24,10 @@ namespace Etupirka.Dialog
 		{
 			tlist = t;
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
 			PlayTimeListView.ItemsSource = tlist;
 		}
 	}

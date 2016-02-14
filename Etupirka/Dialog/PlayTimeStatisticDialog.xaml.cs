@@ -84,6 +84,11 @@ namespace Etupirka.Dialog
 		public PlayTimeStatisticDialog(string db_path)
 		{
 			InitializeComponent();
+			if (Properties.Settings.Default.disableGlowBrush)
+			{
+				this.GlowBrush = null;
+			}
+
 			conn = new SQLiteConnection("Data Source=" + db_path);
 			if (File.Exists(db_path))
 			{

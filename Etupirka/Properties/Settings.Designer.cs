@@ -226,5 +226,17 @@ namespace Etupirka.Properties {
                 this["checkUpdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool disableGlowBrush {
+            get {
+                return ((bool)(this["disableGlowBrush"]));
+            }
+            set {
+                this["disableGlowBrush"] = value;
+            }
+        }
     }
 }
