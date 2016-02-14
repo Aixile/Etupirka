@@ -73,12 +73,30 @@ namespace Etupirka
                     EnumDisplayDevices(d.DeviceName, 0, ref d, 0);
                     if ((match = new Regex(@"^MONITOR\\(.*?)\\").Match(d.DeviceID)).Success)
                     {
-                        displayDevices.devices.Add(new DisplayDeviceInfo() { DeviceString = d.DeviceString, DeviceID = match.Groups[1].Value, Scaling = getDeviceScaling(match.Groups[1].Value) });
+                        var deviceID = match.Groups[1].Value;
+                        if (deviceID == "Default_Monitor") deviceID += getComputerID();
+                        displayDevices.devices.Add(new DisplayDeviceInfo() { DeviceString = d.DeviceString, DeviceID = deviceID, Scaling = getDeviceScaling(deviceID) });
                     }
                 }
                 d.cb = Marshal.SizeOf(d);
             }
             return displayDevices;
+        }
+
+        public static string getComputerID()
+        {
+            string uuid = string.Empty;
+
+            ManagementClass mc = new ManagementClass("Win32_ComputerSystemProduct");
+            ManagementObjectCollection moc = mc.GetInstances();
+
+            foreach (ManagementObject mo in moc)
+            {
+                uuid = mo.Properties["UUID"].Value.ToString();
+                break;
+            }
+
+            return uuid;
         }
 
         public static void AdjustDisplay(DisplayInfo displayInfo)
@@ -116,6 +134,8 @@ namespace Etupirka
 
         private static int getDeviceScaling(string deviceID)
         {
+            if (deviceID.StartsWith("Default_Monitor")) deviceID = "NOEDID";
+
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\PerMonitorSettings");
             if (key == null) return 0;
             foreach (var keyName in key.GetSubKeyNames())
@@ -130,6 +150,8 @@ namespace Etupirka
 
         private static bool setDeviceScaling(string deviceID, int scaling)
         {
+            if (deviceID.StartsWith("Default_Monitor")) deviceID = "NOEDID";
+
             RegistryKey key = Registry.CurrentUser.OpenSubKey(@"Control Panel\Desktop\PerMonitorSettings", true);
             if (key == null) return false;
             foreach (var keyName in key.GetSubKeyNames())
