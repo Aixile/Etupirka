@@ -30,6 +30,7 @@
             </WrapPanel>
      </Controls:WindowCommands>
     </Controls:MetroWindow.RightWindowCommands>
+
     <Grid>
         <Grid.Resources>
             <local:PathStyleConverter x:Key="pathStyleConverter"/>

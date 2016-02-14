@@ -14,6 +14,11 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Clean/CleanWindow.xaml"/>
             </ResourceDictionary.MergedDictionaries>
                 <system:Double x:Key="WindowTitleFontSize">12</system:Double>
+            <ContextMenu x:Key="TextBoxMetroContextMenu" FontSize="10">
+                <MenuItem Command="ApplicationCommands.Copy" />
+                <MenuItem Command="ApplicationCommands.Cut" />
+                <MenuItem Command="ApplicationCommands.Paste" />
+            </ContextMenu>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

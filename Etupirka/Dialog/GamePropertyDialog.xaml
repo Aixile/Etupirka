@@ -32,11 +32,11 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.Column="0" FontWeight="Bold" Margin="2">タイトル</Label>
-            <TextBox Name="TitleBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}" Margin="2"></TextBox>
+            <TextBox  Name="TitleBox" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding Title,UpdateSourceTrigger=PropertyChanged}" Margin="2"></TextBox>
             <Label Grid.Row="1" Grid.Column="0" FontWeight="Bold" Margin="2">ブランド</Label>
-            <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding Brand,UpdateSourceTrigger=PropertyChanged}" Margin="2"></TextBox>
+            <TextBox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" TextAlignment="Right" Text="{Binding Brand,UpdateSourceTrigger=PropertyChanged}" Margin="2"></TextBox>
             <Label Grid.Row="2" Grid.Column="0" FontWeight="Bold" Margin="2">発売日</Label>
-            <DatePicker Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding SaleDay,UpdateSourceTrigger=PropertyChanged}" Margin="2"></DatePicker>
+            <DatePicker   Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" SelectedDate="{Binding SaleDay,UpdateSourceTrigger=PropertyChanged}" Margin="2"></DatePicker>
             <Label Grid.Row="3" Grid.Column="0" FontWeight="Bold" Margin="2">ErogameScape ID</Label>
             <Controls:NumericUpDown  Grid.Row="3" Grid.Column="1" Margin="2" Minimum="0" Maximum="50000" Name="ESID"  HideUpDownButtons="True" Value="{Binding ErogameScapeID,UpdateSourceTrigger=PropertyChanged}"/>
             <Button Grid.Row="3" Margin="2"  Grid.Column="2" BorderThickness="0" Name="SyncESID" Click="SyncESID_Click" >
