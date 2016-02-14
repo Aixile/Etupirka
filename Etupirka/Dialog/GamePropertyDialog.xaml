@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
         WindowStartupLocation="CenterOwner"
-        Title="ゲーム設定" Height="330" Width="350"
+        Title="ゲーム設定" Height="350" Width="350"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,6 +17,7 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -59,7 +60,10 @@
             <Button  Grid.Row="6" Grid.Column="2"  Margin="2"  IsEnabled="{Binding IsProcNEqExec,UpdateSourceTrigger=PropertyChanged}"  BorderThickness="0" Name="GetExecPath" Click="GetExecPath_Click" >
                 <TextBlock >...</TextBlock>
             </Button>
-
+            <Label Grid.Row="7" Grid.Column="0" FontWeight="Bold" Margin="2">Display Settings</Label>
+            <Button Grid.Row="7" Grid.Column="2"  Margin="2" BorderThickness="0" Click="DisplaySettings_Click" >
+                <TextBlock >...</TextBlock>
+            </Button>
         </Grid>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" >
             <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
