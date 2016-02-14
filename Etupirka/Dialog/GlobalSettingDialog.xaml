@@ -31,6 +31,5 @@
             <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
             <Button IsCancel="True" MinWidth="60">キャンセル</Button>
         </WrapPanel>
-
     </Grid>
 </Controls:MetroWindow>
