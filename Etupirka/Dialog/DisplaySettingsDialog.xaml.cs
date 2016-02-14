@@ -46,7 +46,9 @@ namespace Etupirka.Dialog
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            new DisplaySettingsHelpDialog().ShowDialog();
+            var dsh=new DisplaySettingsHelpDialog();
+			dsh.Owner = this;
+			dsh.ShowDialog();
         }
     }
 }

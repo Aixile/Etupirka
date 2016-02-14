@@ -44,11 +44,11 @@
             </Button>
             <Label Grid.Row="4" Grid.Column="0" FontWeight="Bold" Margin="2">プロセス監視パス</Label>
             <TextBox Grid.Row="4" Grid.Column="1"  Margin="2" TextAlignment="Right" Text="{Binding ProcPath,UpdateSourceTrigger=PropertyChanged}" ></TextBox>
-            <WrapPanel   Grid.Row="4" Grid.Column="2" Margin="2">
-                <Button  BorderThickness="0" Name="GetProcPath"  Margin="1" Click="GetProcPath_Click">
+            <WrapPanel   Grid.Row="4" Grid.Column="2" Margin="2,2,0,2">
+                <Button  BorderThickness="0" Name="GetProcPath"  Margin="0,0,0,0" Click="GetProcPath_Click">
                     <TextBlock>.</TextBlock>
                 </Button>
-                <Button BorderThickness="0" Margin="1" Name="GetProcPath_List" Click="GetProcPath_List_Click">
+                <Button BorderThickness="0" Margin="1,0,0,0" Name="GetProcPath_List" Click="GetProcPath_List_Click">
                     <TextBlock>P</TextBlock>
                 </Button>
             </WrapPanel>
@@ -60,7 +60,7 @@
             <Button  Grid.Row="6" Grid.Column="2"  Margin="2"  IsEnabled="{Binding IsProcNEqExec,UpdateSourceTrigger=PropertyChanged}"  BorderThickness="0" Name="GetExecPath" Click="GetExecPath_Click" >
                 <TextBlock >...</TextBlock>
             </Button>
-            <Label Grid.Row="7" Grid.Column="0" FontWeight="Bold" Margin="2">Display Settings</Label>
+            <Label Grid.Row="7" Grid.Column="0" FontWeight="Bold" Margin="2">ディスプレイ設定</Label>
             <Button Grid.Row="7" Grid.Column="2"  Margin="2" BorderThickness="0" Click="DisplaySettings_Click" >
                 <TextBlock >...</TextBlock>
             </Button>
