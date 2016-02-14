@@ -241,8 +241,7 @@ namespace Etupirka
 				Thread t = new Thread(doCheckUpdate);
 				t.Start();
 			}
-
-		}
+        }
 
 		#region Function
 		private  void doCheckUpdate()
