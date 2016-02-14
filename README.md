@@ -8,15 +8,19 @@
 
 ##ダウンロード
 
-[Etupirka-0.5.2.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.2.zip "Etupirka-0.5.2.zip")
+[Etupirka-0.5.3.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.3.zip "Etupirka-0.5.3.zip")
 
 [Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
 
-0.5.2: Optimized
+####0.5.3:
 
+ Add: Auto change game windows size (Only support Windows 10)
 
-0.5.1: Fix crashing on startup
+ Add: Copy game title and brand name
+
+ Fix: Font size issue in context menu
+ 
 
 ##使い方
 
