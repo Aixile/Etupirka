@@ -312,6 +312,10 @@ namespace Etupirka
 							 play_flag = true;
 							 PlayMessage.Content = i.Title + " : " + i.TotalPlayTimeString;
 
+                             if (Properties.Settings.Default.hideListWhenPlaying)
+                             {
+                                 ErogeHelper = true;
+                             }
 						 }
 					 }
 					 if (running)
@@ -324,7 +328,12 @@ namespace Etupirka
 				 if (!play_flag)
 				 {
 					 PlayMessage.Content = statusBarText;
-				 }
+
+                     if (Properties.Settings.Default.hideListWhenPlaying)
+                     {
+                         ErogeHelper = false;
+                     }
+                 }
 				tbico.ToolTipText = trayTipText;
 
 				 OnPropertyChanged("TotalTime");

@@ -144,7 +144,7 @@ namespace Etupirka
 				if (Status == ProcStat.Rest || Status == ProcStat.NotExist)
 				{
 					LastPlayTime = DateTime.Now;
-                    DisplaySettings.RestoreDisplay();
+                    DisplaySettings.RestoreDisplay(this);
 					return true;
 				}
 			}
@@ -285,7 +285,7 @@ namespace Etupirka
 		public bool run()
 		{
 			if (!IsPathExist) return false;
-            DisplaySettings.AdjustDisplay(DisplayInfo);
+            DisplaySettings.AdjustDisplay(DisplayInfo, this);
 			ProcessStartInfo start = new ProcessStartInfo(ExecPath);
 			start.CreateNoWindow = false;
 			start.RedirectStandardOutput = true;

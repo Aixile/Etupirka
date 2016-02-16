@@ -48,7 +48,8 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.askBeforeExit = GeneralView.AskBeforeExit;
 			Properties.Settings.Default.checkUpdate = GeneralView.CheckUpdate;
 			Properties.Settings.Default.disableGlowBrush = GeneralView.DisableGlowBrush;
-			Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
+            Properties.Settings.Default.hideListWhenPlaying = GeneralView.HideListWhenPlaying;
+            Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
 			Properties.Settings.Default.databaseSyncServer = DatabaseView.DatabaseSyncServer;
 			Properties.Settings.Default.Save();
 			this.DialogResult = true;

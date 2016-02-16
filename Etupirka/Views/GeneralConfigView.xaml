@@ -18,6 +18,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -41,6 +42,8 @@
         <CheckBox Margin="2" Focusable="False" Grid.Row="7"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding CheckUpdate}"></CheckBox>
         <Label Margin="2" Grid.Row="8" Grid.Column="0">GlowBrushを表示しない</Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="8"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding DisableGlowBrush}"></CheckBox>
+        <Label Margin="2" Grid.Row="9" Grid.Column="0">ゲーム実行中にリストを隠す</Label>
+        <CheckBox Margin="2" Focusable="False" Grid.Row="9"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding HideListWhenPlaying}"></CheckBox>
 
     </Grid>
 </UserControl>

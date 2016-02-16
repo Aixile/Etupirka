@@ -28,8 +28,9 @@ namespace Etupirka.Views
 		public bool AskBeforeExit { get; set; }
 		public bool CheckUpdate { get; set; }
 		public bool DisableGlowBrush { get; set; }
-	
-		public GeneralConfigView()
+        public bool HideListWhenPlaying { get; set; }
+
+        public GeneralConfigView()
 		{
 			InitializeComponent();
 			this.DataContext = this;
@@ -42,6 +43,7 @@ namespace Etupirka.Views
 			MinimizeAtStartup = Properties.Settings.Default.minimizeAtStartup;
 			CheckUpdate = Properties.Settings.Default.checkUpdate;
 			DisableGlowBrush = Properties.Settings.Default.disableGlowBrush;
+            HideListWhenPlaying = Properties.Settings.Default.hideListWhenPlaying;
 		}
 	}
 }
