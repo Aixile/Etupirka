@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
         WindowStartupLocation="CenterOwner"
-        Title="Help" Height="150" Width="430"
+        Title="ヘルプ" Height="250" Width="430"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -12,9 +12,21 @@
         >
     <Grid>
         <TextBlock Foreground="#fff" Margin="20" TextWrapping="WrapWithOverflow">
-            <TextBlock FontWeight="Bold">この機能はWindows 10以降のみサポートしています</TextBlock>、Windows 8およびそれ以前のシステムでは利用できません。
+            <TextBlock FontWeight="Bold">この機能はWindows 10のみサポートしています</TextBlock>、Windows 8およびそれ以前のシステムでは利用できません。
             <LineBreak/>
-            <Hyperlink NavigateUri="http://windows.microsoft.com/ja-JP/windows7/Make-the-text-on-your-screen-larger-or-smaller?8a40cd50" RequestNavigate="Hyperlink_RequestNavigate">こちらを参考にしてください</Hyperlink>
+            <LineBreak/>
+            初めてWindows 10で使う時およびうまく動作しません時、以下の手順に従ってください
+            <LineBreak/>
+            １．デスクトップの上で右クリックして「ディスプレイ設定」を開く
+            <LineBreak/>
+            ２．テキスト、アプリ、その他の項目のサイズを任意の値に変更する
+            <LineBreak/>
+            ３．ディスプレイのサイズが変わるまで待つ
+            <LineBreak/>
+            ４．元のサイズに変更する
+            <LineBreak/>
+            以上の手順より、モニター別のレジストリが作成されました。
+            
         </TextBlock>
 
     </Grid>

@@ -8,15 +8,19 @@
 
 ##ダウンロード
 
-[Etupirka-0.5.2.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.2.zip "Etupirka-0.5.2.zip")
+[Etupirka-0.5.3.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.3.zip "Etupirka-0.5.3.zip")
 
 [Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
 
-0.5.2: Optimized
+####0.5.3:
 
+機能追加：ゲームのウインドウサイズを変更して起動できる（Windows10のみ対応）
 
-0.5.1: Fix crashing on startup
+機能追加：エントリーのタイトルをコビーできる
+
+不具合修正：コンテキストメニューのフォントサイズを変更した
+ 
 
 ##使い方
 

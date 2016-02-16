@@ -23,24 +23,29 @@
             <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks4}}" Name="SOCKS4Box" Tag="2">SOCKS 4</RadioButton>
             <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks5}}"  Name="SOCKS5Box" Tag="3">SOCKS 5</RadioButton>
         </StackPanel>
-        <StackPanel Grid.Row="1">
-            <WrapPanel Margin="2">
-                <Label>プロクシホスト:　　</Label>
-                <TextBox Width="150" Text="{Binding ProxyAddress,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"/>
-            </WrapPanel>
-            <WrapPanel Margin="2">
-                <Label>プロクシポート:　　</Label>
-                <Controls:NumericUpDown  Value="{Binding ProxyPort,UpdateSourceTrigger=PropertyChanged}" Minimum="0" Maximum="65535" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"  HideUpDownButtons="True"/>
-            </WrapPanel>
-            <WrapPanel Margin="2">
-                <Label>プロクシユーザー:　</Label>
-                <TextBox Width="150" Text="{Binding ProxyUser,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"></TextBox>
-            </WrapPanel>
-            <WrapPanel Margin="2">
-                <Label>プロクシパスワード:</Label>
-                <PasswordBox Width="150" x:Name="passwordBox"  IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"></PasswordBox>
-            </WrapPanel>
-        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Margin="2" Grid.Row="0" Grid.Column="0">プロクシホスト:</Label>
+            <TextBox Margin="2" Grid.Row="0" Grid.Column="1" Width="150" Text="{Binding ProxyAddress,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"/>
+            <Label Margin="2" Grid.Row="1" Grid.Column="0">プロクシポート:</Label>
+            <Controls:NumericUpDown Margin="2" Grid.Row="1" Grid.Column="1" Value="{Binding ProxyPort, UpdateSourceTrigger =PropertyChanged }" Minimum = "0" Maximum = "65535" IsEnabled="{ Binding Path= IsChecked ,ElementName = NoneBox, Converter ={StaticResource inverseBooleanConverter}}"  HideUpDownButtons = "True"/>
+            <Label Margin="2" Grid.Row="2" Grid.Column="0">プロクシユーザー:</Label>
+            <TextBox Margin="2"  Grid.Row="2" Grid.Column="1" Width = "150" Text ="{Binding ProxyUser, UpdateSourceTrigger =PropertyChanged}" IsEnabled="{ Binding Path=IsChecked,ElementName= NoneBox,Converter= {StaticResource inverseBooleanConverter}}" ></TextBox>
+            <Label Margin="2" Grid.Row="3" Grid.Column="0">プロクシパスワード:</Label>
+            <PasswordBox Margin="2" Grid.Row="3" Grid.Column="1" Width = "150" x:Name= "passwordBox" IsEnabled="{ Binding Path= IsChecked, ElementName =NoneBox ,Converter={ StaticResource inverseBooleanConverter}}" ></PasswordBox>
+
+
+        </Grid>
+       
             
     </Grid>
 </UserControl>

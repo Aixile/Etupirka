@@ -39,7 +39,7 @@
             </ListView.View>
         </ListView>
         <TextBlock HorizontalAlignment="Right" Grid.Row="0" x:Name="label" Foreground="#fff" Margin="7 0 7 7">
-            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">動作していない場合</Hyperlink>
+            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">ご利用になる前に</Hyperlink>
         </TextBlock>
 
     </Grid>
