@@ -57,6 +57,7 @@ namespace Etupirka
         #endregion
 
         private static DisplayInfo lastDisplayInfo = null;
+        private static GameInfo currentGame = null;
 
         public static DisplayInfo GetDisplayDevices()
         {
@@ -99,9 +100,11 @@ namespace Etupirka
             return uuid;
         }
 
-        public static void AdjustDisplay(DisplayInfo displayInfo)
+        public static void AdjustDisplay(DisplayInfo displayInfo, GameInfo game = null)
         {
-            bool restartRequired = false;
+            if (currentGame != null && game != null) return;
+
+            bool displayChanged = false;
             DisplayInfo current = GetDisplayDevices();
             lastDisplayInfo = new DisplayInfo();
 
@@ -112,23 +115,29 @@ namespace Etupirka
                     lastDisplayInfo.devices.Add(new DisplayDeviceInfo() { DeviceID = device.DeviceID, Scaling = getDeviceScaling(device.DeviceID), Enabled = true });
                     if (setDeviceScaling(device.DeviceID, device.Scaling))
                     {
-                        restartRequired = true;
+                        displayChanged = true;
                     }
                 }
             }
 
-            if (restartRequired)
+            if (displayChanged)
             {
+                currentGame = game;
                 restartDisplayDrivers();
+            }
+            else
+            {
+                lastDisplayInfo = null;
             }
         }
 
-        public static void RestoreDisplay()
+        public static void RestoreDisplay(GameInfo game = null)
         {
-            if (lastDisplayInfo != null)
+            if (lastDisplayInfo != null && game == currentGame)
             {
                 AdjustDisplay(lastDisplayInfo);
                 lastDisplayInfo = null;
+                currentGame = null;
             }
         }
 
@@ -175,9 +184,11 @@ namespace Etupirka
                 Process.Start(new ProcessStartInfo(path, "restart =display")
                 {
                     Verb = "runas",
-                    WorkingDirectory = Path.GetDirectoryName(Application.ExecutablePath)
+                    WorkingDirectory = Path.GetDirectoryName(Application.ExecutablePath),
+                    WindowStyle = ProcessWindowStyle.Hidden
                 }).WaitForExit();
             }
+            catch { }
             finally
             {
                 if (File.Exists(path))
