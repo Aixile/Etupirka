@@ -8,10 +8,11 @@
 
 ##ダウンロード
 
-[Etupirka-0.5.3.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.3.zip "Etupirka-0.5.3.zip")
+[Etupirka-0.5.4.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.4.zip "Etupirka-0.5.4.zip")
 
 [Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
-
+####0.5.4
+不具合修正：エクスポート/インポートエラー
 
 ####0.5.3:
 
