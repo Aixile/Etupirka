@@ -24,25 +24,26 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Label Margin="2" Grid.Row="0" Grid.Column="0">スタートアップに登録</Label>
+        <Label Margin="2" Grid.Row="0" Grid.Column="0" Content="{DynamicResource スタートアップに登録}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="0" HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding SetStartUp}"></CheckBox>
-        <Label Margin="2" Grid.Row="1" Grid.Column="0">スタートアップ時に最小化</Label>
-        <CheckBox Margin="2" Focusable="False" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding MinimizeAtStartup}"></CheckBox>
-        <Label Margin="2" Grid.Row="2" Grid.Column="0">終了する前確認する</Label>
+        <Label Margin="2" Grid.Row="1" Grid.Column="0" Content="{DynamicResource スタートアップ時に最小化}"></Label>
+        <CheckBox Margin="2" Focusable="False" Grid.Row="1" HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding MinimizeAtExit}"></CheckBox>
+        <Label Margin="2" Grid.Row="2" Grid.Column="0" Content="{DynamicResource 終了する前確認する}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="2"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding AskBeforeExit}"></CheckBox>
-        <Label Margin="2" Grid.Row="3" Grid.Column="0">実行不可能なゲームを区別</Label>
+        <Label Margin="2" Grid.Row="3" Grid.Column="0" Content="{DynamicResource 実行不可能なゲームを区別}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="3"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding DifferExecuatableGame}"></CheckBox>
-        <Label Margin="2" Grid.Row="4" Grid.Column="0">プロセス監視</Label>
+        <Label Margin="2" Grid.Row="4" Grid.Column="0" Content="{DynamicResource プロセス監視}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="4"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding WatchProcess}"></CheckBox>
-        <Label Margin="2" Grid.Row="5" Grid.Column="0">監視間隔 (秒)</Label>
+        <Label Margin="2" Grid.Row="5" Grid.Column="0" Content="{DynamicResource 監視間隔 (秒)}"></Label>
         <Controls:NumericUpDown Margin="2" Grid.Row="5" Grid.Column="1"  Value="{Binding MontiorInterval,UpdateSourceTrigger=PropertyChanged}" Minimum="1" Maximum="300"  HideUpDownButtons="True"/>
-        <Label Margin="2" Grid.Row="6" Grid.Column="0">バックグラウンドサウンド</Label>
+        <Label Margin="2" Grid.Row="6" Grid.Column="0" Content="{DynamicResource バックグラウンドサウンド}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="6"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding PlayVoice}"></CheckBox>
-        <Label Margin="2" Grid.Row="7" Grid.Column="0">アップデートを自動的にチェック</Label>
+        <Label Margin="2" Grid.Row="7" Grid.Column="0" Content="{DynamicResource アップデートを自動的にチェック}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="7"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding CheckUpdate}"></CheckBox>
-        <Label Margin="2" Grid.Row="8" Grid.Column="0">GlowBrushを表示しない</Label>
+
+        <Label Margin="2" Grid.Row="8" Grid.Column="0" Content="{DynamicResource GlowBrushを表示しない}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="8"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding DisableGlowBrush}"></CheckBox>
-        <Label Margin="2" Grid.Row="9" Grid.Column="0">ゲーム実行中にリストを隠す</Label>
+        <Label Margin="2" Grid.Row="9" Grid.Column="0" Content="{DynamicResource ゲーム実行中にリストを隠す}"></Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="9"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding HideListWhenPlaying}"></CheckBox>
 
     </Grid>

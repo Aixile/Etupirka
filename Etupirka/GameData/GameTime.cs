@@ -48,7 +48,7 @@ namespace Etupirka
 					int m = (totalPlayTime / 60);
 					int h = m / 60;
 					m %= 60;
-					return h + @"時間" + m + @"分";
+					return h + I18n.GetString("時間") + m + I18n.GetString("分");
 				}
 				else
 				{

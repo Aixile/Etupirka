@@ -19,8 +19,8 @@
             DisplayMemberBinding="{Binding RelativeSource=
              {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
               Converter={StaticResource IndexConverter}}" />
-                    <GridViewColumn Header="日付" Width="100" DisplayMemberBinding="{Binding DayString}" Util:GridViewSort.PropertyName="d"></GridViewColumn>
-                    <GridViewColumn Header="プレイタイム" Width="120" DisplayMemberBinding="{Binding TimeString}" Util:GridViewSort.PropertyName="time"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource 日付}" Width="100" DisplayMemberBinding="{Binding DayString}" Util:GridViewSort.PropertyName="d"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource プレイタイム}" Width="120" DisplayMemberBinding="{Binding TimeString}" Util:GridViewSort.PropertyName="time"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Util="clr-namespace:Wpf.Util"
         WindowStartupLocation="CenterOwner"
-        Title="ディスプレイ設定" Height="250" Width="527"
+        Title="{DynamicResource ディスプレイ設定}" Height="250" Width="527"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,8 +17,8 @@
         <ListView Grid.Row="1" Name="DeviceListView" BorderThickness="0">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="デバイス名" Width="200" DisplayMemberBinding="{Binding DeviceString}" Util:GridViewSort.PropertyName="DeviceString"></GridViewColumn>
-                    <GridViewColumn Header="スケーリング" Width="140">
+                    <GridViewColumn Header="{DynamicResource デバイス名}" Width="200" DisplayMemberBinding="{Binding DeviceString}" Util:GridViewSort.PropertyName="DeviceString"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource スケーリング}" Width="140">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Slider Value="{Binding Scaling}" Minimum="-3" Maximum="3" 
@@ -28,7 +28,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="スケーリングを有効にする" Width="180">
+                    <GridViewColumn Header="{DynamicResource スケーリングを有効にする}" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <CheckBox IsChecked="{Binding Enabled}" />
@@ -39,7 +39,7 @@
             </ListView.View>
         </ListView>
         <TextBlock HorizontalAlignment="Right" Grid.Row="0" x:Name="label" Foreground="#fff" Margin="7 0 7 7">
-            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff">ご利用になる前に</Hyperlink>
+            <Hyperlink Click="Hyperlink_Click" Cursor="Hand" Foreground="#fff"><TextBlock Text="{DynamicResource ご利用になる前に}"/></Hyperlink>
         </TextBlock>
 
     </Grid>

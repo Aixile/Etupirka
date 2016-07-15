@@ -5,7 +5,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:Util="clr-namespace:Wpf.Util"
         xmlns:tb="http://www.hardcodet.net/taskbar" 
-        Title="Etupirka" Height="415" Width="757"
+        Title="{DynamicResource Etupirka}" Height="415" Width="757"
         xmlns:local="clr-namespace:Etupirka"
         WindowTitleBrush="#FF252525"
         Deactivated="MetroWindow_Deactivated"
@@ -45,44 +45,44 @@
         <tb:TaskbarIcon x:Name="tbico" IconSource="/Resources/Etupirka.ico" >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu BorderThickness="0" FontSize="11">
-                    <MenuItem Header="プロセス監視" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="リストを隠す" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
-                    <MenuItem Header="設定メーニュ" Name="SettingM" Click="SettingButton_Click" />
-                    <MenuItem Header="終了"  Click="QuitApp_Click"/>
+                    <MenuItem Header="{DynamicResource プロセス監視}" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="{DynamicResource リストを隠す}" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="{DynamicResource 元に戻す}" Name="ShowApp"  Click="ShowApp_Click"/>
+                    <MenuItem Header="{DynamicResource 設定メーニュ}" Name="SettingM" Click="SettingButton_Click" />
+                    <MenuItem Header="{DynamicResource 終了}"  Click="QuitApp_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
 
         </tb:TaskbarIcon>
         <Menu Name="MenuBar" FontSize="11"  Grid.Row="0" IsMainMenu="True">
-            <MenuItem   Header="ファイル" >
-                <MenuItem Header="プロセスから追加"  Name="AddGameFromProcess" Click="AddGameFromProcess_Click"/>
-                <MenuItem Header="ErogameScapeIDから追加" Click="AddGameFromESID_Click"/>
+            <MenuItem   Header="{DynamicResource ファイル}" >
+                <MenuItem Header="{DynamicResource プロセスから追加}"  Name="AddGameFromProcess" Click="AddGameFromProcess_Click"/>
+                <MenuItem Header="{DynamicResource ErogameScapeIDから追加}" Click="AddGameFromESID_Click"/>
                 <Separator />
-                <MenuItem Header="インポート">
-                    <MenuItem Header="ゲーム情報" Name="ImportList" Click="ImportList_Click"/>
-                    <MenuItem Header="ゲーム情報(上書き)" Name="ImportList_Overwrite" Click="ImportList_Overwrite_Click"/>
-                    <MenuItem Header="プレイタイム情報" Name="ImportPlayTimeList"  Click="ImportPlayTimeList_Click"/>
-                    <MenuItem Header="プレイタイム情報(上書き)" Name="ImportPlayTimeList_Overwrite"  Click="ImportPlayTimeList_Overwrite_Click"/>
+                <MenuItem Header="{DynamicResource インポート}">
+                    <MenuItem Header="{DynamicResource ゲーム情報}" Name="ImportList" Click="ImportList_Click"/>
+                    <MenuItem Header="{DynamicResource ゲーム情報(上書き)}" Name="ImportList_Overwrite" Click="ImportList_Overwrite_Click"/>
+                    <MenuItem Header="{DynamicResource プレイタイム情報}" Name="ImportPlayTimeList"  Click="ImportPlayTimeList_Click"/>
+                    <MenuItem Header="{DynamicResource プレイタイム情報(上書き)}" Name="ImportPlayTimeList_Overwrite"  Click="ImportPlayTimeList_Overwrite_Click"/>
                 </MenuItem>
                 <!--<MenuItem Header="ErogeTimerからインポート" Name="ImportFromErogeTimer" Click="ImportFromErogeTimer_Click"/>-->
-                <MenuItem Header="エクスポート">
-                    <MenuItem Header="すべてのゲーム" Name="ExportList" Click="ExportList_Click"/>
-                    <MenuItem Header="選択したゲーム" Name="ExportSelect" Click="ExportSelect_Click"/>
+                <MenuItem Header="{DynamicResource エクスポート}">
+                    <MenuItem Header="{DynamicResource すべてのゲーム}" Name="ExportList" Click="ExportList_Click"/>
+                    <MenuItem Header="{DynamicResource 選択したゲーム}" Name="ExportSelect" Click="ExportSelect_Click"/>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="終了" Name="QuitApp" Click="QuitApp_Click"/>
+                <MenuItem Header="{DynamicResource 終了}" Name="QuitApp" Click="QuitApp_Click"/>
        
             </MenuItem>
-            <MenuItem   Header="ツール" >
-                <MenuItem Header="プロセス監視"  InputGestureText="Alt+F9" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
-                <MenuItem Header="プレイタイム統計" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
-                <MenuItem Header="オフラインデータベースを更新" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
-                <MenuItem Header="設定" Name="SettingMenu" Click="SettingButton_Click"/>
+            <MenuItem   Header="{DynamicResource ツール}" >
+                <MenuItem Header="{DynamicResource プロセス監視}"  InputGestureText="Alt+F9" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="{DynamicResource プレイタイム統計}" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
+                <MenuItem Header="{DynamicResource オフラインデータベースを更新}" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
+                <MenuItem Header="{DynamicResource 設定}" Name="SettingMenu" Click="SettingButton_Click"/>
             </MenuItem>
-            <MenuItem   Header="ヘルプ" >
-                <MenuItem Header="更新をチェック" Name="CheckUpdate" Click="CheckUpdate_Click"/>
-                <MenuItem Header="バージョン情報" Name="VersionInfo" Click="VersionInfo_Click"/>
+            <MenuItem   Header="{DynamicResource ヘルプ}" >
+                <MenuItem Header="{DynamicResource 更新をチェック}" Name="CheckUpdate" Click="CheckUpdate_Click"/>
+                <MenuItem Header="{DynamicResource バージョン情報}" Name="VersionInfo" Click="VersionInfo_Click"/>
             </MenuItem>
         </Menu>
         <ListView Grid.Row="1"  BorderThickness="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick" KeyDown="GameListView_KeyDown" >
@@ -98,42 +98,42 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="ゲーム" Width="225" Util:GridViewSort.PropertyName="Title">
+                    <GridViewColumn Header="{DynamicResource ゲーム}" Width="225" Util:GridViewSort.PropertyName="Title">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Title}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="ブランド" Width="95" Util:GridViewSort.PropertyName="Brand">
+                    <GridViewColumn Header="{DynamicResource ブランド}" Width="95" Util:GridViewSort.PropertyName="Brand">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Brand}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="発売日" Width="80"  Util:GridViewSort.PropertyName="SaleDay">
+                    <GridViewColumn Header="{DynamicResource 発売日}" Width="80"  Util:GridViewSort.PropertyName="SaleDay">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding SaleDayString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="プレイタイム" Width="80"  Util:GridViewSort.PropertyName="TotalPlayTime">
+                    <GridViewColumn Header="{DynamicResource プレイタイム}" Width="80"  Util:GridViewSort.PropertyName="TotalPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding TotalPlayTimeString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="最初プレイ" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
+                    <GridViewColumn Header="{DynamicResource 最初プレイ}" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding FirstPlayTimeString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="最終プレイ" Width="115" Util:GridViewSort.PropertyName="LastPlayTime">
+                    <GridViewColumn Header="{DynamicResource 最終プレイ}" Width="115" Util:GridViewSort.PropertyName="LastPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding LastPlayTimeString}"></TextBlock>
@@ -145,20 +145,20 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu FontSize="10">
-                    <MenuItem Header="ゲーム起動"  Name="OpenGame" Click="OpenGame_Click"/>
-                    <MenuItem Header="開く">
-                        <MenuItem Header="フォルダーを開く"  Name="OpenFolder" Click="OpenFolder_Click"/>
-                        <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
-                        <MenuItem Header="プレイ統計を開く" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
+                    <MenuItem Header="{DynamicResource ゲーム起動}"  Name="OpenGame" Click="OpenGame_Click"/>
+                    <MenuItem Header="{DynamicResource 開く}">
+                        <MenuItem Header="{DynamicResource フォルダーを開く}"  Name="OpenFolder" Click="OpenFolder_Click"/>
+                        <MenuItem Header="{DynamicResource ErogameScapeを開く}" Name="OpenES" Click="OpenES_Click" />
+                        <MenuItem Header="{DynamicResource プレイ統計を開く}" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
                     </MenuItem>
-                    <MenuItem Header="コビー">
-                        <MenuItem Header="タイトル"  Name="CopyTitle" Click="CopyTitle_Click" />
-                        <MenuItem Header="ブランド"  Name="CopyBrand" Click="CopyBrand_Click" />
+                    <MenuItem Header="{DynamicResource コビー}">
+                        <MenuItem Header="{DynamicResource タイトル}"  Name="CopyTitle" Click="CopyTitle_Click" />
+                        <MenuItem Header="{DynamicResource ブランド}"  Name="CopyBrand" Click="CopyBrand_Click" />
                     </MenuItem>
-                    <MenuItem Header="削除" Name="Delete" Click="Delete_Click" />
-                    <MenuItem Header="設定">
-                        <MenuItem Header="プレイタイム設定" Name="TimeSetting" Click="TimeSetting_Click"/>
-                        <MenuItem Header="ゲーム設定" Name="GameProperty" Click="GameProperty_Click"/>
+                    <MenuItem Header="{DynamicResource 削除}" Name="Delete" Click="Delete_Click" />
+                    <MenuItem Header="{DynamicResource 設定}">
+                        <MenuItem Header="{DynamicResource プレイタイム設定}" Name="TimeSetting" Click="TimeSetting_Click"/>
+                        <MenuItem Header="{DynamicResource ゲーム設定}" Name="GameProperty" Click="GameProperty_Click"/>
                     </MenuItem>
                 </ContextMenu>
             </ListView.ContextMenu>
@@ -170,9 +170,9 @@
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <WrapPanel>
-                <Label FontWeight="Bold" Content="トータルプレイタイム: " />
+                    <Label FontWeight="Bold" Content="{DynamicResource トータルプレイタイム}" />
                 <Label  FontWeight="Bold"  Content="{Binding TotalTime,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
-                <Label FontWeight="Bold" Content="プレイ数: " />
+                    <Label FontWeight="Bold" Content="{DynamicResource プレイ数}" />
                 <Label  FontWeight="Bold" Content="{Binding ItemCount,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
                 </WrapPanel>
             </StatusBarItem>

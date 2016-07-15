@@ -161,6 +161,7 @@
     </Compile>
     <Compile Include="DisplaySettings.cs" />
     <Compile Include="GameData\DisplayInfo.cs" />
+    <Compile Include="I18n.cs" />
     <Compile Include="InformationManager.cs" />
     <Compile Include="Views\DatabaseConfigView.xaml.cs">
       <DependentUpon>DatabaseConfigView.xaml</DependentUpon>
@@ -251,6 +252,14 @@
     <Page Include="Dialog\TimeSettingDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Lang\DefaultLanguage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Lang\zh-CN.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
