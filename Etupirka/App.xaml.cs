@@ -28,7 +28,11 @@ namespace Etupirka
 				}
 				var application = new App();
 				application.InitializeComponent();
-				application.Run();
+
+                //Load lang
+                I18n.LoadLanguage();
+
+                application.Run();
 
 
 				// Allow single instance code to perform cleanup operations

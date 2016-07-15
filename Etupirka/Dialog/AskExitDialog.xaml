@@ -5,7 +5,7 @@
         xmlns:Views="clr-namespace:Etupirka.Views"
         WindowStartupLocation="CenterOwner"
         Name="AskExit"
-        Title="Etupirkaを終了しますか?" Height="115" Width="220"
+        Title="{DynamicResource Etupirkaを終了しますか}" Height="115" Width="220"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,14 +17,14 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0" Margin="10">
-            <Label Margin="2" >次回からは表示しない</Label>
+            <Label Margin="2" Content="{DynamicResource 次回からは表示しない}" />
             <CheckBox Margin="2" Focusable="False"  IsChecked="{Binding DoNotDisplay}"></CheckBox>
 
         </WrapPanel>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,5">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
-            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0"  Content="{DynamicResource OK}" />
+            <Button IsCancel="True" MinWidth="60" Content="{DynamicResource キャンセル}" />
         </WrapPanel>
 
     </Grid>

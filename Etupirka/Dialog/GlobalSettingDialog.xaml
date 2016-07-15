@@ -5,7 +5,7 @@
         xmlns:Views="clr-namespace:Etupirka.Views"
         WindowStartupLocation="CenterOwner"
         Name="SettingDialog"
-        Title="Etupirka設定" Height="450" Width="500"
+        Title="{DynamicResource Etupirka設定}" Height="450" Width="500"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,19 +17,19 @@
         </Grid.RowDefinitions>
         
         <TabControl Name="ConfigTab" SelectionChanged="TabControl_SelectionChanged" TabStripPlacement="Left" Margin="15" Grid.Row="0">
-            <Controls:MetroTabItem Header="一般" Controls:ControlsHelper.HeaderFontSize="20">
+            <Controls:MetroTabItem Header="{DynamicResource 一般}" Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:GeneralConfigView x:Name="GeneralView" />
             </Controls:MetroTabItem>
-            <Controls:MetroTabItem Header="データベース" Controls:ControlsHelper.HeaderFontSize="20">
+            <Controls:MetroTabItem Header="{DynamicResource データベース}" Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:DatabaseConfigView x:Name="DatabaseView" />
             </Controls:MetroTabItem>
-            <Controls:MetroTabItem Header="ネットワーク"  Controls:ControlsHelper.HeaderFontSize="20">
+            <Controls:MetroTabItem Header="{DynamicResource ネットワーク}"  Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:NetworkConfigView  x:Name="NetworkView" />
             </Controls:MetroTabItem>
         </TabControl>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
-            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0" Content="{DynamicResource OK}"></Button>
+            <Button IsCancel="True" MinWidth="60" Content="{DynamicResource キャンセル}"></Button>
         </WrapPanel>
     </Grid>
 </Controls:MetroWindow>

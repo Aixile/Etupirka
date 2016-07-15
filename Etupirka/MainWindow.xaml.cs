@@ -78,7 +78,7 @@ namespace Etupirka
 				{
 					t += i.TotalPlayTime;
 				}
-				return t / 3600 + @"時間" + (t / 60) % 60 + @"分";
+				return t / 3600 + I18n.GetString("時間") + (t / 60) % 60 + I18n.GetString("分");
 			}
 		}
 
@@ -255,7 +255,7 @@ namespace Etupirka
 				Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
 				if (lastestVersion > myVersion)
 				{
-					if (MessageBox.Show("Version " + str + " が見つかりました、更新しますか？", "Etupirkaを更新する", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+					if (MessageBox.Show(I18n.GetString("Version ") + str + I18n.GetString(" が見つかりました、更新しますか？"), I18n.GetString("Etupirkaを更新する"),MessageBoxButton.YesNo)==MessageBoxResult.Yes)
 					{
 						Process.Start("https://github.com/Aixile/Etupirka/releases");
 					}
@@ -789,7 +789,7 @@ namespace Etupirka
 
 			try
 			{
-				var controller = await this.ShowProgressAsync("更新しています", "Initializing...");
+				var controller = await this.ShowProgressAsync(I18n.GetString("更新しています"), "Initializing...");
 				controller.SetCancelable(true);
 				await TaskEx.Delay(1000);
 
@@ -799,14 +799,14 @@ namespace Etupirka
 				if (controller.IsCanceled)
 				{
 					await controller.CloseAsync();
-					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					await this.ShowMessageAsync(I18n.GetString("データベースを更新する"), I18n.GetString("失敗しました"));
 					return;
 				}
 				var data = await TaskEx.Run(() => { return NetworkUtility.GetData(url); });
 				if (controller.IsCanceled)
 				{
 					await controller.CloseAsync();
-					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					await this.ShowMessageAsync(I18n.GetString("データベースを更新する"), I18n.GetString("失敗しました"));
 					return;
 				}
 
@@ -815,7 +815,7 @@ namespace Etupirka
 				if (controller.IsCanceled)
 				{
 					await controller.CloseAsync();
-					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					await this.ShowMessageAsync(I18n.GetString("データベースを更新する"), I18n.GetString("失敗しました"));
 					return;
 				}
 
@@ -824,11 +824,11 @@ namespace Etupirka
 				await controller.CloseAsync();
 				if (re)
 				{
-					await this.ShowMessageAsync("データベースを更新する", "成功しました");
+					await this.ShowMessageAsync(I18n.GetString("データベースを更新する"), I18n.GetString("成功しました"));
 				}
 				else
 				{
-					await this.ShowMessageAsync("データベースを更新する", "失敗しました");
+					await this.ShowMessageAsync(I18n.GetString("データベースを更新する"), I18n.GetString("失敗しました"));
 				}
 			}
 			catch
@@ -850,8 +850,8 @@ namespace Etupirka
 		private void VersionInfo_Click(object sender, RoutedEventArgs e)
 		{
 
-			showMessage("バージョン情報","Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion +
-				" By Aixile (@namaniku0).");
+			showMessage(I18n.GetString("バージョン情報"), I18n.GetString("Version ") + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion +
+				" By " + I18n.GetString("developer"));
 
 		}
 
@@ -916,7 +916,7 @@ namespace Etupirka
 			ArrayList a = new ArrayList(GameListView.SelectedItems);
 			if (a.Count != 0)
 			{
-				MessageDialogResult re = await this.ShowMessageAsync("本当に削除しますか？", "", MessageDialogStyle.AffirmativeAndNegative);
+				MessageDialogResult re = await this.ShowMessageAsync(I18n.GetString("本当に削除しますか？"), "", MessageDialogStyle.AffirmativeAndNegative);
 				if (re != MessageDialogResult.Affirmative)
 				{
 					return;

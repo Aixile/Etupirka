@@ -3,7 +3,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStartupLocation="CenterOwner"
-        Title="ErogameScapeから追加" Height="135" Width="280"
+        Title="{DynamicResource ErogameScapeから追加}" Height="135" Width="280"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -14,12 +14,12 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0">
-            <Label Content="ErogameScapeゲームID"  />
+            <Label Content="{DynamicResource ErogameScapeゲームID}"  />
             <Controls:NumericUpDown Minimum="0" Maximum="50000" Margin="20,0,0,0" Name="ESID"  HideUpDownButtons="True"/>
         </WrapPanel>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
-            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0" Content="{DynamicResource OK}"></Button>
+            <Button IsCancel="True" MinWidth="60" Content="{DynamicResource キャンセル}"></Button>
         </WrapPanel>
 
     </Grid>

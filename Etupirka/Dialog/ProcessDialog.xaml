@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Util="clr-namespace:Wpf.Util"
         WindowStartupLocation="CenterOwner"
-        Title="プロセスリスト" Height="400" Width="600"
+        Title="{DynamicResource プロセスリスト}" Height="400" Width="600"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         Deactivated="MetroWindow_Deactivated"
@@ -22,10 +22,10 @@
         <ListView Name="ProcListView" BorderThickness="0"  IsSynchronizedWithCurrentItem="True"  Util:GridViewSort.AutoSort="True" MouseDoubleClick="ProcListView_MouseDoubleClick">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="PID" Width="70" DisplayMemberBinding="{Binding ProcPid}" Util:GridViewSort.PropertyName="ProcPid"></GridViewColumn>
-                    <GridViewColumn Header="イメージ名" Width="140" DisplayMemberBinding="{Binding ProcName}" Util:GridViewSort.PropertyName="ProcName"></GridViewColumn>
-                    <GridViewColumn Header="タイトル" Width="140" DisplayMemberBinding="{Binding ProcTitle}" Util:GridViewSort.PropertyName="ProcTitle"></GridViewColumn>
-                    <GridViewColumn Header="パス" Width="230" DisplayMemberBinding="{Binding ProcPath}" Util:GridViewSort.PropertyName="ProcPath"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource PID}" Width="70" DisplayMemberBinding="{Binding ProcPid}" Util:GridViewSort.PropertyName="ProcPid"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource イメージ名}" Width="140" DisplayMemberBinding="{Binding ProcName}" Util:GridViewSort.PropertyName="ProcName"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource タイトル}" Width="140" DisplayMemberBinding="{Binding ProcTitle}" Util:GridViewSort.PropertyName="ProcTitle"></GridViewColumn>
+                    <GridViewColumn Header="{DynamicResource パス}" Width="230" DisplayMemberBinding="{Binding ProcPath}" Util:GridViewSort.PropertyName="ProcPath"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
