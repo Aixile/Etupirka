@@ -1,0 +1,32 @@
+﻿<Controls:MetroWindow x:Class="Etupirka.Dialog.GameInfoDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:Util="clr-namespace:Wpf.Util"
+        WindowStartupLocation="CenterOwner"
+        Title="プロセスリスト" Height="400" Width="600"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        Deactivated="MetroWindow_Deactivated"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="2">
+        <ListView Name="GameInfoListView" BorderThickness="0"  IsSynchronizedWithCurrentItem="True"  Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameInfoListView_MouseDoubleClick">
+            <ListView.ContextMenu>
+                <ContextMenu FontSize="10">
+                    <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+            <ListView.View>
+
+                <GridView>
+                    <GridViewColumn Header="ESID" Width="70" DisplayMemberBinding="{Binding ErogameScapeID}" ></GridViewColumn>
+                    <GridViewColumn Header="タイトル" Width="270" DisplayMemberBinding="{Binding Title}" ></GridViewColumn>
+                    <GridViewColumn Header="ブランド" Width="140" DisplayMemberBinding="{Binding Brand}" ></GridViewColumn>
+                    <GridViewColumn Header="発売日" Width="100" DisplayMemberBinding="{Binding SaleDayString}" ></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
+    </Grid>
+</Controls:MetroWindow>

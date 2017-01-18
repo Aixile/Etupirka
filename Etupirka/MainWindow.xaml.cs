@@ -997,7 +997,49 @@ namespace Etupirka
 				Clipboard.SetText(g.Brand);
 			}
 		}
+
+		private void TryGetGameInfo_Click(object sender, RoutedEventArgs e)
+		{
+			List<GameInfo> allGames=Utility.im.getAllEsInfo();
+			GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
+			Dictionary<GameInfo, int> dic=new Dictionary<GameInfo, int>();
+			string title = g.Title;
+
+			foreach (GameInfo i in allGames)
+			{
+				int dist = StringProcessing.LevenshteinDistance(title, i.Title);
+				dic[i] = dist;
+			}
+			var ordered = dic.OrderBy(x => x.Value);
+			GameInfo ans = ordered.ElementAt(0).Key;
+			//g.ErogameScapeID = ans.ErogameScapeID;
+			//g.Title = ans.Title;
+			//g.Brand = ans.Brand;
+			//g.SaleDay = ans.SaleDay;
+
+			List<GameInfo> ans_l=new List<GameInfo>();
+			for(int i = 0; i < 50; i++)
+			{
+				ans_l.Add(ordered.ElementAt(i).Key);
+			}
+
+			Dialog.GameInfoDialog td = new Dialog.GameInfoDialog(ans_l);
+
+			td.Owner = this;
+			if (td.ShowDialog() == true)
+			{
+				g.ErogameScapeID = td.SelectedGameInfo.ErogameScapeID;
+				g.Title = td.SelectedGameInfo.Title;
+				g.Brand = td.SelectedGameInfo.Brand;
+				g.SaleDay = td.SelectedGameInfo.SaleDay;
+				UpdateStatus();
+				db.UpdateGameInfoAndExec(g);
+			}
+
+		}
 		#endregion
+
+
 	}
 
 	#region Command

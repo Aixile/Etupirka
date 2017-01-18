@@ -4,7 +4,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Util="clr-namespace:Wpf.Util"
         WindowStartupLocation="CenterOwner"
-        Title="プロセスリスト" Height="400" Width="600"
+        Title="ゲーム情報リスト" Height="400" Width="600"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         Deactivated="MetroWindow_Deactivated"
