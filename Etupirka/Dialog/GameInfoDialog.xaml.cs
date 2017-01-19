@@ -56,7 +56,7 @@ namespace Etupirka.Dialog
 
 		private void OpenES_Click(object sender, RoutedEventArgs e)
 		{
-			GameExecutionInfo g = (GameExecutionInfo)GameInfoListView.SelectedItem;
+			GameInfo g = (GameInfo)GameInfoListView.SelectedItem;
 			if (g != null && g.ErogameScapeID != 0)
 			{
 				System.Diagnostics.Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + g.ErogameScapeID);
