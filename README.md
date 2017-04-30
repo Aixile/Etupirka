@@ -74,4 +74,4 @@
 **Net Framework 4.0が必要です**
 
 ## Licence
-This program is under the BSD license.
+This program is under the MIT license.
