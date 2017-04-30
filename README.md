@@ -1,6 +1,6 @@
-#Etupirka
+# Etupirka
 
-##概観
+## 概観
 エロゲプレイ時間統計ツール
 
 
@@ -11,10 +11,10 @@
 [Etupirka-0.5.4.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.4.zip "Etupirka-0.5.4.zip")
 
 [Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
-####0.5.4
+#### 0.5.4
 不具合修正：エクスポート/インポートエラー
 
-####0.5.3:
+#### 0.5.3:
 
 機能追加：ゲームのウインドウサイズを変更して起動できる（Windows10のみ対応）
 
@@ -23,9 +23,9 @@
 不具合修正：コンテキストメニューのフォントサイズを変更した
  
 
-##使い方
+## 使い方
 
-###エントリーを追加する
+### エントリーを追加する
 - まずゲームを起動して
 - ファイル->プロセスから追加
 
@@ -49,7 +49,7 @@
 
 ![](http://i.imgur.com/8UQCxx9.png)
 
-###プレイタイム統計を見る
+### プレイタイム統計を見る
 週間や月別などのプレイ時間とゲームプレイ時間を測ることもできる。
 
 
@@ -62,16 +62,16 @@
 ![](http://i.imgur.com/GQlg57S.png)
 
 
-###オフラインデータベースを更新する
+### オフラインデータベースを更新する
 デフォルトではエロスケをキャシュしたオフラインデータベースから情報を取ることになるので、**最新のエロスケ情報を取るために手動的にオフラインデータベースを更新してください**（多分一月一回で十分）
 
 
 
 
-##動作環境
+## 動作環境
 **Windows Vista/7/8/10**（XPは対象外）
 
 **Net Framework 4.0が必要です**
 
-##Licence
+## Licence
 This program is under the BSD license.
