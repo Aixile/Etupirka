@@ -6,7 +6,7 @@
 
 ![](http://i.imgur.com/upkcS2e.png)
 
-##ダウンロード
+## ダウンロード
 
 [Etupirka-0.5.4.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.4.zip "Etupirka-0.5.4.zip")
 
