@@ -8,7 +8,7 @@
 
 ## ダウンロード
 
-[Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases"
+[Github](https://github.com/Aixile/Etupirka/releases) "https://github.com/Aixile/Etupirka/releases")
 
 #### 0.5.6
 不具合修正:ソフト電池DRMに関するバグ
