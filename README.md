@@ -8,20 +8,11 @@
 
 ## ダウンロード
 
-[Etupirka-0.5.4.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.4.zip "Etupirka-0.5.4.zip")
+[Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases"
 
-[Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
-#### 0.5.4
-不具合修正：エクスポート/インポートエラー
-
-#### 0.5.3:
-
-機能追加：ゲームのウインドウサイズを変更して起動できる（Windows10のみ対応）
-
-機能追加：エントリーのタイトルをコビーできる
-
-不具合修正：コンテキストメニューのフォントサイズを変更した
- 
+#### 0.5.6
+不具合修正:ソフト電池DRMに関するバグ
+機能追加:EditDistanceでゲーム名を予測する
 
 ## 使い方
 
