@@ -273,10 +273,17 @@ namespace Etupirka
 			int calcID;
 			Utility.GetWindowThreadProcessId(actWin, out calcID);
             var currentProc = Process.GetProcessById(calcID);
-            if (System.IO.Path.GetFileName(currentProc.MainModule.FileName) == "main.bin") //SoftDenchi DRM
+            try
             {
-                calcID = Utility.ParentProcessUtilities.GetParentProcess(calcID).Id;
+                if (System.IO.Path.GetFileName(currentProc.MainModule.FileName) == "main.bin") //SoftDenchi DRM
+                {
+                    calcID = Utility.ParentProcessUtilities.GetParentProcess(calcID).Id;
+                }
             }
+            catch(Exception e) {
+                Console.WriteLine(e);
+            }
+
             System.Console.WriteLine(calcID);
             bool play_flag = false;
 

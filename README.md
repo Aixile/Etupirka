@@ -10,8 +10,11 @@
 
 [Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
+#### 0.5.7
+不具合修正:クラッシュ
+
 #### 0.5.6
-不具合修正:ソフト電池DRMに関するバグ
+不具合修正:ソフト電池DRMサポート
 機能追加:EditDistanceでゲーム名を予測する
 
 ## 使い方
