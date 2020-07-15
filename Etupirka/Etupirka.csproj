@@ -159,9 +159,13 @@
     <Compile Include="Dialog\GameTimeStatisticDialog.xaml.cs">
       <DependentUpon>GameTimeStatisticDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\GameInfoDialog.xaml.cs">
+      <DependentUpon>GameInfoDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DisplaySettings.cs" />
     <Compile Include="GameData\DisplayInfo.cs" />
     <Compile Include="InformationManager.cs" />
+    <Compile Include="StringProcessing.cs" />
     <Compile Include="Views\DatabaseConfigView.xaml.cs">
       <DependentUpon>DatabaseConfigView.xaml</DependentUpon>
     </Compile>
@@ -243,6 +247,10 @@
     <Page Include="Dialog\PlayTimeStatisticDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\GameInfoDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialog\ProcessDialog.xaml">
       <SubType>Designer</SubType>

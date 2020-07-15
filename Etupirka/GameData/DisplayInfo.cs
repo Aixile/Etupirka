@@ -2,19 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Xml;
+using System.Xml.Schema;
+using System.Xml.Serialization;
 
 namespace Etupirka
 {
-    public class DisplayInfo
+	
+	public class DisplayInfo
     {
-        public ICollection<DisplayDeviceInfo> devices = new List<DisplayDeviceInfo>();
+		[XmlArray("DeviceArray")]
+		[XmlArrayItem("DeviceObject")]
+		public List<DisplayDeviceInfo> devices = new List<DisplayDeviceInfo>();
     }
 
-    public class DisplayDeviceInfo
-    {
-        public string DeviceString { get; set; }
-        public string DeviceID { get; set; }
-        public int Scaling { get; set; }
-        public bool Enabled { get; set; }
-    }
+	[XmlType("Person")]
+	public class DisplayDeviceInfo
+	{
+		[XmlElement("DeviceString")]
+		public string DeviceString { get; set; }
+		[XmlElement("DeviceID")]
+		public string DeviceID { get; set; }
+		[XmlElement("Scaling")]
+		public int Scaling { get; set; }
+		[XmlElement("Enabled")]
+		public bool Enabled { get; set; }
+	}
 }

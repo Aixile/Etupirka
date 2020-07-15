@@ -146,6 +146,7 @@
             <ListView.ContextMenu>
                 <ContextMenu FontSize="10">
                     <MenuItem Header="ゲーム起動"  Name="OpenGame" Click="OpenGame_Click"/>
+                    <MenuItem Header="ゲーム情報を取得" Name="TryGetGameInfo" Click="TryGetGameInfo_Click" />
                     <MenuItem Header="開く">
                         <MenuItem Header="フォルダーを開く"  Name="OpenFolder" Click="OpenFolder_Click"/>
                         <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />

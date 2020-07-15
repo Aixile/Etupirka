@@ -61,6 +61,31 @@ namespace Etupirka
 			}
 		}
 
+		public List<GameInfo> getAllEsInfo()
+		{
+			using (SQLiteCommand command = conn.CreateCommand())
+			{
+				conn.Open();
+				command.CommandText = "SELECT * FROM erogamescape ";
+				SQLiteDataReader reader = command.ExecuteReader();
+				List<GameInfo> ans = new List<GameInfo>();
+				while (reader.Read())
+				{
+					GameInfo g = new GameInfo();
+					g.ErogameScapeID = Convert.ToInt32(reader["id"].ToString());
+					g.Title = reader["title"].ToString();
+					g.Brand = reader["brand"].ToString();
+					string sday = reader["saleday"].ToString();
+					if (sday != "") {
+						g.SaleDay = DateTime.ParseExact(sday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+					}
+					ans.Add(g);
+				}
+				conn.Close();
+				return ans;
+			}
+		}
+
 		public bool update(string[] line)
 		{
 			try

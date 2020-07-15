@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
 namespace Etupirka
 {
@@ -150,61 +151,6 @@ namespace Etupirka
 			}
 			return false;
 		}
-		
-/*		public bool UpdateStatus(Process[] proc,int calcID,ref bool running, int time=0){
-			ProcStat LastStatus = Status;
-			IsPathExist=CheckPath();
-			if (!IsPathExist)
-			{
-				Status = ProcStat.NotExist;
-			}
-			else
-			{
-				Status = ProcStat.Rest;
-				foreach (Process p in proc)
-				{
-					try
-					{
-						string path = Convert.ToString(p.MainModule.FileName);
-						string pid = Convert.ToString(p.Id);
-						if (String.Equals(path,ProcPath,StringComparison.OrdinalIgnoreCase))
-						{
-							running = true;
-							if (FirstPlayTime.Ticks == 0)
-							{
-								FirstPlayTime = DateTime.Now;
-							}
-							if (pid == calcID.ToString())
-							{
-								Status = ProcStat.Focused;
-								if (time != 0)
-								{
-									addTime(time);
-								}
-								return true;
-							}
-							else
-							{
-								Status = ProcStat.Unfocused;
-							}
-
-						}
-					}
-					catch
-					{
-					}
-				}
-			}
-			if (LastStatus == ProcStat.Focused || LastStatus == ProcStat.Unfocused)
-			{
-				if (Status == ProcStat.Rest || Status == ProcStat.NotExist)
-				{
-					LastPlayTime = DateTime.Now;
-					return true;
-				}
-			}
-			return false;
-		}*/
 
 		protected bool isProcNEqExec;
 		public bool IsProcNEqExec
@@ -242,7 +188,8 @@ namespace Etupirka
 			}
 		}
 
-        protected DisplayInfo displayInfo;
+		[XmlIgnore]
+		protected DisplayInfo displayInfo;
         public DisplayInfo DisplayInfo
         {
             get

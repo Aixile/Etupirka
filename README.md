@@ -1,30 +1,25 @@
-#Etupirka
+# Etupirka
 
-##概観
+## 概観
 エロゲプレイ時間統計ツール
 
 
 ![](http://i.imgur.com/upkcS2e.png)
 
-##ダウンロード
+## ダウンロード
 
-[Etupirka-0.5.3.zip](http://etupirka.halcyons.org/download/Etupirka-0.5.3.zip "Etupirka-0.5.3.zip")
+[Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
-[Mirror](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
+#### 0.5.7
+不具合修正:クラッシュ
 
+#### 0.5.6
+不具合修正:ソフト電池DRMサポート
+機能追加:EditDistanceでゲーム名を予測する
 
-####0.5.3:
+## 使い方
 
-機能追加：ゲームのウインドウサイズを変更して起動できる（Windows10のみ対応）
-
-機能追加：エントリーのタイトルをコビーできる
-
-不具合修正：コンテキストメニューのフォントサイズを変更した
- 
-
-##使い方
-
-###エントリーを追加する
+### エントリーを追加する
 - まずゲームを起動して
 - ファイル->プロセスから追加
 
@@ -48,7 +43,7 @@
 
 ![](http://i.imgur.com/8UQCxx9.png)
 
-###プレイタイム統計を見る
+### プレイタイム統計を見る
 週間や月別などのプレイ時間とゲームプレイ時間を測ることもできる。
 
 
@@ -61,16 +56,16 @@
 ![](http://i.imgur.com/GQlg57S.png)
 
 
-###オフラインデータベースを更新する
+### オフラインデータベースを更新する
 デフォルトではエロスケをキャシュしたオフラインデータベースから情報を取ることになるので、**最新のエロスケ情報を取るために手動的にオフラインデータベースを更新してください**（多分一月一回で十分）
 
 
 
 
-##動作環境
+## 動作環境
 **Windows Vista/7/8/10**（XPは対象外）
 
 **Net Framework 4.0が必要です**
 
-##Licence
-This program is under the BSD license.
+## Licence
+This program is under the MIT license.

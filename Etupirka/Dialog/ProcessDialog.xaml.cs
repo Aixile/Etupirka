@@ -20,10 +20,12 @@ using System.Windows.Controls.Primitives;
 
 namespace Etupirka.Dialog
 {
-	/// <summary>
-	/// Interaction logic for ProcessDialog.xaml
-	/// </summary>
-	public class ProcDate
+
+
+    /// <summary>
+    /// Interaction logic for ProcessDialog.xaml
+    /// </summary>
+    public class ProcDate
 	{
 		public ProcDate(Process p)
 		{
@@ -85,7 +87,14 @@ namespace Etupirka.Dialog
 			{
 				int index = this.ProcListView.SelectedIndex;
 				SelectedProc = (ProcDate)this.ProcListView.SelectedItem;
-				this.DialogResult = true;
+                if (System.IO.Path.GetFileName(SelectedProc.ProcPath) == "main.bin")
+                {
+                    var TrueSelectedProc = new ProcDate(Etupirka.Utility.ParentProcessUtilities.GetParentProcess(SelectedProc.ProcPid));
+                    SelectedProc.ProcPid = TrueSelectedProc.ProcPid;
+                    SelectedProc.ProcPath = TrueSelectedProc.ProcPath;
+                }
+
+                this.DialogResult = true;
 			}
 		}
 
