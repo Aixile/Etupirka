@@ -93,7 +93,7 @@ namespace Etupirka
 				else return "";
 			}
 		}
-		public void updateInfoFromES()
+		public async Task updateInfoFromES()
 		{
 			if (Properties.Settings.Default.useOfflineESDatabase)
 			{
@@ -101,7 +101,7 @@ namespace Etupirka
 			}
 			else
 			{
-				updateInfoFromESOnline();
+				await updateInfoFromESOnline();
 			}
 
 		}
@@ -121,36 +121,16 @@ namespace Etupirka
 			}
 		} 
 
-		public async void updateInfoFromESOnline()
+		public async Task updateInfoFromESOnline()
 		{
 			if (erogameScapeID > 0)
 			{
-				string result =	await TaskEx.Run(() => { return NetworkUtility.GetString("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID); });
-					
-				//Console.Write(result);
-				string matchTitle = "<div id=\"soft-title\"><span class=\"bold\">(?<title>.*?)</span>";
-				string matchBrand = "<td><a href=\"brand.php\\?brand=(?<brandid>.*?)\">(?<brand>.*?)</a></td>";
-				string matchSaleDay = "<td><a href=\"toukei_hatubaibi_month.php\\?.*\">(?<saleday>.*?)</a></td>";
+				var document = await NetworkUtility.GetHtmlDocument("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
 
-				Regex re = new Regex(matchTitle, RegexOptions.IgnoreCase);
-				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
-				{
-					Title = System.Net.WebUtility.HtmlDecode(m.Groups["title"].Value);
-			//		Console.Write(title);
-				}
-				re = new Regex(matchBrand, RegexOptions.IgnoreCase);
-				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
-				{
-					Brand = System.Net.WebUtility.HtmlDecode(m.Groups["brand"].Value);
-		//			Console.Write(brand);
-				}
-				re = new Regex(matchSaleDay, RegexOptions.IgnoreCase);
-				for (Match m = re.Match(result); m.Success; m = m.NextMatch())
-				{
-					string saleday = m.Groups["saleday"].Value;
-					SaleDay = DateTime.ParseExact(saleday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-			//		Console.Write(saleday);
-				}
+				Title = document.GetElementById("soft-title").GetElementsByTagName("span")[0].InnerText;
+				Brand = document.GetElementById("brand").GetElementsByTagName("td")[0].InnerText;
+				string saleday = document.GetElementById("sellday").GetElementsByTagName("td")[0].InnerText;
+				SaleDay = DateTime.ParseExact(saleday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 			}
 		}
 		

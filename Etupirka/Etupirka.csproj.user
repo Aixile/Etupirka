@@ -11,6 +11,6 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartAction>Program</StartAction>
+    <StartAction>Project</StartAction>
   </PropertyGroup>
 </Project>

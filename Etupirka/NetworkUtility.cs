@@ -5,6 +5,10 @@ using System.Net;
 using System.Text;
 using System.Collections;
 using Etupirka.Views;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+using System.Threading;
+using Timer = System.Threading.Timer;
 
 namespace Etupirka
 {
@@ -67,6 +71,17 @@ namespace Etupirka
 			{
 				return null;
 			}
+		}
+
+		public static Task<HtmlDocument> GetHtmlDocument(string uri, int timeoutMs = 10000)
+		{
+			var browser = new WebBrowser();
+			var taskCompletionSource = new TaskCompletionSource<HtmlDocument>();
+			Timer timer = new Timer((state) => taskCompletionSource.TrySetException(new TimeoutException()), null, timeoutMs, Timeout.Infinite);
+			browser.DocumentCompleted += (sender, e) => taskCompletionSource.TrySetResult(browser.Document);
+			browser.ScriptErrorsSuppressed = true;
+			browser.Navigate(uri);
+			return taskCompletionSource.Task;
 		}
 	}
 }
