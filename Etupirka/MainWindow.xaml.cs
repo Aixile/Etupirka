@@ -182,17 +182,14 @@ namespace Etupirka
 		#endregion
 		
 		private ObservableCollection<GameExecutionInfo> items;
-		
-		//private Dictionary<string, TimeData> timeDict;
-
-		private System.Windows.Threading.DispatcherTimer watchProcTimer;
-
+        private System.Windows.Threading.DispatcherTimer watchProcTimer;
 		private DBManager db;
-		
+        private ProcessInfoCache processInfoCache = new ProcessInfoCache();
 
 
 
-		public MainWindow()
+
+        public MainWindow()
 		{
 
 			if (Settings.Default.UpgradeRequired)
@@ -216,8 +213,8 @@ namespace Etupirka
 			db = new DBManager(Utility.userDBPath);
 			Utility.im = new InformationManager(Utility.infoDBPath);
 
-			items = new ObservableCollection<GameExecutionInfo>();
-			db.LoadGame(items);
+            items = new ObservableCollection<GameExecutionInfo>();
+            db.LoadGame(items);
 
 			GameListView.ItemsSource = items;
 			GameListView.SelectedItem = null;
@@ -245,8 +242,8 @@ namespace Etupirka
 			}
         }
 
-		#region Function
-		private  void doCheckUpdate()
+        #region Function
+        private  void doCheckUpdate()
 		{
 			try
 			{
@@ -284,83 +281,84 @@ namespace Etupirka
                 Console.WriteLine(e);
             }
 
-            System.Console.WriteLine(calcID);
             bool play_flag = false;
 
-            this.Dispatcher.BeginInvoke(
-             new Action(() =>
-             {
-             Process[] proc = Process.GetProcesses();
+            this.Dispatcher.BeginInvoke(new Action(() => {
+                Process[] proc = Process.GetProcesses();
 
-             Dictionary<String, bool> dic = new Dictionary<string, bool>();
-                 foreach (Process p in proc)
-                 {
-                     try
-                     {
-                         string path = p.MainModule.FileName.ToLower();
-                         if (dic.ContainsKey(path))
-                         {
-                             dic[path] |= p.Id == calcID;
-                         }
-                         else
-                         {
-                             dic.Add(p.MainModule.FileName.ToLower(), p.Id == calcID);
-                         }
-                     }
-                     catch (Exception e)
-                     {
-                         // Console.WriteLine(e);
-                     }
-                 }
+                Dictionary<String, bool> dic = new Dictionary<string, bool>();
+                using (var scopedAccess = processInfoCache.scopedAccess())
+                {
+                    foreach (Process p in proc)
+                    {
+                        try
+                        {
+                            string path = processInfoCache.getProcessPath(p);
+                            if (path == "")
+                            {
+                                continue;
+                            }
+                            bool isForeground = p.Id == calcID;
+                            if (dic.ContainsKey(path))
+                            {
+                                dic[path] |= isForeground;
+                            }
+                            else
+                            {
+                                dic[path] = isForeground;
+                            }
+                        }
+                        catch (Exception e)
+                        {
+                            // Console.WriteLine(e);
+                        }
+                    }
+                }
 
-                 string statusBarText = "";
-                 string trayTipText = "Etupirka Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
+                string statusBarText = "";
+                string trayTipText = "Etupirka Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
 
-                 foreach (GameExecutionInfo i in items)
-                 {
-                     bool running = false;
-                     if (i.UpdateStatus2(dic, ref running, time))
-                     // if (i.UpdateStatus(proc, calcID,ref running, time))
-                     {
-                         if (time != 0)
-                         {
-                             //string date = DateTime.Now.Date.ToString("yyyy-MM-dd");
+                foreach (GameExecutionInfo i in items)
+                {
+                    bool running = false;
+                    if (i.UpdateStatus2(dic, ref running, time))
+                    {
+                        if (time != 0)
+                        {
+                            db.UpdateTimeNow(i.UID, time);
+                        }
+                        db.UpdateGameTimeInfo(i.UID, i.TotalPlayTime, i.FirstPlayTime, i.LastPlayTime);
+                        if (i.Status == ProcStat.Focused)
+                        {
+                            play_flag = true;
+                            PlayMessage.Content = i.Title + " : " + i.TotalPlayTimeString;
 
-                             db.UpdateTimeNow(i.UID, time);
-                         }
-                         db.UpdateGameTimeInfo(i.UID, i.TotalPlayTime, i.FirstPlayTime, i.LastPlayTime);
-                         if (i.Status == ProcStat.Focused)
-                         {
-                             play_flag = true;
-                             PlayMessage.Content = i.Title + " : " + i.TotalPlayTimeString;
+                            if (Properties.Settings.Default.hideListWhenPlaying)
+                            {
+                                ErogeHelper = true;
+                            }
+                        }
+                    }
+                    if (running)
+                    {
+                        trayTipText += "\n" + i.Title + " : " + i.TotalPlayTimeString;
+                    }
+                }
 
-                             if (Properties.Settings.Default.hideListWhenPlaying)
-                             {
-                                 ErogeHelper = true;
-                             }
-                         }
-                     }
-                     System.Console.WriteLine(running);
-                     if (running)
-                     {
-                         trayTipText += "\n" + i.Title + " : " + i.TotalPlayTimeString;
-                     }
-                 }
+                dic.Clear();
+                if (!play_flag)
+                {
+                    PlayMessage.Content = statusBarText;
 
-                 dic.Clear();
-                 if (!play_flag)
-                 {
-                     PlayMessage.Content = statusBarText;
+                    if (Properties.Settings.Default.hideListWhenPlaying)
+                    {
+                        ErogeHelper = false;
+                    }
+                }
+                tbico.ToolTipText = trayTipText;
 
-                     if (Properties.Settings.Default.hideListWhenPlaying)
-                     {
-                         ErogeHelper = false;
-                     }
-                 }
-                 tbico.ToolTipText = trayTipText;
-
-                 OnPropertyChanged("TotalTime");
-             }));
+                OnPropertyChanged("TotalTime");
+            }));
         }
 
         private void RegisterInStartup(bool isChecked)
