@@ -8,80 +8,82 @@ using Etupirka.Views;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.Threading;
-using Timer = System.Threading.Timer;
 
 namespace Etupirka
 {
 	public static class NetworkUtility
 	{
-		public static string PostString(string uri,string data)
+		private class MyWebClient : WebClient
 		{
-			WebClient wc = new WebClient();
-			string result= wc.UploadString(uri, data);
-			return result;
-		}
+			public int timeoutMs { get; set; } = 10000;
 
-		private static WebClient setProxy(WebClient wc)
-		{
-			int pt = Properties.Settings.Default.proxyType;
-			if (pt == 0) return wc;
-			if (pt == 1)
+			public MyWebClient()
+            {
+				configureWebClient(this);
+			}
+
+			protected override WebRequest GetWebRequest(Uri uri)
 			{
-				WebProxy proxy = new WebProxy(Properties.Settings.Default.proxyAddress,Properties.Settings.Default.proxyPort);
-				if (!String.IsNullOrEmpty(Properties.Settings.Default.proxyUser))
+				WebRequest w = base.GetWebRequest(uri);
+				w.Timeout = timeoutMs;
+				return w;
+			}
+
+			private static void setProxy(WebClient wc)
+			{
+				int pt = Properties.Settings.Default.proxyType;
+				if (pt == 1)
 				{
-					proxy.Credentials = new NetworkCredential(Properties.Settings.Default.proxyUser, Properties.Settings.Default.proxyPassword);
+					WebProxy proxy = new WebProxy(Properties.Settings.Default.proxyAddress, Properties.Settings.Default.proxyPort);
+					if (!string.IsNullOrEmpty(Properties.Settings.Default.proxyUser))
+					{
+						proxy.Credentials = new NetworkCredential(Properties.Settings.Default.proxyUser, Properties.Settings.Default.proxyPassword);
+					}
+					wc.Proxy = proxy;
 				}
-				wc.Proxy = proxy;
 			}
-			return wc;
-		}
 
-		public static string GetString(string uri)
-		{
-			WebClient wc = new WebClient();
-			wc = setProxy(wc);
-
-			wc.Encoding = System.Text.Encoding.UTF8;
-			try
+			private static void configureWebClient(WebClient wc)
 			{
-				string result = wc.DownloadString(uri);
-				return result;
-
-			}
-			catch
-			{
-				return "";
+				wc.Headers.Add("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36");
+				wc.Encoding = System.Text.Encoding.UTF8;
+				setProxy(wc);
 			}
 		}
 
-		public static byte[] GetData(string uri)
-		{
-			WebClient wc = new WebClient();
-			wc = setProxy(wc);
-
-			wc.Encoding = System.Text.Encoding.UTF8;
-			try
+		public static string PostString(string uri, string data)
+        {
+			using (var client = new MyWebClient())
 			{
-				byte[] result = wc.DownloadData(uri);
-				return result;
-
+				return client.UploadString(uri, data);
 			}
-			catch
+        }
+
+		public static Task<string> GetString(string uri)
+		{
+			using (var client = new MyWebClient())
 			{
-				return null;
+				return client.DownloadStringTaskAsync(uri);
 			}
 		}
 
-		public static Task<HtmlDocument> GetHtmlDocument(string uri, int timeoutMs = 10000)
+		public static Task<byte[]> GetData(string uri)
 		{
-			var browser = new WebBrowser();
-			var taskCompletionSource = new TaskCompletionSource<HtmlDocument>();
-			Timer timer = new Timer((state) => taskCompletionSource.TrySetException(new TimeoutException()), null, timeoutMs, Timeout.Infinite);
-			browser.DocumentCompleted += (sender, e) => taskCompletionSource.TrySetResult(browser.Document);
-			browser.ScriptErrorsSuppressed = true;
-			browser.Navigate(uri);
-			return taskCompletionSource.Task;
+			using (var client = new MyWebClient())
+			{
+				return client.DownloadDataTaskAsync(uri);
+			}
+		}
+
+		public static async Task<HtmlAgilityPack.HtmlDocument> GetHtmlDocument(string uri)
+		{
+			using (var client = new MyWebClient())
+			{
+				string str = await client.DownloadStringTaskAsync(new Uri(uri));
+				var document = new HtmlAgilityPack.HtmlDocument();
+				document.LoadHtml(str);
+				return document;
+			}
 		}
 	}
 }

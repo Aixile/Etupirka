@@ -35,6 +35,7 @@ using System.Data.SQLite;
 using Etupirka.Dialog;
 using System.Threading.Tasks;
 using Etupirka.Properties;
+using Newtonsoft.Json.Linq;
 
 namespace Etupirka
 {
@@ -186,9 +187,6 @@ namespace Etupirka
 		private DBManager db;
         private ProcessInfoCache processInfoCache = new ProcessInfoCache();
 
-
-
-
         public MainWindow()
 		{
 
@@ -235,36 +233,42 @@ namespace Etupirka
 			watchProcTimer.Interval = new TimeSpan(0, 0, Properties.Settings.Default.monitorInterval);
 			watchProcTimer.Start();
 
-			if (Settings.Default.checkUpdate)
-			{
-				Thread t = new Thread(doCheckUpdate);
-				t.Start();
-			}
+            if (Settings.Default.checkUpdate)
+            {
+                try
+                {
+                    _ = doCheckUpdate();
+                }
+                catch { }
+            }
         }
 
         #region Function
-        private  void doCheckUpdate()
-		{
-			try
-			{
-				string str = NetworkUtility.GetString("http://etupirka.halcyons.org/checkversion.php");
-				Version lastestVersion = new Version(str);
-				Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
-				if (lastestVersion > myVersion)
-				{
-					if (MessageBox.Show("Version " + str + " が見つかりました、更新しますか？", "Etupirkaを更新する", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-					{
-						Process.Start("https://github.com/Aixile/Etupirka/releases");
-					}
-				}
-			}catch
-			{
+        private async Task<bool> doCheckUpdate()
+        {
+            string json = await NetworkUtility.GetString("https://api.github.com/repos/aixile/etupirka/releases");
+            JArray jArr = JArray.Parse(json);
+            string str = jArr.Count > 0 ? jArr[0]["tag_name"]?.ToString() : null;
 
-			}
+            if (str == null)
+            {
+                throw new Exception("Unable to parse Github response");
+            }
 
-		}
+            Version lastestVersion = new Version(str);
+            Version myVersion = new Version(FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion);
+            if (lastestVersion > myVersion)
+            {
+                if (MessageBox.Show("Version " + str + " が見つかりました、更新しますか？", "Etupirkaを更新する", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    Process.Start("https://github.com/Aixile/Etupirka/releases");
+                }
+                return true;
+            }
+            return false;
+        }
 
-		private void UpdateStatus(int time=0)
+        private void UpdateStatus(int time=0)
 		{
 			IntPtr actWin = Utility.GetForegroundWindow();
 			int calcID;
@@ -489,8 +493,6 @@ namespace Etupirka
             db.InsertOrReplaceTime(timeDict);
         }
 
-
-
         void ExportTimeDict(string dataPath)
         {
             Dictionary<string, TimeData> timeDict = db.GetPlayTime();
@@ -526,8 +528,6 @@ namespace Etupirka
 
         protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
         {
-            //StreamWriter writer=new StreamWriter(@"D:\etupirka.log", true);
-            //writer.WriteLine("test");
             e.Cancel = false;
             if (Settings.Default.askBeforeExit)
             {
@@ -591,7 +591,6 @@ namespace Etupirka
                 t.Start();
 
             }
-            //	UpdateStatus(Properties.Settings.Default.monitorInterval);
         }
 
         private void MetroWindow_Deactivated(object sender, EventArgs e)
@@ -609,10 +608,7 @@ namespace Etupirka
                 if (g != null) g.run();
             }
         }
-        /*	private void MWindow_Closing(object sender, CancelEventArgs e)
-            {
-                ExportXML(Utility.strSourcePath + @"data.xml");
-            }*/
+
         #endregion
 
         #region MenuRegion
@@ -631,6 +627,7 @@ namespace Etupirka
             }
 
         }
+
         private void AddGameFromProcess_Click(object sender, RoutedEventArgs e)
         {
             Dialog.ProcessDialog pd = new Dialog.ProcessDialog();
@@ -748,41 +745,6 @@ namespace Etupirka
                 ExportTimeDict(System.IO.Path.ChangeExtension(openFileDialog1.FileName, ".time.xml"), t);
             }
         }
-        /*
-                private void ImportFromErogeTimer_Click(object sender, RoutedEventArgs e)
-                {
-                    OpenFileDialog openFileDialog1 = new OpenFileDialog();
-                    openFileDialog1.Multiselect = false;
-                    openFileDialog1.Filter = "ErogeTimerXMLFile(*.xml)|*.xml";
-                    openFileDialog1.FilterIndex = 1;
-                    if (openFileDialog1.ShowDialog() == true)
-                    {
-                        string dataPath = openFileDialog1.FileName;
-                        ErogeNode[] erogeList = null;
-                        try
-                        {
-                            System.Xml.Serialization.XmlSerializer serializer2 = new System.Xml.Serialization.XmlSerializer(typeof(ErogeNode[]));
-                            System.IO.StreamReader sr = new System.IO.StreamReader(dataPath);
-                            erogeList = (ErogeNode[])serializer2.Deserialize(sr);
-                            sr.Close();
-                        }
-                        catch
-                        {
-                        }
-                        if (erogeList != null)
-                        {
-                            foreach (ErogeNode i in erogeList)
-                            {
-                                GameExecutionInfo game = new GameExecutionInfo(i.Title, i.Path);
-                                game.TotalPlayTime = i.Time;
-                                items.Add(game);
-                            }
-                        }
-                        UpdateStatus();
-                        OnPropertyChanged("ItemCount");
-                    }
-                }*/
-
         private void PlayTimeStatistic_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -800,11 +762,6 @@ namespace Etupirka
 
         }
 
-        /*	private Task<byte[]> getDataAsync(string url)
-            {
-                return NetworkUtility.GetData(url);  
-            }
-            */
         private async void UpdateOfflineDatabase_Click(object sender, RoutedEventArgs e)
         {
 
@@ -823,7 +780,7 @@ namespace Etupirka
                     await this.ShowMessageAsync("データベースを更新する", "失敗しました");
                     return;
                 }
-                var data = await TaskEx.Run(() => { return NetworkUtility.GetData(url); });
+                var data = await NetworkUtility.GetData(url);
                 if (controller.IsCanceled)
                 {
                     await controller.CloseAsync();
@@ -876,10 +833,19 @@ namespace Etupirka
 
         }
 
-        private void CheckUpdate_Click(object sender, RoutedEventArgs e)
+        private async void CheckUpdate_Click(object sender, RoutedEventArgs e)
         {
-            Thread t = new Thread(doCheckUpdate);
-            t.Start();
+            try
+            {
+                if (!await doCheckUpdate())
+                {
+                    MessageBox.Show("すでに最新バージョンがインストールされている", "更新をチェックする");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("失敗しました", "更新をチェックする");
+            }
         }
 
 
