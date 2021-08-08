@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace Etupirka
 {
@@ -35,19 +36,6 @@ namespace Etupirka
 		}
 
 		public GameInfo() { erogameScapeID = -1; }
-		public GameInfo(string _title)
-		{
-			title = _title;
-			GenerateUID();
-		}
-
-		public GameInfo(int _erogameScapeID)
-		{
-			erogameScapeID = _erogameScapeID;
-			GenerateUID();
-			updateInfoFromES();
-	
-		}
 
 		protected int erogameScapeID;
 		public int ErogameScapeID
@@ -93,6 +81,7 @@ namespace Etupirka
 				else return "";
 			}
 		}
+
 		public async Task updateInfoFromES()
 		{
 			if (Properties.Settings.Default.useOfflineESDatabase)
@@ -103,7 +92,6 @@ namespace Etupirka
 			{
 				await updateInfoFromESOnline();
 			}
-
 		}
 
 		public void updateInfoFromESOffline()
@@ -111,13 +99,6 @@ namespace Etupirka
 			if (erogameScapeID > 0)
 			{
 				Utility.im.getEsInfo(this);
-			/*	int pos = Utility.esInfo.getTermID(ErogameScapeID);
-				if (pos >= 0)
-				{
-					Title = System.Net.WebUtility.HtmlDecode(Utility.esInfo.name[pos]);
-					Brand = System.Net.WebUtility.HtmlDecode(Utility.esInfo.brand[pos]);
-					SaleDay = DateTime.ParseExact(Utility.esInfo.saleday[pos], "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-				}*/
 			}
 		} 
 
@@ -125,19 +106,23 @@ namespace Etupirka
 		{
 			if (erogameScapeID > 0)
 			{
-				var document = await NetworkUtility.GetHtmlDocument("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
-
-				Title = document.GetElementById("soft-title").GetElementsByTagName("span")[0].InnerText;
-				Brand = document.GetElementById("brand").GetElementsByTagName("td")[0].InnerText;
-				string saleday = document.GetElementById("sellday").GetElementsByTagName("td")[0].InnerText;
+                var uri = "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID;
+                if (Properties.Settings.Default.useGoogleCache)
+                {
+                    uri = "https://webcache.googleusercontent.com/search?q=cache:" + HttpUtility.UrlEncode(uri) + "&strip=1";
+                }
+                var document = await NetworkUtility.GetHtmlDocument(uri);
+				Title = HttpUtility.HtmlDecode(document.GetElementbyId("game_title").InnerText);
+				Brand = HttpUtility.HtmlDecode(document.GetElementbyId("brand").Descendants("td").First().InnerText);
+				string saleday = HttpUtility.HtmlDecode(document.GetElementbyId("sellday").Descendants("td").First().InnerText);
 				SaleDay = DateTime.ParseExact(saleday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 			}
 		}
 		
 		protected void OnPropertyChanged(string name)
 		{
-				if (PropertyChanged == null) return;
-				PropertyChanged(this, new PropertyChangedEventArgs(name));
+			if (PropertyChanged == null) return;
+			PropertyChanged(this, new PropertyChangedEventArgs(name));
 		}
 	}
 }

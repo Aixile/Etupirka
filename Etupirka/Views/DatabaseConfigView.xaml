@@ -19,8 +19,8 @@
         </Grid.ColumnDefinitions>
         <Label Margin="2" Grid.Row="0" Grid.Column="0">オフラインデータベースを使う</Label>
         <CheckBox Margin="2" Focusable="False" Grid.Row="0"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding UseOfflineDatabase}"></CheckBox>
-        <Label Margin="2" Grid.Row="1" Grid.Column="0">サーバーアドレス</Label>
-        <TextBox Margin="2"  Grid.Row="2" Grid.Column="0" Text="{Binding DatabaseSyncServer,UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Margin="2" Grid.Row="1" Grid.Column="0">Use Google Cache for online database</Label>
+        <CheckBox Margin="2" Focusable="False" Grid.Row="1"  HorizontalAlignment="Right" Grid.Column="1" IsChecked="{Binding UseGoogleCache}"></CheckBox>
 
     </Grid>
 </UserControl>

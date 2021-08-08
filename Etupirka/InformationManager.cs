@@ -11,10 +11,10 @@ namespace Etupirka
 	{
 		private string db_file;
 		public SQLiteConnection conn;
+
 		public InformationManager(string file)
 		{
 			create(file);
-
 		}
 		public void create(string file)
 		{
@@ -86,36 +86,25 @@ namespace Etupirka
 			}
 		}
 
-		public bool update(string[] line)
+		public void update(List<GameInfo> infoList)
 		{
-			try
+			using (SQLiteCommand insertRngCmd = (SQLiteCommand)conn.CreateCommand())
 			{
-				using (SQLiteCommand insertRngCmd = (SQLiteCommand)conn.CreateCommand())
+				insertRngCmd.CommandText = @"INSERT or REPLACE INTO erogamescape VALUES(@ID,@TITLE,@SALEDAY,@BRAND)";
+				conn.Open();
+				using (var transaction = conn.BeginTransaction())
 				{
-					insertRngCmd.CommandText = @"INSERT or REPLACE INTO erogamescape VALUES(@ID,@TITLE,@SALEDAY,@BRAND)";
-					conn.Open();
-					using (var transaction = conn.BeginTransaction())
+					foreach (GameInfo info in infoList)
 					{
-						foreach (string i in line)
-						{
-							string[] values = i.Split('\t');
-							if (i.Count() < 4) continue;
-
-							insertRngCmd.Parameters.AddWithValue("@ID", values[0]);
-							insertRngCmd.Parameters.AddWithValue("@TITLE", values[1]);
-							insertRngCmd.Parameters.AddWithValue("@SALEDAY", values[2]);
-							insertRngCmd.Parameters.AddWithValue("@BRAND", values[3]);
-							insertRngCmd.ExecuteNonQuery();
-						}
-						transaction.Commit();
+						insertRngCmd.Parameters.AddWithValue("@ID", info.ErogameScapeID);
+						insertRngCmd.Parameters.AddWithValue("@TITLE", info.Title);
+						insertRngCmd.Parameters.AddWithValue("@SALEDAY", info.SaleDay.ToString("yyyy-MM-dd"));
+						insertRngCmd.Parameters.AddWithValue("@BRAND", info.Brand);
+						insertRngCmd.ExecuteNonQuery();
 					}
-					conn.Close();
+					transaction.Commit();
 				}
-				return true; 
-			}
-			catch
-			{
-				return false;
+				conn.Close();
 			}
 		}
 	}

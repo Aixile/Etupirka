@@ -21,14 +21,14 @@ namespace Etupirka.Views
 	{
 
 		public bool UseOfflineDatabase { get; set; }
-		public string DatabaseSyncServer { get; set; }
+		public bool UseGoogleCache { get; set; }
 
 		public DatabaseConfigView()
 		{
 			InitializeComponent();
 			this.DataContext = this;
 			UseOfflineDatabase = Properties.Settings.Default.useOfflineESDatabase;
-			DatabaseSyncServer = Properties.Settings.Default.databaseSyncServer;
+			UseGoogleCache = Properties.Settings.Default.useGoogleCache;
 		}
 	}
 }
