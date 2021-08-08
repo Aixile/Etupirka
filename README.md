@@ -12,6 +12,7 @@
 
 #### 0.6.0
 Remove the dependency on the server
+Support using Google Cache for online database
 
 #### 0.5.8
 Stop Etupirka from burning the CPU
