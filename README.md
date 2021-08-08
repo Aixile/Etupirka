@@ -10,6 +10,13 @@
 
 [Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
+#### 0.6.0
+Remove the dependency on the server
+
+#### 0.5.8
+Stop Etupirka from burning the CPU
+Fix online game data parsing
+
 #### 0.5.7
 不具合修正:クラッシュ
 
@@ -65,7 +72,7 @@
 ## 動作環境
 **Windows Vista/7/8/10**（XPは対象外）
 
-**Net Framework 4.0が必要です**
+**Net Framework 4.6が必要です**
 
 ## Licence
 This program is under the MIT license.

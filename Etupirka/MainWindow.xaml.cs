@@ -36,6 +36,8 @@ using Etupirka.Dialog;
 using System.Threading.Tasks;
 using Etupirka.Properties;
 using Newtonsoft.Json.Linq;
+using System.Net.Http;
+using System.Web;
 
 namespace Etupirka
 {
@@ -168,18 +170,6 @@ namespace Etupirka
 			ErogeHelper = !ErogeHelper;
 		}
 
-		/*		private void OnHotKeyHandler_Screenshot(HotKey hotKey)
-				{
-					System.Drawing.Rectangle bounds = this.Bounds;
-					using (Bitmap bitmap = new Bitmap(bounds.Width, bounds.Height))
-					{
-						using (Graphics g = Graphics.FromImage(bitmap))
-						{
-							g.CopyFromScreen(new System.Drawing.Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
-						}
-						bitmap.Save("C://test.jpg", ImageFormat.Jpeg);
-					}
-				}*/
 		#endregion
 		
 		private ObservableCollection<GameExecutionInfo> items;
@@ -246,8 +236,8 @@ namespace Etupirka
         #region Function
         private async Task<bool> doCheckUpdate()
         {
-            string json = await NetworkUtility.GetString("https://api.github.com/repos/aixile/etupirka/releases");
-            JArray jArr = JArray.Parse(json);
+            JToken json = await NetworkUtility.GetJson("https://api.github.com/repos/aixile/etupirka/releases");
+            JArray jArr = (JArray)json;
             string str = jArr.Count > 0 ? jArr[0]["tag_name"]?.ToString() : null;
 
             if (str == null)
@@ -764,54 +754,52 @@ namespace Etupirka
 
         private async void UpdateOfflineDatabase_Click(object sender, RoutedEventArgs e)
         {
-
+            var controller = await this.ShowProgressAsync("更新しています", "Downloading...");
             try
             {
-                var controller = await this.ShowProgressAsync("更新しています", "Initializing...");
                 controller.SetCancelable(true);
-                await TaskEx.Delay(1000);
+                var source = new CancellationTokenSource();
+                controller.Canceled += (_, __) => {
+                    source.Cancel();
+                };
 
-                controller.SetMessage("Downloading...");
-                string url = Properties.Settings.Default.databaseSyncServer;
-                url = url.TrimEnd('/') + "/" + "esdata.gz";
-                if (controller.IsCanceled)
-                {
-                    await controller.CloseAsync();
-                    await this.ShowMessageAsync("データベースを更新する", "失敗しました");
-                    return;
-                }
-                var data = await NetworkUtility.GetData(url);
-                if (controller.IsCanceled)
-                {
-                    await controller.CloseAsync();
-                    await this.ShowMessageAsync("データベースを更新する", "失敗しました");
-                    return;
-                }
+                var document = await NetworkUtility.PostHtmlDocument(
+                    "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/sql_for_erogamer_form.php",
+                    new FormUrlEncodedContent(new[] {
+                        new KeyValuePair<string, string>("sql",
+                            @"SELECT g.id, g.gamename, g.sellday, b.brandname
+                            FROM brandlist b, gamelist g
+                            WHERE g.brandname = b.id
+                            ORDER BY g.id"),
+                    }),
+                    source.Token,
+                    timeoutMs: 30000);
 
-                controller.SetMessage("Decompressing...");
-                var s = await TaskEx.Run(() => { return Encoding.UTF8.GetString(Utility.Decompress(data)); });
-                if (controller.IsCanceled)
+                var infoList = new List<GameInfo>();
+                var table = document.GetElementbyId("query_result_main").Descendants("table").First();
+                foreach (var tr in table.Descendants("tr"))
                 {
-                    await controller.CloseAsync();
-                    await this.ShowMessageAsync("データベースを更新する", "失敗しました");
-                    return;
+                    var tds = tr.Descendants("td").ToList();
+                    if (tds.Count == 4)
+                    {
+                        var info = new GameInfo();
+                        info.ErogameScapeID = int.Parse(tds[0].InnerText);
+                        info.Title = HttpUtility.HtmlDecode(tds[1].InnerText);
+                        info.SaleDay = DateTime.ParseExact(tds[2].InnerText, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                        info.Brand = HttpUtility.HtmlDecode(tds[3].InnerText);
+                        infoList.Add(info);
+                    }
                 }
 
                 controller.SetMessage("Updating database...");
-                bool re = await TaskEx.Run(() => { return Utility.im.update(s.Split('\n')); });
+                Utility.im.update(infoList);
                 await controller.CloseAsync();
-                if (re)
-                {
-                    await this.ShowMessageAsync("データベースを更新する", "成功しました");
-                }
-                else
-                {
-                    await this.ShowMessageAsync("データベースを更新する", "失敗しました");
-                }
+                await this.ShowMessageAsync("データベースを更新する", "成功しました");
             }
             catch
             {
-                return;
+                await controller.CloseAsync();
+                await this.ShowMessageAsync("データベースを更新する", "失敗しました");
             }
         }
 

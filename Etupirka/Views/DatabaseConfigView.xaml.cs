@@ -28,7 +28,6 @@ namespace Etupirka.Views
 			InitializeComponent();
 			this.DataContext = this;
 			UseOfflineDatabase = Properties.Settings.Default.useOfflineESDatabase;
-			DatabaseSyncServer = Properties.Settings.Default.databaseSyncServer;
 		}
 	}
 }

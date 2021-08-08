@@ -21,7 +21,6 @@ namespace Etupirka.Dialogs
 	public partial class GlobalSettingDialog : MetroWindow
 	{
 
-	//	Views.ProxyConfigView pcv;
 		public GlobalSettingDialog()
 		{
 			InitializeComponent();
@@ -29,7 +28,6 @@ namespace Etupirka.Dialogs
 			{
 				this.GlowBrush = null;
 			}
-		//	pcv = new Views.ProxyConfigView();
 		}
 
 		private void btnDialogOk_Click(object sender, RoutedEventArgs e)
@@ -50,7 +48,6 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.disableGlowBrush = GeneralView.DisableGlowBrush;
             Properties.Settings.Default.hideListWhenPlaying = GeneralView.HideListWhenPlaying;
             Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
-			Properties.Settings.Default.databaseSyncServer = DatabaseView.DatabaseSyncServer;
 			Properties.Settings.Default.Save();
 			this.DialogResult = true;
 		}

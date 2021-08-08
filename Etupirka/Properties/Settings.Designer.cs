@@ -205,18 +205,6 @@ namespace Etupirka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://etupirka.halcyons.org")]
-        public string databaseSyncServer {
-            get {
-                return ((string)(this["databaseSyncServer"]));
-            }
-            set {
-                this["databaseSyncServer"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool checkUpdate {
             get {
