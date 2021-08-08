@@ -11,19 +11,19 @@
 [Github](https://github.com/Aixile/Etupirka/releases "https://github.com/Aixile/Etupirka/releases")
 
 #### 0.6.0
-Remove the dependency on the server
-Support using Google Cache for online database
+- Remove the dependency on the server
+- Support using Google Cache for online database
 
 #### 0.5.8
-Stop Etupirka from burning the CPU
-Fix online game data parsing
+- Stop Etupirka from burning the CPU
+- Fix online game data parsing
 
 #### 0.5.7
-不具合修正:クラッシュ
+- 不具合修正:クラッシュ
 
 #### 0.5.6
-不具合修正:ソフト電池DRMサポート
-機能追加:EditDistanceでゲーム名を予測する
+- 不具合修正:ソフト電池DRMサポート
+- 機能追加:EditDistanceでゲーム名を予測する
 
 ## 使い方
 
