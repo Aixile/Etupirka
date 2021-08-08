@@ -238,5 +238,17 @@ namespace Etupirka.Properties {
                 this["hideListWhenPlaying"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool useGoogleCache {
+            get {
+                return ((bool)(this["useGoogleCache"]));
+            }
+            set {
+                this["useGoogleCache"] = value;
+            }
+        }
     }
 }

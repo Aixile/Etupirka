@@ -556,7 +556,6 @@ namespace Etupirka
 
                 DoDelete();
             }
-
         }
 
         protected override void OnStateChanged(EventArgs e)
@@ -579,7 +578,6 @@ namespace Etupirka
             {
                 Thread t = new Thread(doUpdate);
                 t.Start();
-
             }
         }
 
@@ -950,7 +948,12 @@ namespace Etupirka
             GameExecutionInfo g = (GameExecutionInfo)GameListView.SelectedItem;
             if (g != null && g.ErogameScapeID != 0)
             {
-                System.Diagnostics.Process.Start("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + g.ErogameScapeID);
+                var uri = "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + g.ErogameScapeID;
+                if (Settings.Default.useGoogleCache)
+                {
+                    uri = "https://webcache.googleusercontent.com/search?q=cache:" + HttpUtility.UrlEncode(uri) + "&strip=1";
+                }
+                Process.Start(uri);
             }
         }
 
@@ -987,10 +990,6 @@ namespace Etupirka
             }
             var ordered = dic.OrderBy(x => x.Value);
             GameInfo ans = ordered.ElementAt(0).Key;
-            //g.ErogameScapeID = ans.ErogameScapeID;
-            //g.Title = ans.Title;
-            //g.Brand = ans.Brand;
-            //g.SaleDay = ans.SaleDay;
 
             List<GameInfo> ans_l = new List<GameInfo>();
             for (int i = 0; i < 50; i++)

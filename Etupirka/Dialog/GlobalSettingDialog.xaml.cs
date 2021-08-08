@@ -48,6 +48,7 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.disableGlowBrush = GeneralView.DisableGlowBrush;
             Properties.Settings.Default.hideListWhenPlaying = GeneralView.HideListWhenPlaying;
             Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
+            Properties.Settings.Default.useGoogleCache = DatabaseView.UseGoogleCache;
 			Properties.Settings.Default.Save();
 			this.DialogResult = true;
 		}

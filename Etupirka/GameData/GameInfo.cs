@@ -106,8 +106,13 @@ namespace Etupirka
 		{
 			if (erogameScapeID > 0)
 			{
-				var document = await NetworkUtility.GetHtmlDocument("http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID);
-				Title = HttpUtility.HtmlDecode(document.GetElementbyId("soft-title").Descendants("span").First().InnerText);
+                var uri = "http://erogamescape.dyndns.org/~ap2/ero/toukei_kaiseki/game.php?game=" + erogameScapeID;
+                if (Properties.Settings.Default.useGoogleCache)
+                {
+                    uri = "https://webcache.googleusercontent.com/search?q=cache:" + HttpUtility.UrlEncode(uri) + "&strip=1";
+                }
+                var document = await NetworkUtility.GetHtmlDocument(uri);
+				Title = HttpUtility.HtmlDecode(document.GetElementbyId("game_title").InnerText);
 				Brand = HttpUtility.HtmlDecode(document.GetElementbyId("brand").Descendants("td").First().InnerText);
 				string saleday = HttpUtility.HtmlDecode(document.GetElementbyId("sellday").Descendants("td").First().InnerText);
 				SaleDay = DateTime.ParseExact(saleday, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
