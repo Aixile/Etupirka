@@ -227,14 +227,25 @@ namespace Etupirka
 
             // Initialize sync
             syncManager = new Sync.SyncManager();
+            syncManager.SetDatabase(db);
             if (Settings.Default.syncEnabled)
             {
-                syncManager.Configure(
-                    Settings.Default.syncEndpoint,
-                    Settings.Default.syncAccessKey,
-                    Settings.Default.syncSecretKey,
-                    Settings.Default.syncBucketName
-                );
+                try
+                {
+                    syncManager.Configure(
+                        Settings.Default.syncEndpoint,
+                        Settings.Default.syncAccessKey,
+                        Settings.Default.syncSecretKey,
+                        Settings.Default.syncBucketName
+                    );
+                }
+                catch (Exception ex)
+                {
+                    // Invalid sync settings - disable sync to allow app to start
+                    Settings.Default.syncEnabled = false;
+                    Settings.Default.Save();
+                    System.Diagnostics.Debug.WriteLine($"Sync configuration failed: {ex.Message}");
+                }
             }
 
             syncTimer = new System.Windows.Threading.DispatcherTimer();
@@ -650,6 +661,16 @@ namespace Etupirka
                     syncStatusIndicator.Fill = System.Windows.Media.Brushes.Gray;
                     syncStatusIndicator.ToolTip = "同期: 無効";
                     break;
+            }
+        }
+
+        private void syncStatusIndicator_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            var tooltip = syncStatusIndicator.ToolTip?.ToString();
+            if (!string.IsNullOrEmpty(tooltip))
+            {
+                Clipboard.SetText(tooltip);
+                MessageBox.Show("クリップボードにコピーしました", "同期ステータス", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

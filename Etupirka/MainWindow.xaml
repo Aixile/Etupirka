@@ -5,7 +5,7 @@
         xmlns:System="clr-namespace:System;assembly=mscorlib"
         xmlns:Util="clr-namespace:Wpf.Util"
         xmlns:tb="http://www.hardcodet.net/taskbar" 
-        Title="Etupirka" Height="415" Width="757"
+        Title="Etupirka" Height="415" Width="765"
         xmlns:local="clr-namespace:Etupirka"
         WindowTitleBrush="#FF252525"
         Deactivated="MetroWindow_Deactivated"
@@ -23,7 +23,7 @@
     <Controls:MetroWindow.RightWindowCommands>
         <Controls:WindowCommands>
             <WrapPanel>
-                <Button  Name="SettingButton" Click="SettingButton_Click">
+                <Button  Name="SettingButton" Click="SettingButton_Click" Margin="0,8,0,0">
                     <Image Height="18" Width="18" Source="Resources/setting.png">
                     </Image>  
                 </Button>
@@ -170,7 +170,8 @@
             <StatusBarItem HorizontalAlignment="Left">
                 <WrapPanel VerticalAlignment="Center">
                     <Ellipse x:Name="syncStatusIndicator" Width="10" Height="10"
-                             Fill="Gray" Margin="5,0" ToolTip="同期: 無効" VerticalAlignment="Center" />
+                             Fill="Gray" Margin="5,0" ToolTip="同期: 無効" VerticalAlignment="Center"
+                             Cursor="Hand" MouseLeftButtonDown="syncStatusIndicator_MouseLeftButtonDown" />
                     <Label FontWeight="Bold" Content="" Name="PlayMessage" />
                 </WrapPanel>
             </StatusBarItem>

@@ -47,16 +47,41 @@ namespace Etupirka.Sync
             var key = $"events/{machineId}.json";
             var existingEvents = await DownloadEventsForMachineAsync(machineId);
 
-            var allEvents = existingEvents.Concat(events).ToList();
-            var json = JsonConvert.SerializeObject(allEvents, Formatting.Indented);
+            // Merge events by game+date to keep file compact
+            var mergedEvents = existingEvents.Concat(events)
+                .GroupBy(e => new { e.GameEsid, e.GameUid, e.Date })
+                .Select(g => new PlayEvent
+                {
+                    MachineId = machineId,
+                    GameEsid = g.Key.GameEsid,
+                    GameUid = g.Key.GameUid,
+                    Date = g.Key.Date,
+                    Seconds = g.Sum(e => e.Seconds),
+                    Timestamp = g.Max(e => e.Timestamp),
+                    EventId = g.First().EventId
+                })
+                .ToList();
 
-            await _client.PutObjectAsync(new PutObjectRequest
+            var json = JsonConvert.SerializeObject(mergedEvents, Formatting.Indented);
+
+            await UploadJsonAsync(key, json);
+        }
+
+        private async Task UploadJsonAsync(string key, string json)
+        {
+            var bytes = System.Text.Encoding.UTF8.GetBytes(json);
+            using (var stream = new MemoryStream(bytes))
             {
-                BucketName = _bucketName,
-                Key = key,
-                ContentBody = json,
-                ContentType = "application/json"
-            });
+                var request = new PutObjectRequest
+                {
+                    BucketName = _bucketName,
+                    Key = key,
+                    InputStream = stream,
+                    ContentType = "application/json",
+                    DisablePayloadSigning = true
+                };
+                await _client.PutObjectAsync(request);
+            }
         }
 
         private async Task<List<PlayEvent>> DownloadEventsForMachineAsync(string machineId)
@@ -125,13 +150,7 @@ namespace Etupirka.Sync
         public async Task UploadLinksAsync(GameLinksData links)
         {
             var json = JsonConvert.SerializeObject(links, Formatting.Indented);
-            await _client.PutObjectAsync(new PutObjectRequest
-            {
-                BucketName = _bucketName,
-                Key = "links.json",
-                ContentBody = json,
-                ContentType = "application/json"
-            });
+            await UploadJsonAsync("links.json", json);
         }
 
         public async Task<List<GameInfo>> DownloadGamesMetadataAsync()
@@ -154,13 +173,7 @@ namespace Etupirka.Sync
         public async Task UploadGamesMetadataAsync(List<GameInfo> games)
         {
             var json = JsonConvert.SerializeObject(games, Formatting.Indented);
-            await _client.PutObjectAsync(new PutObjectRequest
-            {
-                BucketName = _bucketName,
-                Key = "games.json",
-                ContentBody = json,
-                ContentType = "application/json"
-            });
+            await UploadJsonAsync("games.json", json);
         }
 
         public void Dispose()

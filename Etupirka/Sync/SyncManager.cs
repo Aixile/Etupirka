@@ -27,10 +27,41 @@ namespace Etupirka.Sync
         }
 
         public string MachineId { get; private set; }
+        private DBManager _db;
 
         public SyncManager()
         {
             MachineId = GetOrCreateMachineId();
+        }
+
+        internal void SetDatabase(DBManager db)
+        {
+            _db = db;
+            LoadLastSyncTime();
+        }
+
+        private void LoadLastSyncTime()
+        {
+            if (_db == null) return;
+            try
+            {
+                var lastSyncStr = _db.GetSyncInfo("LastSyncTime");
+                if (!string.IsNullOrEmpty(lastSyncStr) && DateTime.TryParse(lastSyncStr, out var lastSync))
+                {
+                    _status.LastSyncTime = lastSync;
+                }
+            }
+            catch { }
+        }
+
+        private void SaveLastSyncTime(DateTime time)
+        {
+            if (_db == null) return;
+            try
+            {
+                _db.SetSyncInfo("LastSyncTime", time.ToString("o"));
+            }
+            catch { }
         }
 
         private string GetOrCreateMachineId()
@@ -87,11 +118,20 @@ namespace Etupirka.Sync
 
             try
             {
-                // 1. Upload pending events
+                // 1. Upload pending events (aggregated by game+date)
                 List<PlayEvent> eventsToUpload;
                 lock (_lockObj)
                 {
-                    eventsToUpload = _pendingEvents.ToList();
+                    // Aggregate events by game+date to reduce data size
+                    eventsToUpload = _pendingEvents
+                        .GroupBy(e => new { e.GameEsid, e.GameUid, e.Date })
+                        .Select(g => new PlayEvent(
+                            MachineId,
+                            g.Key.GameEsid,
+                            g.Key.GameUid,
+                            g.Key.Date,
+                            g.Sum(e => e.Seconds)))
+                        .ToList();
                     _pendingEvents.Clear();
                 }
 
@@ -127,6 +167,7 @@ namespace Etupirka.Sync
                 newStatus.State = SyncState.Idle;
                 newStatus.LastSyncTime = DateTime.Now;
                 newStatus.LastError = null;
+                SaveLastSyncTime(newStatus.LastSyncTime.Value);
             }
             catch (Exception ex)
             {

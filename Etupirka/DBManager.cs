@@ -79,6 +79,20 @@ namespace Etupirka
 										PRIMARY KEY(uid, device_id))";
 						command.ExecuteNonQuery();
 					}
+					reader.Close();
+
+					// Migration: add syncinfo table
+					command.CommandText = "SELECT name FROM sqlite_master WHERE type='table' AND name='syncinfo'";
+					reader = command.ExecuteReader();
+					if (!reader.Read())
+					{
+						reader.Close();
+						command.CommandText = @"CREATE TABLE `syncinfo` (
+										`key`	TEXT NOT NULL,
+										`value`	TEXT,
+										PRIMARY KEY(key))";
+						command.ExecuteNonQuery();
+					}
 				}
 				conn.Close();
 			}
@@ -237,6 +251,38 @@ namespace Etupirka
 				command.ExecuteNonQuery();
 				conn.Close();
 			}
+		}
+
+		public void SetSyncInfo(string key, string value)
+		{
+			using (SQLiteCommand command = conn.CreateCommand())
+			{
+				conn.Open();
+				command.CommandText = @"INSERT OR REPLACE INTO syncinfo (key, value) VALUES (@KEY, @VALUE)";
+				command.Parameters.AddWithValue("@KEY", key);
+				command.Parameters.AddWithValue("@VALUE", value);
+				command.ExecuteNonQuery();
+				conn.Close();
+			}
+		}
+
+		public string GetSyncInfo(string key)
+		{
+			string result = null;
+			using (SQLiteCommand command = conn.CreateCommand())
+			{
+				conn.Open();
+				command.CommandText = "SELECT value FROM syncinfo WHERE key = @KEY";
+				command.Parameters.AddWithValue("@KEY", key);
+				var reader = command.ExecuteReader();
+				if (reader.Read())
+				{
+					result = reader["value"]?.ToString();
+				}
+				reader.Close();
+				conn.Close();
+			}
+			return result;
 		}
 
 		public Dictionary<string, TimeData> GetPlayTime()

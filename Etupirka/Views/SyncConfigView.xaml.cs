@@ -27,6 +27,12 @@ namespace Etupirka.Views
             _syncNowCallback = syncNowCallback;
             MachineId = syncManager.MachineId;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MachineId)));
+
+            // Show current last sync time
+            if (syncManager.Status.LastSyncTime.HasValue)
+            {
+                txtLastSync.Text = syncManager.Status.LastSyncTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            }
         }
 
         public bool SyncEnabled
@@ -74,6 +80,17 @@ namespace Etupirka.Views
         {
             btnTestConnection.IsEnabled = false;
             lblConnectionStatus.Content = "接続中...";
+
+            // Validate endpoint URL format
+            if (string.IsNullOrWhiteSpace(SyncEndpoint) ||
+                !Uri.TryCreate(SyncEndpoint, UriKind.Absolute, out var uri) ||
+                (uri.Scheme != "https" && uri.Scheme != "http"))
+            {
+                lblConnectionStatus.Content = "エンドポイントURLが無効です。https://で始まる必要があります";
+                lblConnectionStatus.Foreground = System.Windows.Media.Brushes.Red;
+                btnTestConnection.IsEnabled = true;
+                return;
+            }
 
             try
             {
