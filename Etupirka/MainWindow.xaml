@@ -169,10 +169,14 @@
         <StatusBar Grid.Row="2" FontSize="11" Background="{Binding Path=StatusBarStat,ElementName=MWindow,Converter={StaticResource statusBarStyleConverter}}">
             <StatusBarItem HorizontalAlignment="Left">
                 <WrapPanel VerticalAlignment="Center">
-                    <Ellipse x:Name="syncStatusIndicator" Width="10" Height="10"
-                             Fill="Gray" Margin="5,0" ToolTip="同期: 無効" VerticalAlignment="Center"
-                             Cursor="Hand" MouseLeftButtonDown="syncStatusIndicator_MouseLeftButtonDown" />
                     <Label FontWeight="Bold" Content="" Name="PlayMessage" />
+                </WrapPanel>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Center">
+                <WrapPanel VerticalAlignment="Center" Cursor="Hand" MouseLeftButtonDown="syncStatusIndicator_MouseLeftButtonDown">
+                    <Label Content="同期:" FontSize="10" Padding="0" Margin="0,0,3,0" VerticalAlignment="Center" />
+                    <Border x:Name="syncStatusIndicator" Width="8" Height="8" CornerRadius="2"
+                            Background="Gray" ToolTip="同期: 無効" VerticalAlignment="Center" />
                 </WrapPanel>
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">

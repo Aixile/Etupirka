@@ -334,5 +334,29 @@ namespace Etupirka.Properties {
                 this["syncMachineId"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool syncAutoSync {
+            get {
+                return ((bool)(this["syncAutoSync"]));
+            }
+            set {
+                this["syncAutoSync"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool syncOnGameClose {
+            get {
+                return ((bool)(this["syncOnGameClose"]));
+            }
+            set {
+                this["syncOnGameClose"] = value;
+            }
+        }
     }
 }

@@ -12,6 +12,7 @@ namespace Etupirka.Views
         public event PropertyChangedEventHandler PropertyChanged;
         private SyncManager _syncManager;
         private Action _syncNowCallback;
+        private Func<System.Threading.Tasks.Task<int>> _importFromCloudCallback;
 
         public SyncConfigView()
         {
@@ -21,10 +22,11 @@ namespace Etupirka.Views
             secretKeyBox.PasswordChanged += SecretKeyBox_PasswordChanged;
         }
 
-        public void Initialize(SyncManager syncManager, Action syncNowCallback)
+        public void Initialize(SyncManager syncManager, Action syncNowCallback, Func<System.Threading.Tasks.Task<int>> importFromCloudCallback = null)
         {
             _syncManager = syncManager;
             _syncNowCallback = syncNowCallback;
+            _importFromCloudCallback = importFromCloudCallback;
             MachineId = syncManager.MachineId;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(MachineId)));
 
@@ -67,6 +69,22 @@ namespace Etupirka.Views
         {
             get => Settings.Default.syncInterval;
             set => Settings.Default.syncInterval = value;
+        }
+
+        public bool SyncAutoSync
+        {
+            get => Settings.Default.syncAutoSync;
+            set
+            {
+                Settings.Default.syncAutoSync = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SyncAutoSync)));
+            }
+        }
+
+        public bool SyncOnGameClose
+        {
+            get => Settings.Default.syncOnGameClose;
+            set => Settings.Default.syncOnGameClose = value;
         }
 
         public string MachineId { get; private set; }
@@ -121,6 +139,45 @@ namespace Etupirka.Views
         {
             _syncNowCallback?.Invoke();
             txtLastSync.Text = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+        }
+
+        private async void btnImportFromCloud_Click(object sender, RoutedEventArgs e)
+        {
+            if (_importFromCloudCallback == null) return;
+
+            var result = MessageBox.Show(
+                "クラウドからゲームとプレイ時間をインポートします。\n" +
+                "ErogameScape IDが一致するゲームのみインポートされます。\n\n" +
+                "続行しますか?",
+                "クラウドからインポート",
+                MessageBoxButton.YesNo,
+                MessageBoxImage.Question);
+
+            if (result != MessageBoxResult.Yes) return;
+
+            btnImportFromCloud.IsEnabled = false;
+            btnImportFromCloud.Content = "インポート中...";
+
+            try
+            {
+                var importedCount = await _importFromCloudCallback();
+                MessageBox.Show(
+                    $"{importedCount} 件のゲームをインポートしました。",
+                    "インポート完了",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"インポートエラー: {ex.Message}",
+                    "エラー",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+
+            btnImportFromCloud.Content = "クラウドからインポート";
+            btnImportFromCloud.IsEnabled = true;
         }
 
         public void UpdateLastSyncTime(DateTime? time)

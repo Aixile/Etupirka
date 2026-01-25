@@ -17,6 +17,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -52,19 +54,29 @@
             <Controls:NumericUpDown Margin="2" Width="80"
                                     Value="{Binding SyncInterval, UpdateSourceTrigger=PropertyChanged}"
                                     Minimum="1" Maximum="60"
-                                    IsEnabled="{Binding SyncEnabled}"
+                                    IsEnabled="{Binding SyncAutoSync}"
                                     HideUpDownButtons="True" />
             <Label Margin="2">分</Label>
         </StackPanel>
 
-        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2,10,2,2">
+        <CheckBox Grid.Row="6" Grid.ColumnSpan="2" Margin="2,5,2,2"
+                  Content="定期的に自動同期する"
+                  IsChecked="{Binding SyncAutoSync}"
+                  IsEnabled="{Binding SyncEnabled}" />
+
+        <CheckBox Grid.Row="7" Grid.ColumnSpan="2" Margin="2"
+                  Content="ゲーム終了時に同期する"
+                  IsChecked="{Binding SyncOnGameClose}"
+                  IsEnabled="{Binding SyncEnabled}" />
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2,10,2,2">
             <Button x:Name="btnTestConnection" Click="btnTestConnection_Click"
                     MinWidth="100" Margin="0,0,10,0"
                     IsEnabled="{Binding SyncEnabled}">接続テスト</Button>
             <Label x:Name="lblConnectionStatus" VerticalAlignment="Center" />
         </StackPanel>
 
-        <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Margin="2,10,2,2">
+        <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Margin="2,10,2,2">
             <TextBlock>
                 <Run>マシン ID: </Run>
                 <Run Text="{Binding MachineId, Mode=OneWay}" />
@@ -75,9 +87,13 @@
             </TextBlock>
         </StackPanel>
 
-        <Button Grid.Row="8" Grid.ColumnSpan="2" x:Name="btnSyncNow"
-                Click="btnSyncNow_Click" Margin="2,10,2,2"
-                HorizontalAlignment="Left" MinWidth="100"
-                IsEnabled="{Binding SyncEnabled}">今すぐ同期</Button>
+        <StackPanel Grid.Row="10" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="2,10,2,2">
+            <Button x:Name="btnSyncNow" Click="btnSyncNow_Click"
+                    MinWidth="100" Margin="0,0,10,0"
+                    IsEnabled="{Binding SyncEnabled}">今すぐ同期</Button>
+            <Button x:Name="btnImportFromCloud" Click="btnImportFromCloud_Click"
+                    MinWidth="150"
+                    IsEnabled="{Binding SyncEnabled}">クラウドからインポート</Button>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -178,6 +178,7 @@ namespace Etupirka
         private ProcessInfoCache processInfoCache = new ProcessInfoCache();
         private Sync.SyncManager syncManager;
         private System.Windows.Threading.DispatcherTimer syncTimer;
+        private HashSet<string> previouslyRunningGames = new HashSet<string>();
 
         public MainWindow()
 		{
@@ -251,7 +252,7 @@ namespace Etupirka
             syncTimer = new System.Windows.Threading.DispatcherTimer();
             syncTimer.Tick += syncTimer_Tick;
             syncTimer.Interval = TimeSpan.FromMinutes(Settings.Default.syncInterval);
-            if (Settings.Default.syncEnabled)
+            if (Settings.Default.syncEnabled && Settings.Default.syncAutoSync)
             {
                 syncTimer.Start();
             }
@@ -348,6 +349,9 @@ namespace Etupirka
                 string statusBarText = "";
                 string trayTipText = "Etupirka Version " + FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).FileVersion;
 
+                var currentlyRunningGames = new HashSet<string>();
+                bool gameJustClosed = false;
+
                 foreach (GameExecutionInfo i in items)
                 {
                     bool running = false;
@@ -372,8 +376,23 @@ namespace Etupirka
                     }
                     if (running)
                     {
+                        currentlyRunningGames.Add(i.UID);
                         trayTipText += "\n" + i.Title + " : " + i.TotalPlayTimeString;
                     }
+                    else if (previouslyRunningGames.Contains(i.UID))
+                    {
+                        // This game was running before but is now closed
+                        gameJustClosed = true;
+                    }
+                }
+
+                // Update the previous running games set for next iteration
+                previouslyRunningGames = currentlyRunningGames;
+
+                // Trigger sync on game close if enabled
+                if (gameJustClosed && Settings.Default.syncEnabled && Settings.Default.syncOnGameClose)
+                {
+                    TriggerSyncOnGameClose();
                 }
 
                 dic.Clear();
@@ -624,7 +643,9 @@ namespace Etupirka
 
             try
             {
-                await syncManager.SyncAsync(db, items);
+                await syncManager.SyncAsync(db, items, (newGame) => {
+                    Dispatcher.Invoke(() => items.Add(newGame));
+                });
             }
             catch (Exception ex)
             {
@@ -634,11 +655,29 @@ namespace Etupirka
             UpdateSyncStatusIndicator();
         }
 
+        private async void TriggerSyncOnGameClose()
+        {
+            if (!Settings.Default.syncEnabled) return;
+
+            try
+            {
+                await syncManager.SyncAsync(db, items, (newGame) => {
+                    Dispatcher.Invoke(() => items.Add(newGame));
+                });
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sync on game close error: {ex.Message}");
+            }
+
+            Dispatcher.Invoke(() => UpdateSyncStatusIndicator());
+        }
+
         private void UpdateSyncStatusIndicator()
         {
             if (!Settings.Default.syncEnabled)
             {
-                syncStatusIndicator.Fill = System.Windows.Media.Brushes.Gray;
+                syncStatusIndicator.Background = System.Windows.Media.Brushes.Gray;
                 syncStatusIndicator.ToolTip = "同期: 無効";
                 return;
             }
@@ -646,19 +685,19 @@ namespace Etupirka
             switch (syncManager.Status.State)
             {
                 case Sync.SyncState.Idle:
-                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Green;
+                    syncStatusIndicator.Background = System.Windows.Media.Brushes.Green;
                     syncStatusIndicator.ToolTip = $"同期: 正常\n最終: {syncManager.Status.LastSyncTime:yyyy-MM-dd HH:mm}";
                     break;
                 case Sync.SyncState.Syncing:
-                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Blue;
+                    syncStatusIndicator.Background = System.Windows.Media.Brushes.Blue;
                     syncStatusIndicator.ToolTip = "同期: 同期中...";
                     break;
                 case Sync.SyncState.Error:
-                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Orange;
+                    syncStatusIndicator.Background = System.Windows.Media.Brushes.Orange;
                     syncStatusIndicator.ToolTip = $"同期: エラー\n{syncManager.Status.LastError}";
                     break;
                 default:
-                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Gray;
+                    syncStatusIndicator.Background = System.Windows.Media.Brushes.Gray;
                     syncStatusIndicator.ToolTip = "同期: 無効";
                     break;
             }
@@ -729,7 +768,13 @@ namespace Etupirka
             Dialogs.GlobalSettingDialog gd = new Dialogs.GlobalSettingDialog();
             gd.Owner = this;
             gd.InitializeSyncView(syncManager, async () => {
-                await syncManager.SyncAsync(db, items);
+                await syncManager.SyncAsync(db, items, (newGame) => {
+                    Dispatcher.Invoke(() => items.Add(newGame));
+                });
+            }, async () => {
+                return await syncManager.ImportFromCloudAsync(db, items, (newGame) => {
+                    items.Add(newGame);
+                });
             });
             int mi = Properties.Settings.Default.monitorInterval;
             bool watchProc = Properties.Settings.Default.watchProcess;
@@ -760,9 +805,13 @@ namespace Etupirka
                         Settings.Default.syncBucketName
                     );
                     syncTimer.Interval = TimeSpan.FromMinutes(Settings.Default.syncInterval);
-                    if (!syncTimer.IsEnabled)
+                    if (Settings.Default.syncAutoSync && !syncTimer.IsEnabled)
                     {
                         syncTimer.Start();
+                    }
+                    else if (!Settings.Default.syncAutoSync && syncTimer.IsEnabled)
+                    {
+                        syncTimer.Stop();
                     }
                 }
                 else

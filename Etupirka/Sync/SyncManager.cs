@@ -106,7 +106,7 @@ namespace Etupirka.Sync
             }
         }
 
-        internal async Task SyncAsync(DBManager db, IEnumerable<GameExecutionInfo> games)
+        internal async Task SyncAsync(DBManager db, IEnumerable<GameExecutionInfo> games, Action<GameExecutionInfo> onGameCreated = null)
         {
             if (_provider == null || !Settings.Default.syncEnabled)
             {
@@ -140,14 +140,39 @@ namespace Etupirka.Sync
                     await _provider.UploadEventsAsync(MachineId, eventsToUpload);
                 }
 
-                // 2. Download all events from all machines
+                // 2. Download cloud games and auto-create missing ones
+                var gamesList = games.ToList();
+                var cloudGames = await _provider.DownloadAllGamesMetadataAsync();
+                foreach (var cloudGame in cloudGames)
+                {
+                    if (cloudGame.ErogameScapeID <= 0) continue;
+                    if (db.GameExistsByEsid(cloudGame.ErogameScapeID)) continue;
+
+                    // Create new local game entry
+                    var uid = db.CreateGameFromCloud(cloudGame);
+                    var newGame = new GameExecutionInfo
+                    {
+                        UID = uid,
+                        Title = cloudGame.Title,
+                        Brand = cloudGame.Brand,
+                        ErogameScapeID = cloudGame.ErogameScapeID
+                    };
+                    if (DateTime.TryParse(cloudGame.SaleDay, out var saleDay))
+                    {
+                        newGame.SaleDay = saleDay;
+                    }
+                    gamesList.Add(newGame);
+                    onGameCreated?.Invoke(newGame);
+                }
+
+                // 3. Download all events from all machines
                 var allEvents = await _provider.DownloadAllEventsAsync();
 
-                // 3. Download links for games without esid
+                // 4. Download links for games without esid
                 var links = await _provider.DownloadLinksAsync();
 
-                // 4. Merge events into local database
-                MergeEvents(db, games, allEvents, links);
+                // 5. Merge events into local database
+                MergeEvents(db, gamesList, allEvents, links);
 
                 // 5. Upload local game metadata (for games with esid)
                 var gamesWithEsid = games.Where(g => g.ErogameScapeID > 0)
@@ -155,13 +180,13 @@ namespace Etupirka.Sync
                     {
                         Title = g.Title,
                         Brand = g.Brand,
-                        SaleDay = g.SaleDay,
+                        SaleDay = g.SaleDay.Ticks != 0 ? g.SaleDay.ToString("yyyy-MM-dd") : "",
                         ErogameScapeID = g.ErogameScapeID
                     }).ToList();
 
                 if (gamesWithEsid.Any())
                 {
-                    await _provider.UploadGamesMetadataAsync(gamesWithEsid);
+                    await _provider.UploadGamesMetadataAsync(MachineId, gamesWithEsid);
                 }
 
                 newStatus.State = SyncState.Idle;
@@ -176,6 +201,57 @@ namespace Etupirka.Sync
             }
 
             Status = newStatus;
+        }
+
+        internal async Task<int> ImportFromCloudAsync(DBManager db, IEnumerable<GameExecutionInfo> localGames, Action<GameExecutionInfo> onGameCreated)
+        {
+            if (_provider == null)
+            {
+                throw new InvalidOperationException("Sync provider not configured");
+            }
+
+            int importedCount = 0;
+            var gamesList = localGames.ToList();
+
+            // 1. Download game metadata from cloud
+            var cloudGames = await _provider.DownloadAllGamesMetadataAsync();
+
+            // 2. For each game with ESID that doesn't exist locally, create it
+            foreach (var cloudGame in cloudGames)
+            {
+                if (cloudGame.ErogameScapeID <= 0) continue;
+                if (db.GameExistsByEsid(cloudGame.ErogameScapeID)) continue;
+
+                // Create new local game entry
+                var uid = db.CreateGameFromCloud(cloudGame);
+
+                // Create GameExecutionInfo for UI update
+                var newGame = new GameExecutionInfo
+                {
+                    UID = uid,
+                    Title = cloudGame.Title,
+                    Brand = cloudGame.Brand,
+                    ErogameScapeID = cloudGame.ErogameScapeID
+                };
+
+                if (DateTime.TryParse(cloudGame.SaleDay, out var saleDay))
+                {
+                    newGame.SaleDay = saleDay;
+                }
+
+                gamesList.Add(newGame);
+                onGameCreated?.Invoke(newGame);
+                importedCount++;
+            }
+
+            // 3. Download all events and merge play time
+            var allEvents = await _provider.DownloadAllEventsAsync();
+            var links = await _provider.DownloadLinksAsync();
+
+            // Merge events (including for newly created games)
+            MergeEvents(db, gamesList, allEvents, links);
+
+            return importedCount;
         }
 
         private void MergeEvents(
