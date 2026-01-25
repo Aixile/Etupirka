@@ -222,6 +222,23 @@ namespace Etupirka
 				conn.Close();
 			}
 		}
+
+		public void AddPlayTimeForSync(string date, string gameUid, int seconds)
+		{
+			using (SQLiteCommand command = conn.CreateCommand())
+			{
+				conn.Open();
+				command.CommandText = @"INSERT OR IGNORE INTO playtime VALUES(@DATE, @GAME, 0);
+                                        UPDATE playtime SET playtime = playtime + @SECONDS
+                                        WHERE datetime = @DATE AND game = @GAME";
+				command.Parameters.AddWithValue("@DATE", date);
+				command.Parameters.AddWithValue("@GAME", gameUid);
+				command.Parameters.AddWithValue("@SECONDS", seconds);
+				command.ExecuteNonQuery();
+				conn.Close();
+			}
+		}
+
 		public Dictionary<string, TimeData> GetPlayTime()
 		{
 			Dictionary<string, TimeData> timeDict = new Dictionary<string, TimeData>(); 
