@@ -245,6 +245,9 @@ namespace Etupirka
                 syncTimer.Start();
             }
 
+            // Initialize sync status indicator
+            UpdateSyncStatusIndicator();
+
             if (Settings.Default.checkUpdate)
             {
                 try
@@ -616,6 +619,38 @@ namespace Etupirka
             {
                 Console.WriteLine($"Sync error: {ex.Message}");
             }
+
+            UpdateSyncStatusIndicator();
+        }
+
+        private void UpdateSyncStatusIndicator()
+        {
+            if (!Settings.Default.syncEnabled)
+            {
+                syncStatusIndicator.Fill = System.Windows.Media.Brushes.Gray;
+                syncStatusIndicator.ToolTip = "同期: 無効";
+                return;
+            }
+
+            switch (syncManager.Status.State)
+            {
+                case Sync.SyncState.Idle:
+                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Green;
+                    syncStatusIndicator.ToolTip = $"同期: 正常\n最終: {syncManager.Status.LastSyncTime:yyyy-MM-dd HH:mm}";
+                    break;
+                case Sync.SyncState.Syncing:
+                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Blue;
+                    syncStatusIndicator.ToolTip = "同期: 同期中...";
+                    break;
+                case Sync.SyncState.Error:
+                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Orange;
+                    syncStatusIndicator.ToolTip = $"同期: エラー\n{syncManager.Status.LastError}";
+                    break;
+                default:
+                    syncStatusIndicator.Fill = System.Windows.Media.Brushes.Gray;
+                    syncStatusIndicator.ToolTip = "同期: 無効";
+                    break;
+            }
         }
 
         private void MetroWindow_Deactivated(object sender, EventArgs e)
@@ -713,6 +748,8 @@ namespace Etupirka
                 {
                     syncTimer.Stop();
                 }
+
+                UpdateSyncStatusIndicator();
             }
         }
 
