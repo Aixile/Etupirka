@@ -250,5 +250,89 @@ namespace Etupirka.Properties {
                 this["useGoogleCache"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool syncEnabled {
+            get {
+                return ((bool)(this["syncEnabled"]));
+            }
+            set {
+                this["syncEnabled"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string syncEndpoint {
+            get {
+                return ((string)(this["syncEndpoint"]));
+            }
+            set {
+                this["syncEndpoint"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string syncAccessKey {
+            get {
+                return ((string)(this["syncAccessKey"]));
+            }
+            set {
+                this["syncAccessKey"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string syncSecretKey {
+            get {
+                return ((string)(this["syncSecretKey"]));
+            }
+            set {
+                this["syncSecretKey"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string syncBucketName {
+            get {
+                return ((string)(this["syncBucketName"]));
+            }
+            set {
+                this["syncBucketName"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int syncInterval {
+            get {
+                return ((int)(this["syncInterval"]));
+            }
+            set {
+                this["syncInterval"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string syncMachineId {
+            get {
+                return ((string)(this["syncMachineId"]));
+            }
+            set {
+                this["syncMachineId"] = value;
+            }
+        }
     }
 }
