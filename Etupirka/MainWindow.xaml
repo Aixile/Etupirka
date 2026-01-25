@@ -157,6 +157,7 @@
                         <MenuItem Header="ブランド"  Name="CopyBrand" Click="CopyBrand_Click" />
                     </MenuItem>
                     <MenuItem Header="削除" Name="Delete" Click="Delete_Click" />
+                    <MenuItem Header="クラウドにリンク..." Name="LinkGame" Click="MenuLinkGame_Click" />
                     <MenuItem Header="設定">
                         <MenuItem Header="プレイタイム設定" Name="TimeSetting" Click="TimeSetting_Click"/>
                         <MenuItem Header="ゲーム設定" Name="GameProperty" Click="GameProperty_Click"/>

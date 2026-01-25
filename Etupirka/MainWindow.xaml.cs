@@ -1071,6 +1071,79 @@ namespace Etupirka
             }
 
         }
+
+        private async void MenuLinkGame_Click(object sender, RoutedEventArgs e)
+        {
+            if (GameListView.SelectedItem == null) return;
+            var game = (GameExecutionInfo)GameListView.SelectedItem;
+
+            if (game.ErogameScapeID > 0)
+            {
+                MessageBox.Show("このゲームは既にErogameScape IDがあるため、自動的に同期されます。",
+                    "情報", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            if (!Settings.Default.syncEnabled)
+            {
+                MessageBox.Show("同期が有効になっていません。設定で同期を有効にしてください。",
+                    "情報", MessageBoxButton.OK, MessageBoxImage.Information);
+                return;
+            }
+
+            try
+            {
+                // Download current links
+                syncManager.Configure(
+                    Settings.Default.syncEndpoint,
+                    Settings.Default.syncAccessKey,
+                    Settings.Default.syncSecretKey,
+                    Settings.Default.syncBucketName
+                );
+
+                var provider = new Sync.R2SyncProvider(
+                    Settings.Default.syncEndpoint,
+                    Settings.Default.syncAccessKey,
+                    Settings.Default.syncSecretKey,
+                    Settings.Default.syncBucketName
+                );
+
+                var linksData = await provider.DownloadLinksAsync();
+
+                var dialog = new Dialog.LinkGameDialog(game, syncManager, linksData);
+                dialog.Owner = this;
+
+                if (dialog.ShowDialog() == true)
+                {
+                    if (dialog.SelectedEsid.HasValue)
+                    {
+                        game.ErogameScapeID = dialog.SelectedEsid.Value;
+                        game.updateInfoFromES();
+                        db.UpdateGameInfoAndExec(game);
+                    }
+                    else if (dialog.CreateNewLink)
+                    {
+                        var newLinkId = $"link_{Guid.NewGuid().ToString("N").Substring(0, 8)}";
+                        var newLink = new Sync.GameLink(newLinkId, game.Title);
+                        newLink.Machines[syncManager.MachineId] = game.UID;
+                        linksData.Links[newLinkId] = newLink;
+                        await provider.UploadLinksAsync(linksData);
+                    }
+                    else if (!string.IsNullOrEmpty(dialog.SelectedLinkId))
+                    {
+                        var link = linksData.Links[dialog.SelectedLinkId];
+                        link.Machines[syncManager.MachineId] = game.UID;
+                        await provider.UploadLinksAsync(linksData);
+                    }
+                }
+
+                provider.Dispose();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"エラー: {ex.Message}", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         #endregion
 
 
