@@ -316,6 +316,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Compile Include="Sync\PlayEvent.cs" />
+    <Compile Include="Sync\GameLink.cs" />
+    <Compile Include="Sync\SyncStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NetworkUtility.cs" />
