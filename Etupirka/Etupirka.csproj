@@ -196,6 +196,9 @@
     <Compile Include="Dialog\GlobalSettingDialog.xaml.cs">
       <DependentUpon>GlobalSettingDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Dialog\LinkGameDialog.xaml.cs">
+      <DependentUpon>LinkGameDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialog\PlayTimeStatisticDialog.xaml.cs">
       <DependentUpon>PlayTimeStatisticDialog.xaml</DependentUpon>
     </Compile>
@@ -284,6 +287,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Dialog\GlobalSettingDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialog\LinkGameDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

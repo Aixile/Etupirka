@@ -1,0 +1,50 @@
+<Controls:MetroWindow x:Class="Etupirka.Dialog.LinkGameDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        WindowStartupLocation="CenterOwner"
+        Title="ゲームをリンク" Height="300" Width="400"
+        WindowTitleBrush="#FF252525"
+        GlowBrush="{DynamicResource AccentColorBrush}"
+        BorderThickness="1.5"
+        TitleCaps="False">
+    <Grid Margin="15">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Margin="0,0,0,10">
+            <Run>ローカルゲーム: </Run>
+            <Run x:Name="txtLocalGame" FontWeight="Bold" />
+        </TextBlock>
+
+        <StackPanel Grid.Row="1">
+            <RadioButton x:Name="rbExisting" Margin="2" IsChecked="True">
+                既存のクラウドゲームにリンク:
+            </RadioButton>
+            <ComboBox x:Name="cmbCloudGames" Margin="20,2,2,2"
+                      IsEnabled="{Binding IsChecked, ElementName=rbExisting}"
+                      DisplayMemberPath="Title" />
+
+            <RadioButton x:Name="rbNewLink" Margin="2,10,2,2">
+                新しいリンクを作成（他のマシンが後でリンクできます）
+            </RadioButton>
+
+            <RadioButton x:Name="rbSetEsid" Margin="2,10,2,2">
+                ErogameScape IDを設定（推奨）:
+            </RadioButton>
+            <Controls:NumericUpDown x:Name="nudEsid" Margin="20,2,2,2"
+                                    Minimum="1" Maximum="999999"
+                                    IsEnabled="{Binding IsChecked, ElementName=rbSetEsid}"
+                                    HideUpDownButtons="True" />
+        </StackPanel>
+
+        <WrapPanel Grid.Row="3" HorizontalAlignment="Right" Margin="0,10,0,0">
+            <Button x:Name="btnLink" Click="btnLink_Click" MinWidth="60" Margin="0,0,10,0">リンク</Button>
+            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+        </WrapPanel>
+    </Grid>
+</Controls:MetroWindow>
