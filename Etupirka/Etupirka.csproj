@@ -320,6 +320,7 @@
     <Compile Include="Sync\GameLink.cs" />
     <Compile Include="Sync\SyncStatus.cs" />
     <Compile Include="Sync\ISyncProvider.cs" />
+    <Compile Include="Sync\R2SyncProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NetworkUtility.cs" />
