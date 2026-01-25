@@ -75,7 +75,7 @@ namespace Etupirka.Sync
             }
         }
 
-        public async Task SyncAsync(DBManager db, IEnumerable<GameExecutionInfo> games)
+        internal async Task SyncAsync(DBManager db, IEnumerable<GameExecutionInfo> games)
         {
             if (_provider == null || !Settings.Default.syncEnabled)
             {
