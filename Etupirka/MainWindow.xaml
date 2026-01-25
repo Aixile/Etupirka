@@ -48,7 +48,7 @@
                     <MenuItem Header="プロセス監視" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem Header="リストを隠す" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
                     <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
-                    <MenuItem Header="設定メーニュ" Name="SettingM" Click="SettingButton_Click" />
+                    <MenuItem Header="設定メニュー" Name="SettingM" Click="SettingButton_Click" />
                     <MenuItem Header="終了"  Click="QuitApp_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
@@ -126,7 +126,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="最初プレイ" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
+                    <GridViewColumn Header="初回プレイ" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding FirstPlayTimeString}"></TextBlock>
@@ -152,7 +152,7 @@
                         <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
                         <MenuItem Header="プレイ統計を開く" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
                     </MenuItem>
-                    <MenuItem Header="コビー">
+                    <MenuItem Header="コピー">
                         <MenuItem Header="タイトル"  Name="CopyTitle" Click="CopyTitle_Click" />
                         <MenuItem Header="ブランド"  Name="CopyBrand" Click="CopyBrand_Click" />
                     </MenuItem>

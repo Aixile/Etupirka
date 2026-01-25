@@ -27,7 +27,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Grid.Column="0" >最初プレイ</Label>
+            <Label Grid.Row="0" Grid.Column="0" >初回プレイ</Label>
             <!-- <WindowsFormsHost Grid.Row="0" Grid.Column="1">
                 <wf:DateTimePicker></wf:DateTimePicker>
             </WindowsFormsHost>-->

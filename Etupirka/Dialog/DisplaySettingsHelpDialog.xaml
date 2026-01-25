@@ -15,7 +15,7 @@
             <TextBlock FontWeight="Bold">この機能はWindows 10のみサポートしています</TextBlock>、Windows 8およびそれ以前のシステムでは利用できません。
             <LineBreak/>
             <LineBreak/>
-            初めてWindows 10で使う時およびうまく動作しません時、以下の手順に従ってください
+            初めてWindows 10で使う場合、またはうまく動作しない場合は、以下の手順に従ってください
             <LineBreak/>
             １．デスクトップの上で右クリックして「ディスプレイ設定」を開く
             <LineBreak/>
@@ -25,7 +25,7 @@
             <LineBreak/>
             ４．元のサイズに変更する
             <LineBreak/>
-            以上の手順より、モニター別のレジストリが作成されました。
+            以上の手順により、モニター別のレジストリが作成されます。
             
         </TextBlock>
 
