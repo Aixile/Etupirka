@@ -218,6 +218,9 @@
     <Compile Include="Views\NetworkConfigView.xaml.cs">
       <DependentUpon>NetworkConfigView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SyncConfigView.xaml.cs">
+      <DependentUpon>SyncConfigView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Control\TimeControl.xaml.cs">
       <DependentUpon>TimeControl.xaml</DependentUpon>
     </Compile>
@@ -313,6 +316,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PlayTimeWeek.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SyncConfigView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
