@@ -321,6 +321,7 @@
     <Compile Include="Sync\SyncStatus.cs" />
     <Compile Include="Sync\ISyncProvider.cs" />
     <Compile Include="Sync\R2SyncProvider.cs" />
+    <Compile Include="Sync\SyncManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NetworkUtility.cs" />
