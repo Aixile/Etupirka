@@ -176,6 +176,8 @@ namespace Etupirka
         private System.Windows.Threading.DispatcherTimer watchProcTimer;
 		private DBManager db;
         private ProcessInfoCache processInfoCache = new ProcessInfoCache();
+        private Sync.SyncManager syncManager;
+        private System.Windows.Threading.DispatcherTimer syncTimer;
 
         public MainWindow()
 		{
@@ -222,6 +224,26 @@ namespace Etupirka
 			watchProcTimer.Tick += new EventHandler(dispatcherTimer_Tick);
 			watchProcTimer.Interval = new TimeSpan(0, 0, Properties.Settings.Default.monitorInterval);
 			watchProcTimer.Start();
+
+            // Initialize sync
+            syncManager = new Sync.SyncManager();
+            if (Settings.Default.syncEnabled)
+            {
+                syncManager.Configure(
+                    Settings.Default.syncEndpoint,
+                    Settings.Default.syncAccessKey,
+                    Settings.Default.syncSecretKey,
+                    Settings.Default.syncBucketName
+                );
+            }
+
+            syncTimer = new System.Windows.Threading.DispatcherTimer();
+            syncTimer.Tick += syncTimer_Tick;
+            syncTimer.Interval = TimeSpan.FromMinutes(Settings.Default.syncInterval);
+            if (Settings.Default.syncEnabled)
+            {
+                syncTimer.Start();
+            }
 
             if (Settings.Default.checkUpdate)
             {
@@ -320,6 +342,7 @@ namespace Etupirka
                         if (time != 0)
                         {
                             db.UpdateTimeNow(i.UID, time);
+                            syncManager?.RecordPlayEvent(i.ErogameScapeID, i.UID, time);
                         }
                         db.UpdateGameTimeInfo(i.UID, i.TotalPlayTime, i.FirstPlayTime, i.LastPlayTime);
                         if (i.Status == ProcStat.Focused)
@@ -581,6 +604,20 @@ namespace Etupirka
             }
         }
 
+        private async void syncTimer_Tick(object sender, EventArgs e)
+        {
+            if (!Settings.Default.syncEnabled) return;
+
+            try
+            {
+                await syncManager.SyncAsync(db, items);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Sync error: {ex.Message}");
+            }
+        }
+
         private void MetroWindow_Deactivated(object sender, EventArgs e)
         {
             GameListView.UnselectAll();
@@ -635,6 +672,9 @@ namespace Etupirka
         {
             Dialogs.GlobalSettingDialog gd = new Dialogs.GlobalSettingDialog();
             gd.Owner = this;
+            gd.InitializeSyncView(syncManager, async () => {
+                await syncManager.SyncAsync(db, items);
+            });
             int mi = Properties.Settings.Default.monitorInterval;
             bool watchProc = Properties.Settings.Default.watchProcess;
             if (gd.ShowDialog() == true)
@@ -652,6 +692,26 @@ namespace Etupirka
                     watchProcTimer.Stop();
                     watchProcTimer.Interval = new TimeSpan(0, 0, Properties.Settings.Default.monitorInterval);
                     watchProcTimer.Start();
+                }
+
+                // Update sync configuration
+                if (Settings.Default.syncEnabled)
+                {
+                    syncManager.Configure(
+                        Settings.Default.syncEndpoint,
+                        Settings.Default.syncAccessKey,
+                        Settings.Default.syncSecretKey,
+                        Settings.Default.syncBucketName
+                    );
+                    syncTimer.Interval = TimeSpan.FromMinutes(Settings.Default.syncInterval);
+                    if (!syncTimer.IsEnabled)
+                    {
+                        syncTimer.Start();
+                    }
+                }
+                else
+                {
+                    syncTimer.Stop();
                 }
             }
         }
