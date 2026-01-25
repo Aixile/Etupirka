@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
 using Microsoft.Win32;
+using Etupirka.Sync;
 
 namespace Etupirka.Dialogs
 {
@@ -59,6 +60,11 @@ namespace Etupirka.Dialogs
 			{
 				this.ConfigTab.Focus();
 			}));
+		}
+
+		public void InitializeSyncView(SyncManager syncManager, Action syncNowCallback)
+		{
+			SyncView.Initialize(syncManager, syncNowCallback);
 		}
 	}
 }

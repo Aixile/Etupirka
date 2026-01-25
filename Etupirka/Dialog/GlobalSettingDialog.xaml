@@ -26,6 +26,9 @@
             <Controls:MetroTabItem Header="ネットワーク"  Controls:ControlsHelper.HeaderFontSize="20">
                 <Views:NetworkConfigView  x:Name="NetworkView" />
             </Controls:MetroTabItem>
+            <Controls:MetroTabItem Header="同期" Controls:ControlsHelper.HeaderFontSize="20">
+                <Views:SyncConfigView x:Name="SyncView" />
+            </Controls:MetroTabItem>
         </TabControl>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10">
             <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
