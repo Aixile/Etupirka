@@ -4,7 +4,7 @@
 
 **Etupirka** is a Windows desktop application for tracking play-time of visual novels (eroge). It monitors game processes, tracks focus time, and integrates with ErogameScape (Japanese game database) for game metadata.
 
-**Version:** 0.6.0
+**Version:** 0.7.0
 **Target Framework:** .NET Framework 4.8
 **UI Framework:** WPF with MahApps.Metro
 
