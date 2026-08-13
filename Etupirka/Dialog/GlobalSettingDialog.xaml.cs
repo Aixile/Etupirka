@@ -47,6 +47,12 @@ namespace Etupirka.Dialogs
 			Properties.Settings.Default.checkUpdate = GeneralView.CheckUpdate;
 			Properties.Settings.Default.disableGlowBrush = GeneralView.DisableGlowBrush;
             Properties.Settings.Default.hideListWhenPlaying = GeneralView.HideListWhenPlaying;
+            string language = GeneralView.SelectedLanguage;
+            if (language != "en" && language != "zh-CN" && language != "ja-JP")
+            {
+                language = "ja-JP";
+            }
+            Properties.Settings.Default.language = language;
             Properties.Settings.Default.useOfflineESDatabase = DatabaseView.UseOfflineDatabase;
             Properties.Settings.Default.useGoogleCache = DatabaseView.UseGoogleCache;
 			Properties.Settings.Default.Save();

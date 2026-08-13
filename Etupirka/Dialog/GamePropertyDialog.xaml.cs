@@ -14,6 +14,7 @@ using MahApps.Metro.Controls;
 using System.ComponentModel;
 using Microsoft.Win32;
 using MahApps.Metro.Controls.Dialogs;
+using Etupirka.Localization;
 
 namespace Etupirka.Dialog
 {
@@ -68,7 +69,7 @@ namespace Etupirka.Dialog
 		{
 			OpenFileDialog openFileDialog1 = new OpenFileDialog();
 			openFileDialog1.Multiselect = false;
-			openFileDialog1.Filter = "実行ファイル(*.exe)|*.exe|すべてのファイル(*.*)|*.*";
+			openFileDialog1.Filter = Strings.Get("FileFilter_Executable");
 			if (openFileDialog1.ShowDialog() == true)
 			{
 				bgame.ProcPath = openFileDialog1.FileName;
@@ -79,7 +80,7 @@ namespace Etupirka.Dialog
 		{
 			OpenFileDialog openFileDialog1 = new OpenFileDialog();
 			openFileDialog1.Multiselect = false;
-			openFileDialog1.Filter = "実行ファイル(*.exe)|*.exe|すべてのファイル(*.*)|*.*";
+			openFileDialog1.Filter = Strings.Get("FileFilter_Executable");
 			openFileDialog1.FilterIndex = 1;
 			if (openFileDialog1.ShowDialog() == true)
 			{

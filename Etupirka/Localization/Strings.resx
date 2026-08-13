@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Common_Ok" xml:space="preserve"><value>OK</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Menu_ProcessMonitoring" xml:space="preserve"><value>Watch Game Process</value></data>
+  <data name="Menu_HideList" xml:space="preserve"><value>Hide List</value></data>
+  <data name="Menu_Restore" xml:space="preserve"><value>Restore</value></data>
+  <data name="Menu_SettingsMenu" xml:space="preserve"><value>Settings</value></data>
+  <data name="Menu_Exit" xml:space="preserve"><value>Exit</value></data>
+  <data name="Menu_File" xml:space="preserve"><value>File</value></data>
+  <data name="Menu_AddFromProcess" xml:space="preserve"><value>Add from Process</value></data>
+  <data name="Menu_AddFromESID" xml:space="preserve"><value>Add by ErogameScape ID</value></data>
+  <data name="Menu_Import" xml:space="preserve"><value>Import</value></data>
+  <data name="Menu_GameInfo" xml:space="preserve"><value>Game Information</value></data>
+  <data name="Menu_GameInfoOverwrite" xml:space="preserve"><value>Game Information (overwrite)</value></data>
+  <data name="Menu_PlayTimeInfo" xml:space="preserve"><value>Play Time Data</value></data>
+  <data name="Menu_PlayTimeInfoOverwrite" xml:space="preserve"><value>Play Time Data (overwrite)</value></data>
+  <data name="Menu_Export" xml:space="preserve"><value>Export</value></data>
+  <data name="Menu_AllGames" xml:space="preserve"><value>All Games</value></data>
+  <data name="Menu_SelectedGames" xml:space="preserve"><value>Selected Games</value></data>
+  <data name="Menu_Tools" xml:space="preserve"><value>Tools</value></data>
+  <data name="Menu_PlayTimeStatistics" xml:space="preserve"><value>Play Time Statistics</value></data>
+  <data name="Menu_UpdateOfflineDatabase" xml:space="preserve"><value>Update Offline Database</value></data>
+  <data name="Menu_Settings" xml:space="preserve"><value>Settings</value></data>
+  <data name="Menu_Help" xml:space="preserve"><value>Help</value></data>
+  <data name="Menu_CheckForUpdates" xml:space="preserve"><value>Check for Updates</value></data>
+  <data name="Menu_About" xml:space="preserve"><value>About</value></data>
+  <data name="Column_Game" xml:space="preserve"><value>Game</value></data>
+  <data name="Column_Title" xml:space="preserve"><value>Title</value></data>
+  <data name="Column_Brand" xml:space="preserve"><value>Brand</value></data>
+  <data name="Column_ReleaseDate" xml:space="preserve"><value>Release date</value></data>
+  <data name="Column_PlayTime" xml:space="preserve"><value>Play time</value></data>
+  <data name="Column_FirstPlayed" xml:space="preserve"><value>First played</value></data>
+  <data name="Column_LastPlayed" xml:space="preserve"><value>Last played</value></data>
+  <data name="Column_Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Column_Month" xml:space="preserve"><value>Month</value></data>
+  <data name="Column_DeviceName" xml:space="preserve"><value>Device Name</value></data>
+  <data name="Column_Scaling" xml:space="preserve"><value>Scaling</value></data>
+  <data name="Column_EnableScaling" xml:space="preserve"><value>Enable Scaling</value></data>
+  <data name="Column_ImageName" xml:space="preserve"><value>Image Name</value></data>
+  <data name="Column_Path" xml:space="preserve"><value>Path</value></data>
+  <data name="Context_LaunchGame" xml:space="preserve"><value>Launch Game</value></data>
+  <data name="Context_GetGameInfo" xml:space="preserve"><value>Get Game Information</value></data>
+  <data name="Context_Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Context_OpenFolder" xml:space="preserve"><value>Open Folder</value></data>
+  <data name="Context_OpenES" xml:space="preserve"><value>Open ErogameScape</value></data>
+  <data name="Context_OpenPlayStatistics" xml:space="preserve"><value>Open Play Statistics</value></data>
+  <data name="Context_Copy" xml:space="preserve"><value>Copy</value></data>
+  <data name="Context_Delete" xml:space="preserve"><value>Delete</value></data>
+  <data name="Context_PlayTimeSettings" xml:space="preserve"><value>Play Time Settings</value></data>
+  <data name="Context_GameSettings" xml:space="preserve"><value>Game Settings</value></data>
+  <data name="Status_TotalPlayTime" xml:space="preserve"><value>Total Play Time: </value></data>
+  <data name="Status_GameCount" xml:space="preserve"><value>Games: </value></data>
+  <data name="Dialog_AddFromES_Title" xml:space="preserve"><value>Add from ErogameScape</value></data>
+  <data name="Dialog_ESGameId" xml:space="preserve"><value>ErogameScape Game ID</value></data>
+  <data name="Dialog_Exit_Title" xml:space="preserve"><value>Exit Etupirka?</value></data>
+  <data name="Dialog_DoNotShowAgain" xml:space="preserve"><value>Don't show this again</value></data>
+  <data name="Dialog_DisplaySettings_Title" xml:space="preserve"><value>Display Settings</value></data>
+  <data name="Dialog_BeforeUsing" xml:space="preserve"><value>Before using this feature</value></data>
+  <data name="Dialog_Help_Title" xml:space="preserve"><value>Help</value></data>
+  <data name="DisplayHelp_Lead" xml:space="preserve"><value>This feature is supported only on Windows 10</value></data>
+  <data name="DisplayHelp_Suffix" xml:space="preserve"><value>; it is unavailable on Windows 8 and earlier systems.</value></data>
+  <data name="DisplayHelp_Intro" xml:space="preserve"><value>If this is your first time using it on Windows 10, or it does not work correctly, follow these steps:</value></data>
+  <data name="DisplayHelp_Step1" xml:space="preserve"><value>1. Right-click the desktop and open Display settings.</value></data>
+  <data name="DisplayHelp_Step2" xml:space="preserve"><value>2. Change the size of text, apps, and other items to any value.</value></data>
+  <data name="DisplayHelp_Step3" xml:space="preserve"><value>3. Wait for the display size to change.</value></data>
+  <data name="DisplayHelp_Step4" xml:space="preserve"><value>4. Change it back to the original size.</value></data>
+  <data name="DisplayHelp_End" xml:space="preserve"><value>This creates per-monitor registry settings.</value></data>
+  <data name="Dialog_GameInfoList_Title" xml:space="preserve"><value>Game Information</value></data>
+  <data name="Dialog_GameSettings_Title" xml:space="preserve"><value>Game Settings</value></data>
+  <data name="Label_Title" xml:space="preserve"><value>Title</value></data>
+  <data name="Label_Brand" xml:space="preserve"><value>Brand</value></data>
+  <data name="Label_ReleaseDate" xml:space="preserve"><value>Release Date</value></data>
+  <data name="Label_ProcessPath" xml:space="preserve"><value>Process Path</value></data>
+  <data name="Label_SeparateExecutablePath" xml:space="preserve"><value>Use Separate Launch Path</value></data>
+  <data name="Label_ExecutablePath" xml:space="preserve"><value>Launch Path</value></data>
+  <data name="Label_DisplaySettings" xml:space="preserve"><value>Display Settings</value></data>
+  <data name="Dialog_PlayTimeGraph_Title" xml:space="preserve"><value>Play Time Graph</value></data>
+  <data name="Graph_PlayTimeByTitleMinutes" xml:space="preserve"><value>Play Time by Title (minutes)</value></data>
+  <data name="Graph_PlayTime" xml:space="preserve"><value>Play Time</value></data>
+  <data name="Dialog_PlayTimeStatistics_Title" xml:space="preserve"><value>Play Time Statistics</value></data>
+  <data name="Dialog_Settings_Title" xml:space="preserve"><value>Etupirka Settings</value></data>
+  <data name="Tab_General" xml:space="preserve"><value>General</value></data>
+  <data name="Tab_Database" xml:space="preserve"><value>Database</value></data>
+  <data name="Tab_Network" xml:space="preserve"><value>Network</value></data>
+  <data name="Tab_Last30Days" xml:space="preserve"><value>Last 30 Days</value></data>
+  <data name="Tab_Weekly" xml:space="preserve"><value>Weekly</value></data>
+  <data name="Tab_Monthly" xml:space="preserve"><value>Monthly</value></data>
+  <data name="Tab_All" xml:space="preserve"><value>All</value></data>
+  <data name="Dialog_ProcessList_Title" xml:space="preserve"><value>Process List</value></data>
+  <data name="Dialog_PlayTimeSettings_Title" xml:space="preserve"><value>Play Time Settings</value></data>
+  <data name="Label_FirstPlayed" xml:space="preserve"><value>First Played</value></data>
+  <data name="Label_LastPlayed" xml:space="preserve"><value>Last Played</value></data>
+  <data name="Label_PlayTime" xml:space="preserve"><value>Play Time</value></data>
+  <data name="Setting_Language" xml:space="preserve"><value>Language (restart required)</value></data>
+  <data name="Setting_StartWithWindows" xml:space="preserve"><value>Start with Windows</value></data>
+  <data name="Setting_MinimizeAtStartup" xml:space="preserve"><value>Start Minimized</value></data>
+  <data name="Setting_ConfirmBeforeExit" xml:space="preserve"><value>Confirm before exit</value></data>
+  <data name="Setting_DistinguishUnavailableGames" xml:space="preserve"><value>Mark Unavailable Games</value></data>
+  <data name="Setting_WatchProcess" xml:space="preserve"><value>Watch Game Process</value></data>
+  <data name="Setting_MonitorInterval" xml:space="preserve"><value>Check Interval (seconds)</value></data>
+  <data name="Setting_BackgroundSound" xml:space="preserve"><value>Background Sound</value></data>
+  <data name="Setting_CheckUpdatesAutomatically" xml:space="preserve"><value>Check for Updates Automatically</value></data>
+  <data name="Setting_DisableGlowBrush" xml:space="preserve"><value>Disable Glow Effect</value></data>
+  <data name="Setting_HideListWhilePlaying" xml:space="preserve"><value>Hide List While Playing</value></data>
+  <data name="Setting_UseOfflineDatabase" xml:space="preserve"><value>Use Offline Database</value></data>
+  <data name="Setting_UseGoogleCache" xml:space="preserve"><value>Use Google Cache for Online Database</value></data>
+  <data name="Setting_ProxySettings" xml:space="preserve"><value>Proxy Settings</value></data>
+  <data name="Setting_None" xml:space="preserve"><value>None</value></data>
+  <data name="Setting_ProxyHost" xml:space="preserve"><value>Proxy Host:</value></data>
+  <data name="Setting_ProxyPort" xml:space="preserve"><value>Proxy Port:</value></data>
+  <data name="Setting_ProxyUser" xml:space="preserve"><value>Proxy User:</value></data>
+  <data name="Setting_ProxyPassword" xml:space="preserve"><value>Proxy Password:</value></data>
+  <data name="Time_HoursMinutes" xml:space="preserve"><value>{0}h {1}m</value></data>
+  <data name="Time_HoursMinutesSeconds" xml:space="preserve"><value>{0}h {1}m {2}s</value></data>
+  <data name="Update_Available" xml:space="preserve"><value>Version {0} is available. Update now?</value></data>
+  <data name="Update_Title" xml:space="preserve"><value>Update Etupirka</value></data>
+  <data name="Update_Updating" xml:space="preserve"><value>Updating</value></data>
+  <data name="Update_Downloading" xml:space="preserve"><value>Downloading...</value></data>
+  <data name="Database_Updating" xml:space="preserve"><value>Updating database...</value></data>
+  <data name="Database_UpdateTitle" xml:space="preserve"><value>Database Update</value></data>
+  <data name="Common_Succeeded" xml:space="preserve"><value>Completed successfully.</value></data>
+  <data name="Common_Failed" xml:space="preserve"><value>Operation failed.</value></data>
+  <data name="About_Title" xml:space="preserve"><value>About</value></data>
+  <data name="Update_LatestInstalled" xml:space="preserve"><value>You already have the latest version.</value></data>
+  <data name="Update_CheckTitle" xml:space="preserve"><value>Check for Updates</value></data>
+  <data name="Update_CheckFailed" xml:space="preserve"><value>Unable to check for updates.</value></data>
+  <data name="Delete_Title" xml:space="preserve"><value>Confirm Delete</value></data>
+  <data name="Delete_Message" xml:space="preserve"><value>Delete the selected game?</value></data>
+  <data name="FileFilter_Executable" xml:space="preserve"><value>Executable files (*.exe)|*.exe|All files (*.*)|*.*</value></data>
+</root>

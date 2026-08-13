@@ -28,12 +28,12 @@ namespace Etupirka.Views
 		public bool AskBeforeExit { get; set; }
 		public bool CheckUpdate { get; set; }
 		public bool DisableGlowBrush { get; set; }
-        public bool HideListWhenPlaying { get; set; }
+		public bool HideListWhenPlaying { get; set; }
+		public string SelectedLanguage { get; set; }
 
-        public GeneralConfigView()
+		public GeneralConfigView()
 		{
 			InitializeComponent();
-			this.DataContext = this;
 			DifferExecuatableGame = Properties.Settings.Default.differExecuatableGame;
 			SetStartUp = Properties.Settings.Default.setStartUp;
 			AskBeforeExit = Properties.Settings.Default.askBeforeExit;
@@ -43,7 +43,13 @@ namespace Etupirka.Views
 			MinimizeAtStartup = Properties.Settings.Default.minimizeAtStartup;
 			CheckUpdate = Properties.Settings.Default.checkUpdate;
 			DisableGlowBrush = Properties.Settings.Default.disableGlowBrush;
-            HideListWhenPlaying = Properties.Settings.Default.hideListWhenPlaying;
+			HideListWhenPlaying = Properties.Settings.Default.hideListWhenPlaying;
+			SelectedLanguage = Properties.Settings.Default.language;
+			if (SelectedLanguage != "en" && SelectedLanguage != "zh-CN" && SelectedLanguage != "ja-JP")
+			{
+				SelectedLanguage = "ja-JP";
+			}
+			this.DataContext = this;
 		}
 	}
 }

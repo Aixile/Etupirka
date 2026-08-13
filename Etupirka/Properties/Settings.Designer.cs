@@ -250,5 +250,29 @@ namespace Etupirka.Properties {
                 this["useGoogleCache"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ja-JP")]
+        public string language {
+            get {
+                return ((string)(this["language"]));
+            }
+            set {
+                this["language"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string gameColumnLayout {
+            get {
+                return ((string)(this["gameColumnLayout"]));
+            }
+            set {
+                this["gameColumnLayout"] = value;
+            }
+        }
     }
 }

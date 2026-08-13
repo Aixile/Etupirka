@@ -7,6 +7,7 @@
         xmlns:tb="http://www.hardcodet.net/taskbar" 
         Title="Etupirka" Height="415" Width="757"
         xmlns:local="clr-namespace:Etupirka"
+        xmlns:loc="clr-namespace:Etupirka.Localization"
         WindowTitleBrush="#FF252525"
         Deactivated="MetroWindow_Deactivated"
         TitleCaps="False"
@@ -34,7 +35,6 @@
     <Grid>
         <Grid.Resources>
             <local:PathStyleConverter x:Key="pathStyleConverter"/>
-            <local:StatusStyleConverter x:Key="statusStyleConverter"/>
             <local:StatusBarStyleConverter x:Key="statusBarStyleConverter" />
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -45,95 +45,93 @@
         <tb:TaskbarIcon x:Name="tbico" IconSource="/Resources/Etupirka.ico" >
             <tb:TaskbarIcon.ContextMenu>
                 <ContextMenu BorderThickness="0" FontSize="11">
-                    <MenuItem Header="プロセス監視" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="リストを隠す" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
-                    <MenuItem Header="元に戻す" Name="ShowApp"  Click="ShowApp_Click"/>
-                    <MenuItem Header="設定メニュー" Name="SettingM" Click="SettingButton_Click" />
-                    <MenuItem Header="終了"  Click="QuitApp_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_ProcessMonitoring}" InputGestureText="Alt+F9" Name="WatchP"  IsCheckable="True" IsChecked="{Binding WatchProc,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="{loc:Loc Menu_HideList}" InputGestureText="Alt+F8" Name="ErogeHelperMode" IsCheckable="True" IsChecked="{Binding ErogeHelper,UpdateSourceTrigger=PropertyChanged}"/>
+                    <MenuItem Header="{loc:Loc Menu_Restore}" Name="ShowApp"  Click="ShowApp_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_SettingsMenu}" Name="SettingM" Click="SettingButton_Click" />
+                    <MenuItem Header="{loc:Loc Menu_Exit}"  Click="QuitApp_Click"/>
                 </ContextMenu>
             </tb:TaskbarIcon.ContextMenu>
 
         </tb:TaskbarIcon>
         <Menu Name="MenuBar" FontSize="11"  Grid.Row="0" IsMainMenu="True">
-            <MenuItem   Header="ファイル" >
-                <MenuItem Header="プロセスから追加"  Name="AddGameFromProcess" Click="AddGameFromProcess_Click"/>
-                <MenuItem Header="ErogameScapeIDから追加" Click="AddGameFromESID_Click"/>
+            <MenuItem Header="{loc:Loc Menu_File}" >
+                <MenuItem Header="{loc:Loc Menu_AddFromProcess}" Name="AddGameFromProcess" Click="AddGameFromProcess_Click"/>
+                <MenuItem Header="{loc:Loc Menu_AddFromESID}" Click="AddGameFromESID_Click"/>
                 <Separator />
-                <MenuItem Header="インポート">
-                    <MenuItem Header="ゲーム情報" Name="ImportList" Click="ImportList_Click"/>
-                    <MenuItem Header="ゲーム情報(上書き)" Name="ImportList_Overwrite" Click="ImportList_Overwrite_Click"/>
-                    <MenuItem Header="プレイタイム情報" Name="ImportPlayTimeList"  Click="ImportPlayTimeList_Click"/>
-                    <MenuItem Header="プレイタイム情報(上書き)" Name="ImportPlayTimeList_Overwrite"  Click="ImportPlayTimeList_Overwrite_Click"/>
+                <MenuItem Header="{loc:Loc Menu_Import}">
+                    <MenuItem Header="{loc:Loc Menu_GameInfo}" Name="ImportList" Click="ImportList_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_GameInfoOverwrite}" Name="ImportList_Overwrite" Click="ImportList_Overwrite_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_PlayTimeInfo}" Name="ImportPlayTimeList" Click="ImportPlayTimeList_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_PlayTimeInfoOverwrite}" Name="ImportPlayTimeList_Overwrite" Click="ImportPlayTimeList_Overwrite_Click"/>
                 </MenuItem>
-                <!--<MenuItem Header="ErogeTimerからインポート" Name="ImportFromErogeTimer" Click="ImportFromErogeTimer_Click"/>-->
-                <MenuItem Header="エクスポート">
-                    <MenuItem Header="すべてのゲーム" Name="ExportList" Click="ExportList_Click"/>
-                    <MenuItem Header="選択したゲーム" Name="ExportSelect" Click="ExportSelect_Click"/>
+                <MenuItem Header="{loc:Loc Menu_Export}">
+                    <MenuItem Header="{loc:Loc Menu_AllGames}" Name="ExportList" Click="ExportList_Click"/>
+                    <MenuItem Header="{loc:Loc Menu_SelectedGames}" Name="ExportSelect" Click="ExportSelect_Click"/>
                 </MenuItem>
                 <Separator />
-                <MenuItem Header="終了" Name="QuitApp" Click="QuitApp_Click"/>
+                <MenuItem Header="{loc:Loc Menu_Exit}" Name="QuitApp" Click="QuitApp_Click"/>
        
             </MenuItem>
-            <MenuItem   Header="ツール" >
-                <MenuItem Header="プロセス監視"  InputGestureText="Alt+F9" Name="WatchP_Tool"  IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
-                <MenuItem Header="プレイタイム統計" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
-                <MenuItem Header="オフラインデータベースを更新" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
-                <MenuItem Header="設定" Name="SettingMenu" Click="SettingButton_Click"/>
+            <MenuItem Header="{loc:Loc Menu_Tools}" >
+                <MenuItem Header="{loc:Loc Menu_ProcessMonitoring}" InputGestureText="Alt+F9" Name="WatchP_Tool" IsCheckable="True" IsChecked="{Binding WatchProc,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
+                <MenuItem Header="{loc:Loc Menu_PlayTimeStatistics}" Name="PlayTimeStatistic" Click="PlayTimeStatistic_Click"/>
+                <MenuItem Header="{loc:Loc Menu_UpdateOfflineDatabase}" Name="UpdateOfflineDatabase" Click="UpdateOfflineDatabase_Click"/>
+                <MenuItem Header="{loc:Loc Menu_Settings}" Name="SettingMenu" Click="SettingButton_Click"/>
             </MenuItem>
-            <MenuItem   Header="ヘルプ" >
-                <MenuItem Header="更新をチェック" Name="CheckUpdate" Click="CheckUpdate_Click"/>
-                <MenuItem Header="バージョン情報" Name="VersionInfo" Click="VersionInfo_Click"/>
+            <MenuItem Header="{loc:Loc Menu_Help}" >
+                <MenuItem Header="{loc:Loc Menu_CheckForUpdates}" Name="CheckUpdate" Click="CheckUpdate_Click"/>
+                <MenuItem Header="{loc:Loc Menu_About}" Name="VersionInfo" Click="VersionInfo_Click"/>
             </MenuItem>
         </Menu>
-        <ListView Grid.Row="1"  BorderThickness="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick" KeyDown="GameListView_KeyDown" >
+        <ListView Grid.Row="1" BorderThickness="0" Padding="0" Name="GameListView" FontSize="11" IsSynchronizedWithCurrentItem="True" Util:GridViewSort.AutoSort="True" MouseDoubleClick="GameListView_MouseDoubleClick" KeyDown="GameListView_KeyDown" >
             <ListView.InputBindings>
                 <KeyBinding Key="Enter" />
             </ListView.InputBindings>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn Width="30" Util:GridViewSort.PropertyName="Status" >
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock  Foreground="{Binding Path=Status,Converter={StaticResource statusStyleConverter}}"  FontFamily="Webdings" Text="=" FontSize="20"></TextBlock>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="ゲーム" Width="225" Util:GridViewSort.PropertyName="Title">
+                <GridView x:Name="GameGridView" AllowsColumnReorder="True">
+                    <GridView.ColumnHeaderContainerStyle>
+                        <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}">
+                            <Setter Property="Controls:ControlsHelper.ContentCharacterCasing" Value="Normal" />
+                            <Setter Property="HorizontalContentAlignment" Value="Left" />
+                        </Style>
+                    </GridView.ColumnHeaderContainerStyle>
+                    <GridViewColumn x:Name="GameColumn" Header="{loc:Loc Column_Game}" Width="225" Util:GridViewSort.PropertyName="Title">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Title}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="ブランド" Width="95" Util:GridViewSort.PropertyName="Brand">
+                    <GridViewColumn x:Name="BrandColumn" Header="{loc:Loc Column_Brand}" Width="95" Util:GridViewSort.PropertyName="Brand">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding Brand}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="発売日" Width="80"  Util:GridViewSort.PropertyName="SaleDay">
+                    <GridViewColumn x:Name="ReleaseDateColumn" Header="{loc:Loc Column_ReleaseDate}" Width="80" Util:GridViewSort.PropertyName="SaleDay">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding SaleDayString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="プレイタイム" Width="80"  Util:GridViewSort.PropertyName="TotalPlayTime">
+                    <GridViewColumn x:Name="PlayTimeColumn" Header="{loc:Loc Column_PlayTime}" Width="80" Util:GridViewSort.PropertyName="TotalPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding TotalPlayTimeString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="初回プレイ" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
+                    <GridViewColumn x:Name="FirstPlayedColumn" Header="{loc:Loc Column_FirstPlayed}" Width="115" Util:GridViewSort.PropertyName="FirstPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding FirstPlayTimeString}"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="最終プレイ" Width="115" Util:GridViewSort.PropertyName="LastPlayTime">
+                    <GridViewColumn x:Name="LastPlayedColumn" Header="{loc:Loc Column_LastPlayed}" Width="115" Util:GridViewSort.PropertyName="LastPlayTime">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Foreground="{Binding Path=IsPathExist,Converter={StaticResource pathStyleConverter}}" Text="{Binding LastPlayTimeString}"></TextBlock>
@@ -145,21 +143,21 @@
             </ListView.View>
             <ListView.ContextMenu>
                 <ContextMenu FontSize="10">
-                    <MenuItem Header="ゲーム起動"  Name="OpenGame" Click="OpenGame_Click"/>
-                    <MenuItem Header="ゲーム情報を取得" Name="TryGetGameInfo" Click="TryGetGameInfo_Click" />
-                    <MenuItem Header="開く">
-                        <MenuItem Header="フォルダーを開く"  Name="OpenFolder" Click="OpenFolder_Click"/>
-                        <MenuItem Header="ErogameScapeを開く" Name="OpenES" Click="OpenES_Click" />
-                        <MenuItem Header="プレイ統計を開く" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
+                    <MenuItem Header="{loc:Loc Context_LaunchGame}" Name="OpenGame" Click="OpenGame_Click"/>
+                    <MenuItem Header="{loc:Loc Context_GetGameInfo}" Name="TryGetGameInfo" Click="TryGetGameInfo_Click" />
+                    <MenuItem Header="{loc:Loc Context_Open}">
+                        <MenuItem Header="{loc:Loc Context_OpenFolder}" Name="OpenFolder" Click="OpenFolder_Click"/>
+                        <MenuItem Header="{loc:Loc Context_OpenES}" Name="OpenES" Click="OpenES_Click" />
+                        <MenuItem Header="{loc:Loc Context_OpenPlayStatistics}" Name="OpenPlayStatistics" Click="OpenPlayStatistics_Click" />
                     </MenuItem>
-                    <MenuItem Header="コピー">
-                        <MenuItem Header="タイトル"  Name="CopyTitle" Click="CopyTitle_Click" />
-                        <MenuItem Header="ブランド"  Name="CopyBrand" Click="CopyBrand_Click" />
+                    <MenuItem Header="{loc:Loc Context_Copy}">
+                        <MenuItem Header="{loc:Loc Column_Title}" Name="CopyTitle" Click="CopyTitle_Click" />
+                        <MenuItem Header="{loc:Loc Column_Brand}" Name="CopyBrand" Click="CopyBrand_Click" />
                     </MenuItem>
-                    <MenuItem Header="削除" Name="Delete" Click="Delete_Click" />
-                    <MenuItem Header="設定">
-                        <MenuItem Header="プレイタイム設定" Name="TimeSetting" Click="TimeSetting_Click"/>
-                        <MenuItem Header="ゲーム設定" Name="GameProperty" Click="GameProperty_Click"/>
+                    <MenuItem Header="{loc:Loc Context_Delete}" Name="Delete" Click="Delete_Click" />
+                    <MenuItem Header="{loc:Loc Menu_Settings}">
+                        <MenuItem Header="{loc:Loc Context_PlayTimeSettings}" Name="TimeSetting" Click="TimeSetting_Click"/>
+                        <MenuItem Header="{loc:Loc Context_GameSettings}" Name="GameProperty" Click="GameProperty_Click"/>
                     </MenuItem>
                 </ContextMenu>
             </ListView.ContextMenu>
@@ -171,9 +169,9 @@
             </StatusBarItem>
             <StatusBarItem HorizontalAlignment="Right">
                 <WrapPanel>
-                <Label FontWeight="Bold" Content="トータルプレイタイム: " />
+                <Label FontWeight="Bold" Content="{loc:Loc Status_TotalPlayTime}" />
                 <Label  FontWeight="Bold"  Content="{Binding TotalTime,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
-                <Label FontWeight="Bold" Content="プレイ数: " />
+                <Label FontWeight="Bold" Content="{loc:Loc Status_GameCount}" />
                 <Label  FontWeight="Bold" Content="{Binding ItemCount,ElementName=MWindow,UpdateSourceTrigger=PropertyChanged}"/>
                 </WrapPanel>
             </StatusBarItem>

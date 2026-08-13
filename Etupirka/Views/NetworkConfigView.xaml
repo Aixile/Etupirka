@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
              xmlns:local="clr-namespace:Etupirka.Views"
+             xmlns:loc="clr-namespace:Etupirka.Localization"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -17,8 +18,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0">
-            <Label FontWeight="Bold" >プロキシ設定</Label>
-            <RadioButton  Margin="2" Focusable="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.None}}" Name="NoneBox" Tag="0">なし</RadioButton>
+            <Label FontWeight="Bold" Content="{loc:Loc Setting_ProxySettings}" />
+            <RadioButton Margin="2" Focusable="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.None}}" Name="NoneBox" Tag="0" Content="{loc:Loc Setting_None}" />
             <RadioButton  Margin="2" Focusable="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Http}}"  Name="HTTPBox" Tag="1">HTTP</RadioButton>
             <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks4}}" Name="SOCKS4Box" Tag="2">SOCKS 4</RadioButton>
             <RadioButton  Margin="2" IsEnabled="False" IsChecked="{Binding Path=MyProxyType, Converter={StaticResource enumBooleanConverter}, ConverterParameter={x:Static local:ProxyType.Socks5}}"  Name="SOCKS5Box" Tag="3">SOCKS 5</RadioButton>
@@ -34,13 +35,13 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <Label Margin="2" Grid.Row="0" Grid.Column="0">プロキシホスト:</Label>
+            <Label Margin="2" Grid.Row="0" Grid.Column="0" Content="{loc:Loc Setting_ProxyHost}" />
             <TextBox Margin="2" Grid.Row="0" Grid.Column="1" Width="150" Text="{Binding ProxyAddress,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path=IsChecked,ElementName=NoneBox, Converter={StaticResource inverseBooleanConverter}}"/>
-            <Label Margin="2" Grid.Row="1" Grid.Column="0">プロキシポート:</Label>
+            <Label Margin="2" Grid.Row="1" Grid.Column="0" Content="{loc:Loc Setting_ProxyPort}" />
             <Controls:NumericUpDown Margin="2" Grid.Row="1" Grid.Column="1" Value="{Binding ProxyPort, UpdateSourceTrigger =PropertyChanged }" Minimum = "0" Maximum = "65535" IsEnabled="{ Binding Path= IsChecked ,ElementName = NoneBox, Converter ={StaticResource inverseBooleanConverter}}"  HideUpDownButtons = "True"/>
-            <Label Margin="2" Grid.Row="2" Grid.Column="0">プロキシユーザー:</Label>
+            <Label Margin="2" Grid.Row="2" Grid.Column="0" Content="{loc:Loc Setting_ProxyUser}" />
             <TextBox Margin="2"  Grid.Row="2" Grid.Column="1" Width = "150" Text ="{Binding ProxyUser, UpdateSourceTrigger =PropertyChanged}" IsEnabled="{ Binding Path=IsChecked,ElementName= NoneBox,Converter= {StaticResource inverseBooleanConverter}}" ></TextBox>
-            <Label Margin="2" Grid.Row="3" Grid.Column="0">プロキシパスワード:</Label>
+            <Label Margin="2" Grid.Row="3" Grid.Column="0" Content="{loc:Loc Setting_ProxyPassword}" />
             <PasswordBox Margin="2" Grid.Row="3" Grid.Column="1" Width = "150" x:Name= "passwordBox" IsEnabled="{ Binding Path= IsChecked, ElementName =NoneBox ,Converter={ StaticResource inverseBooleanConverter}}" ></PasswordBox>
 
 

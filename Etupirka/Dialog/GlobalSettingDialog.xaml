@@ -3,9 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
+        xmlns:loc="clr-namespace:Etupirka.Localization"
         WindowStartupLocation="CenterOwner"
         Name="SettingDialog"
-        Title="Etupirka設定" Height="450" Width="500"
+        Title="{loc:Loc Dialog_Settings_Title}" Height="450" Width="500"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -17,19 +18,25 @@
         </Grid.RowDefinitions>
         
         <TabControl Name="ConfigTab" SelectionChanged="TabControl_SelectionChanged" TabStripPlacement="Left" Margin="15" Grid.Row="0">
-            <Controls:MetroTabItem Header="一般" Controls:ControlsHelper.HeaderFontSize="20">
-                <Views:GeneralConfigView x:Name="GeneralView" />
+            <Controls:MetroTabItem Header="{loc:Loc Tab_General}" Controls:ControlsHelper.HeaderFontSize="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Views:GeneralConfigView x:Name="GeneralView" />
+                </ScrollViewer>
             </Controls:MetroTabItem>
-            <Controls:MetroTabItem Header="データベース" Controls:ControlsHelper.HeaderFontSize="20">
-                <Views:DatabaseConfigView x:Name="DatabaseView" />
+            <Controls:MetroTabItem Header="{loc:Loc Tab_Database}" Controls:ControlsHelper.HeaderFontSize="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Views:DatabaseConfigView x:Name="DatabaseView" />
+                </ScrollViewer>
             </Controls:MetroTabItem>
-            <Controls:MetroTabItem Header="ネットワーク"  Controls:ControlsHelper.HeaderFontSize="20">
-                <Views:NetworkConfigView  x:Name="NetworkView" />
+            <Controls:MetroTabItem Header="{loc:Loc Tab_Network}" Controls:ControlsHelper.HeaderFontSize="20">
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <Views:NetworkConfigView x:Name="NetworkView" />
+                </ScrollViewer>
             </Controls:MetroTabItem>
         </TabControl>
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10">
-            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click"  MinWidth="60" Margin="0,0,10,0">Ok</Button>
-            <Button IsCancel="True" MinWidth="60">キャンセル</Button>
+            <Button IsDefault="True" Name="btnDialogOk" Click="btnDialogOk_Click" MinWidth="60" Margin="0,0,10,0" Content="{loc:Loc Common_Ok}" />
+            <Button IsCancel="True" MinWidth="60" Content="{loc:Loc Common_Cancel}" />
         </WrapPanel>
     </Grid>
 </Controls:MetroWindow>

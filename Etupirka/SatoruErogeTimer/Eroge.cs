@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Etupirka.Localization;
 
 namespace SatoruErogeTimer
 {
@@ -35,7 +36,7 @@ namespace SatoruErogeTimer
 			int m = (time / 60);
 			int h = m / 60;
 			m %= 60;
-			return h + @"時間" + m + @"分";
+			return string.Format(Strings.Get("Time_HoursMinutes"), h, m);
 		}
 	}
 }

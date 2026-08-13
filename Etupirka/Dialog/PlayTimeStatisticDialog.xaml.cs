@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Etupirka.Localization;
 
 namespace Etupirka.Dialog
 {
@@ -51,7 +52,7 @@ namespace Etupirka.Dialog
 				int m = (time / 60);
 				int h = m / 60;
 				m %= 60;
-				return h + @"時間" + m + @"分" + s + @"秒";
+				return string.Format(Strings.Get("Time_HoursMinutesSeconds"), h, m, s);
 			}
 		}
 	}

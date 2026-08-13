@@ -159,6 +159,8 @@
     <Compile Include="DisplaySettings.cs" />
     <Compile Include="GameData\DisplayInfo.cs" />
     <Compile Include="InformationManager.cs" />
+    <Compile Include="Localization\LocExtension.cs" />
+    <Compile Include="Localization\Strings.cs" />
     <Compile Include="ProcessInfoCache.cs" />
     <Compile Include="StringProcessing.cs" />
     <Compile Include="Views\DatabaseConfigView.xaml.cs">
@@ -330,6 +332,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.resx" />
+    <EmbeddedResource Include="Localization\Strings.ja-JP.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Localization\Strings.zh-CN.resx">
+      <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />

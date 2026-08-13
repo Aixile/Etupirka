@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Views="clr-namespace:Etupirka.Views"
+        xmlns:loc="clr-namespace:Etupirka.Localization"
         WindowStartupLocation="CenterOwner"
-        Title="ヘルプ" Height="250" Width="430"
+        Title="{loc:Loc Dialog_Help_Title}" Height="250" Width="430"
         WindowTitleBrush="#FF252525"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1.5"
@@ -12,20 +13,20 @@
         >
     <Grid>
         <TextBlock Foreground="#fff" Margin="20" TextWrapping="WrapWithOverflow">
-            <TextBlock FontWeight="Bold">この機能はWindows 10のみサポートしています</TextBlock>、Windows 8およびそれ以前のシステムでは利用できません。
+            <TextBlock FontWeight="Bold" Text="{loc:Loc DisplayHelp_Lead}" /><Run Text="{loc:Loc DisplayHelp_Suffix}" />
             <LineBreak/>
             <LineBreak/>
-            初めてWindows 10で使う場合、またはうまく動作しない場合は、以下の手順に従ってください
+            <Run Text="{loc:Loc DisplayHelp_Intro}" />
             <LineBreak/>
-            １．デスクトップの上で右クリックして「ディスプレイ設定」を開く
+            <Run Text="{loc:Loc DisplayHelp_Step1}" />
             <LineBreak/>
-            ２．テキスト、アプリ、その他の項目のサイズを任意の値に変更する
+            <Run Text="{loc:Loc DisplayHelp_Step2}" />
             <LineBreak/>
-            ３．ディスプレイのサイズが変わるまで待つ
+            <Run Text="{loc:Loc DisplayHelp_Step3}" />
             <LineBreak/>
-            ４．元のサイズに変更する
+            <Run Text="{loc:Loc DisplayHelp_Step4}" />
             <LineBreak/>
-            以上の手順により、モニター別のレジストリが作成されます。
+            <Run Text="{loc:Loc DisplayHelp_End}" />
             
         </TextBlock>
 

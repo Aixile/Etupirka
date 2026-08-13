@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 namespace Etupirka
 {
@@ -20,6 +22,7 @@ namespace Etupirka
 		{
 			if (SingleInstance<App>.InitializeAsFirstInstance(Unique))
 			{
+				ApplyLanguage();
 				string [] args=Environment.GetCommandLineArgs();
 				if (args.Count() > 1&&args[1].Equals("-min"))
 				{
@@ -36,6 +39,17 @@ namespace Etupirka
 			}
 		}
 
+		private static void ApplyLanguage()
+		{
+			string language = Settings.Default.language;
+			if (language != "en" && language != "zh-CN" && language != "ja-JP")
+			{
+				language = "ja-JP";
+			}
+
+			Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(language);
+		}
+
 		#region ISingleInstanceApp Members
 		public bool SignalExternalCommandLineArgs(IList<string> args)
 		{
@@ -44,7 +58,6 @@ namespace Etupirka
 		}
 		#endregion
 
-	
 
 	}
 

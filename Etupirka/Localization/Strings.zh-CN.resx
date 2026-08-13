@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Common_Ok" xml:space="preserve"><value>确定</value></data>
+  <data name="Common_Cancel" xml:space="preserve"><value>取消</value></data>
+  <data name="Menu_ProcessMonitoring" xml:space="preserve"><value>进程监视</value></data>
+  <data name="Menu_HideList" xml:space="preserve"><value>隐藏列表</value></data>
+  <data name="Menu_Restore" xml:space="preserve"><value>还原</value></data>
+  <data name="Menu_SettingsMenu" xml:space="preserve"><value>设置菜单</value></data>
+  <data name="Menu_Exit" xml:space="preserve"><value>退出</value></data>
+  <data name="Menu_File" xml:space="preserve"><value>文件</value></data>
+  <data name="Menu_AddFromProcess" xml:space="preserve"><value>从进程添加</value></data>
+  <data name="Menu_AddFromESID" xml:space="preserve"><value>从 ErogameScape ID 添加</value></data>
+  <data name="Menu_Import" xml:space="preserve"><value>导入</value></data>
+  <data name="Menu_GameInfo" xml:space="preserve"><value>游戏信息</value></data>
+  <data name="Menu_GameInfoOverwrite" xml:space="preserve"><value>游戏信息（覆盖）</value></data>
+  <data name="Menu_PlayTimeInfo" xml:space="preserve"><value>游玩时间信息</value></data>
+  <data name="Menu_PlayTimeInfoOverwrite" xml:space="preserve"><value>游玩时间信息（覆盖）</value></data>
+  <data name="Menu_Export" xml:space="preserve"><value>导出</value></data>
+  <data name="Menu_AllGames" xml:space="preserve"><value>所有游戏</value></data>
+  <data name="Menu_SelectedGames" xml:space="preserve"><value>选中的游戏</value></data>
+  <data name="Menu_Tools" xml:space="preserve"><value>工具</value></data>
+  <data name="Menu_PlayTimeStatistics" xml:space="preserve"><value>游玩时间统计</value></data>
+  <data name="Menu_UpdateOfflineDatabase" xml:space="preserve"><value>更新离线数据库</value></data>
+  <data name="Menu_Settings" xml:space="preserve"><value>设置</value></data>
+  <data name="Menu_Help" xml:space="preserve"><value>帮助</value></data>
+  <data name="Menu_CheckForUpdates" xml:space="preserve"><value>检查更新</value></data>
+  <data name="Menu_About" xml:space="preserve"><value>版本信息</value></data>
+  <data name="Column_Game" xml:space="preserve"><value>游戏</value></data>
+  <data name="Column_Title" xml:space="preserve"><value>标题</value></data>
+  <data name="Column_Brand" xml:space="preserve"><value>厂商</value></data>
+  <data name="Column_ReleaseDate" xml:space="preserve"><value>发售日</value></data>
+  <data name="Column_PlayTime" xml:space="preserve"><value>游玩时间</value></data>
+  <data name="Column_FirstPlayed" xml:space="preserve"><value>初次游玩</value></data>
+  <data name="Column_LastPlayed" xml:space="preserve"><value>最后游玩</value></data>
+  <data name="Column_Date" xml:space="preserve"><value>日期</value></data>
+  <data name="Column_Month" xml:space="preserve"><value>年月</value></data>
+  <data name="Column_DeviceName" xml:space="preserve"><value>设备名称</value></data>
+  <data name="Column_Scaling" xml:space="preserve"><value>缩放</value></data>
+  <data name="Column_EnableScaling" xml:space="preserve"><value>启用缩放</value></data>
+  <data name="Column_ImageName" xml:space="preserve"><value>映像名称</value></data>
+  <data name="Column_Path" xml:space="preserve"><value>路径</value></data>
+  <data name="Context_LaunchGame" xml:space="preserve"><value>启动游戏</value></data>
+  <data name="Context_GetGameInfo" xml:space="preserve"><value>获取游戏信息</value></data>
+  <data name="Context_Open" xml:space="preserve"><value>打开</value></data>
+  <data name="Context_OpenFolder" xml:space="preserve"><value>打开文件夹</value></data>
+  <data name="Context_OpenES" xml:space="preserve"><value>打开 ErogameScape</value></data>
+  <data name="Context_OpenPlayStatistics" xml:space="preserve"><value>打开游玩统计</value></data>
+  <data name="Context_Copy" xml:space="preserve"><value>复制</value></data>
+  <data name="Context_Delete" xml:space="preserve"><value>删除</value></data>
+  <data name="Context_PlayTimeSettings" xml:space="preserve"><value>游玩时间设置</value></data>
+  <data name="Context_GameSettings" xml:space="preserve"><value>游戏设置</value></data>
+  <data name="Status_TotalPlayTime" xml:space="preserve"><value>总游玩时间: </value></data>
+  <data name="Status_GameCount" xml:space="preserve"><value>游玩数: </value></data>
+  <data name="Dialog_AddFromES_Title" xml:space="preserve"><value>从 ErogameScape 添加</value></data>
+  <data name="Dialog_ESGameId" xml:space="preserve"><value>ErogameScape 游戏 ID</value></data>
+  <data name="Dialog_Exit_Title" xml:space="preserve"><value>退出 Etupirka？</value></data>
+  <data name="Dialog_DoNotShowAgain" xml:space="preserve"><value>下次不再显示</value></data>
+  <data name="Dialog_DisplaySettings_Title" xml:space="preserve"><value>显示设置</value></data>
+  <data name="Dialog_BeforeUsing" xml:space="preserve"><value>使用前须知</value></data>
+  <data name="Dialog_Help_Title" xml:space="preserve"><value>帮助</value></data>
+  <data name="DisplayHelp_Lead" xml:space="preserve"><value>此功能仅支持 Windows 10</value></data>
+  <data name="DisplayHelp_Suffix" xml:space="preserve"><value>，无法在 Windows 8 及更早的系统中使用。</value></data>
+  <data name="DisplayHelp_Intro" xml:space="preserve"><value>首次在 Windows 10 中使用，或无法正常运行时，请按照以下步骤操作：</value></data>
+  <data name="DisplayHelp_Step1" xml:space="preserve"><value>1．在桌面上右键并打开“显示设置”</value></data>
+  <data name="DisplayHelp_Step2" xml:space="preserve"><value>2．将文本、应用和其他项目的大小更改为任意值</value></data>
+  <data name="DisplayHelp_Step3" xml:space="preserve"><value>3．等待显示大小发生变化</value></data>
+  <data name="DisplayHelp_Step4" xml:space="preserve"><value>4．改回原来的大小</value></data>
+  <data name="DisplayHelp_End" xml:space="preserve"><value>通过以上步骤，将创建每个显示器对应的注册表项。</value></data>
+  <data name="Dialog_GameInfoList_Title" xml:space="preserve"><value>游戏信息列表</value></data>
+  <data name="Dialog_GameSettings_Title" xml:space="preserve"><value>游戏设置</value></data>
+  <data name="Label_Title" xml:space="preserve"><value>标题</value></data>
+  <data name="Label_Brand" xml:space="preserve"><value>厂商</value></data>
+  <data name="Label_ReleaseDate" xml:space="preserve"><value>发售日</value></data>
+  <data name="Label_ProcessPath" xml:space="preserve"><value>进程监视路径</value></data>
+  <data name="Label_SeparateExecutablePath" xml:space="preserve"><value>不同的执行路径</value></data>
+  <data name="Label_ExecutablePath" xml:space="preserve"><value>执行路径</value></data>
+  <data name="Label_DisplaySettings" xml:space="preserve"><value>显示设置</value></data>
+  <data name="Dialog_PlayTimeGraph_Title" xml:space="preserve"><value>游玩时间图表</value></data>
+  <data name="Graph_PlayTimeByTitleMinutes" xml:space="preserve"><value>按标题统计的游玩时间（分钟）</value></data>
+  <data name="Graph_PlayTime" xml:space="preserve"><value>游玩时间</value></data>
+  <data name="Dialog_PlayTimeStatistics_Title" xml:space="preserve"><value>游玩时间统计</value></data>
+  <data name="Dialog_Settings_Title" xml:space="preserve"><value>Etupirka 设置</value></data>
+  <data name="Tab_General" xml:space="preserve"><value>一般</value></data>
+  <data name="Tab_Database" xml:space="preserve"><value>数据库</value></data>
+  <data name="Tab_Network" xml:space="preserve"><value>网络</value></data>
+  <data name="Tab_Last30Days" xml:space="preserve"><value>过去 30 天</value></data>
+  <data name="Tab_Weekly" xml:space="preserve"><value>每周</value></data>
+  <data name="Tab_Monthly" xml:space="preserve"><value>每月</value></data>
+  <data name="Tab_All" xml:space="preserve"><value>全部</value></data>
+  <data name="Dialog_ProcessList_Title" xml:space="preserve"><value>进程列表</value></data>
+  <data name="Dialog_PlayTimeSettings_Title" xml:space="preserve"><value>游玩时间设置</value></data>
+  <data name="Label_FirstPlayed" xml:space="preserve"><value>初次游玩</value></data>
+  <data name="Label_LastPlayed" xml:space="preserve"><value>最后游玩</value></data>
+  <data name="Label_PlayTime" xml:space="preserve"><value>游玩时间</value></data>
+  <data name="Setting_Language" xml:space="preserve"><value>语言 (重启后启用)</value></data>
+  <data name="Setting_StartWithWindows" xml:space="preserve"><value>注册到启动项</value></data>
+  <data name="Setting_MinimizeAtStartup" xml:space="preserve"><value>启动时最小化</value></data>
+  <data name="Setting_ConfirmBeforeExit" xml:space="preserve"><value>退出前确认</value></data>
+  <data name="Setting_DistinguishUnavailableGames" xml:space="preserve"><value>区分无法执行的游戏</value></data>
+  <data name="Setting_WatchProcess" xml:space="preserve"><value>进程监视</value></data>
+  <data name="Setting_MonitorInterval" xml:space="preserve"><value>监视间隔 (秒)</value></data>
+  <data name="Setting_BackgroundSound" xml:space="preserve"><value>后台声音</value></data>
+  <data name="Setting_CheckUpdatesAutomatically" xml:space="preserve"><value>自动检查更新</value></data>
+  <data name="Setting_DisableGlowBrush" xml:space="preserve"><value>不显示 GlowBrush</value></data>
+  <data name="Setting_HideListWhilePlaying" xml:space="preserve"><value>游戏执行中隐藏列表</value></data>
+  <data name="Setting_UseOfflineDatabase" xml:space="preserve"><value>使用离线数据库</value></data>
+  <data name="Setting_UseGoogleCache" xml:space="preserve"><value>对在线数据库使用 Google 缓存</value></data>
+  <data name="Setting_ProxySettings" xml:space="preserve"><value>代理设置</value></data>
+  <data name="Setting_None" xml:space="preserve"><value>无</value></data>
+  <data name="Setting_ProxyHost" xml:space="preserve"><value>代理主机:</value></data>
+  <data name="Setting_ProxyPort" xml:space="preserve"><value>代理端口:</value></data>
+  <data name="Setting_ProxyUser" xml:space="preserve"><value>代理用户:</value></data>
+  <data name="Setting_ProxyPassword" xml:space="preserve"><value>代理密码:</value></data>
+  <data name="Time_HoursMinutes" xml:space="preserve"><value>{0}h {1}m</value></data>
+  <data name="Time_HoursMinutesSeconds" xml:space="preserve"><value>{0}h {1}m {2}s</value></data>
+  <data name="Update_Available" xml:space="preserve"><value>发现版本 {0}。是否更新？</value></data>
+  <data name="Update_Title" xml:space="preserve"><value>更新 Etupirka</value></data>
+  <data name="Update_Updating" xml:space="preserve"><value>正在更新</value></data>
+  <data name="Update_Downloading" xml:space="preserve"><value>正在下载...</value></data>
+  <data name="Database_Updating" xml:space="preserve"><value>正在更新数据库...</value></data>
+  <data name="Database_UpdateTitle" xml:space="preserve"><value>数据库更新</value></data>
+  <data name="Common_Succeeded" xml:space="preserve"><value>成功</value></data>
+  <data name="Common_Failed" xml:space="preserve"><value>失败</value></data>
+  <data name="About_Title" xml:space="preserve"><value>版本信息</value></data>
+  <data name="Update_LatestInstalled" xml:space="preserve"><value>已安装最新版本</value></data>
+  <data name="Update_CheckTitle" xml:space="preserve"><value>检查更新</value></data>
+  <data name="Update_CheckFailed" xml:space="preserve"><value>检查更新失败</value></data>
+  <data name="Delete_Title" xml:space="preserve"><value>删除确认</value></data>
+  <data name="Delete_Message" xml:space="preserve"><value>是否删除选中的游戏？</value></data>
+  <data name="FileFilter_Executable" xml:space="preserve"><value>可执行文件 (*.exe)|*.exe|所有文件 (*.*)|*.*</value></data>
+</root>

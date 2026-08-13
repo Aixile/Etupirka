@@ -6,6 +6,7 @@
              xmlns:Util="clr-namespace:Wpf.Util"
              xmlns:Views="clr-namespace:Etupirka.Views"
              xmlns:local="clr-namespace:Etupirka"
+             xmlns:loc="clr-namespace:Etupirka.Localization"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -19,8 +20,8 @@
             DisplayMemberBinding="{Binding RelativeSource=
              {RelativeSource FindAncestor, AncestorType={x:Type ListViewItem}}, 
               Converter={StaticResource IndexConverter}}" />
-                    <GridViewColumn Header="年月" Width="100" DisplayMemberBinding="{Binding MonthString}" Util:GridViewSort.PropertyName="d"></GridViewColumn>
-                    <GridViewColumn Header="プレイタイム" Width="120" DisplayMemberBinding="{Binding TimeString}" Util:GridViewSort.PropertyName="time"></GridViewColumn>
+                    <GridViewColumn Header="{loc:Loc Column_Month}" Width="100" DisplayMemberBinding="{Binding MonthString}" Util:GridViewSort.PropertyName="d"></GridViewColumn>
+                    <GridViewColumn Header="{loc:Loc Column_PlayTime}" Width="120" DisplayMemberBinding="{Binding TimeString}" Util:GridViewSort.PropertyName="time"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
